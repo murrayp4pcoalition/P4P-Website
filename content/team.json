@@ -6,7 +6,7 @@
     "backgroundImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"
   },
   "officers": {
-    "sectionTitle": "Coalition Officers",
+    "sectionTitle": "Coalition Staff",
     "sectionDescription": "Our leadership team provides strategic direction and governance.",
     "members": [
       {
@@ -47,30 +47,102 @@
     "sectionTitle": "Key Leaders",
     "sectionDescription": "Community leaders driving initiatives across Murray's partner organizations.",
     "members": [
-      { "name": "Darren Dean", "role": "MCSD Admin" },
-      { "name": "Amy Bucker", "role": "MSD Social Worker" },
-      { "name": "Sgt Brent Hawker", "role": "Murray Police" },
-      { "name": "Councilwoman Rosalba Dominguez", "role": "Murray City Council" },
-      { "name": "Sgt. David Christiansen", "role": "Murray Police" },
-      { "name": "Mayor Jenny Wilson", "role": "SL County" },
-      { "name": "Nate Christopherson", "role": "Health Dept" },
-      { "name": "Sydney Rassmussen", "role": "Health Dept" },
-      { "name": "Ashley Torgerson", "role": "Health Dept" },
-      { "name": "Heather Sargent", "role": "SelectHealth" },
-      { "name": "Jeff Drubel", "role": "Intermountain" },
-      { "name": "Paula Julander", "role": "Exchange Club" },
-      { "name": "Chris Crowder", "role": "Exchange Club" },
-      { "name": "Jim Waddell", "role": "Murray Rotary" },
-      { "name": "Maile Elzey", "role": "Murray Rotary" },
-      { "name": "Ted Cross", "role": "Business" },
-      { "name": "Karlie Jensen", "role": "Marketing" },
-      { "name": "Brian Burnett", "role": "Murray City Mayor" },
-      { "name": "Mayor Pro Tem Diane Turner", "role": "Murray City Council" },
-      { "name": "Councilwoman Kat Martinez", "role": "Murray City Council" },
-      { "name": "Councilman Jim Speiser", "role": "Murray City Council" },
-      { "name": "Councilman Ron Hancock", "role": "Murray City Council" },
-      { "name": "Chris Hershberger", "role": "Murray Youth Council Advisor" },
-      { "name": "Alex Farnsworth", "role": "Murray Youth Council Advisor" }
+      {
+        "name": "Darren Dean",
+        "role": "MCSD Admin"
+      },
+      {
+        "name": "Amy Bucker",
+        "role": "MSD Social Worker"
+      },
+      {
+        "name": "Sgt Brent Hawker",
+        "role": "Murray Police"
+      },
+      {
+        "name": "Councilwoman Rosalba Dominguez",
+        "role": "Murray City Council"
+      },
+      {
+        "name": "Sgt. David Christiansen",
+        "role": "Murray Police"
+      },
+      {
+        "name": "Mayor Jenny Wilson",
+        "role": "SL County"
+      },
+      {
+        "name": "Nate Christopherson",
+        "role": "Health Dept"
+      },
+      {
+        "name": "Sydney Rassmussen",
+        "role": "Health Dept"
+      },
+      {
+        "name": "Ashley Torgerson",
+        "role": "Health Dept"
+      },
+      {
+        "name": "Heather Sargent",
+        "role": "SelectHealth"
+      },
+      {
+        "name": "Jeff Drubel",
+        "role": "Intermountain"
+      },
+      {
+        "name": "Paula Julander",
+        "role": "Exchange Club"
+      },
+      {
+        "name": "Chris Crowder",
+        "role": "Exchange Club"
+      },
+      {
+        "name": "Jim Waddell",
+        "role": "Murray Rotary"
+      },
+      {
+        "name": "Maile Elzey",
+        "role": "Murray Rotary"
+      },
+      {
+        "name": "Ted Cross",
+        "role": "Business"
+      },
+      {
+        "name": "Karlie Jensen",
+        "role": "Marketing"
+      },
+      {
+        "name": "Brian Burnett",
+        "role": "Murray City Mayor"
+      },
+      {
+        "name": "Mayor Pro Tem Diane Turner",
+        "role": "Murray City Council"
+      },
+      {
+        "name": "Councilwoman Kat Martinez",
+        "role": "Murray City Council"
+      },
+      {
+        "name": "Councilman Jim Speiser",
+        "role": "Murray City Council"
+      },
+      {
+        "name": "Councilman Ron Hancock",
+        "role": "Murray City Council"
+      },
+      {
+        "name": "Chris Hershberger",
+        "role": "Murray Youth Council Advisor"
+      },
+      {
+        "name": "Alex Farnsworth",
+        "role": "Murray Youth Council Advisor"
+      }
     ]
   },
   "boardMembers": {
