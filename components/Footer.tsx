@@ -125,11 +125,8 @@ export default function Footer() {
               © {new Date().getFullYear()} Murray Partners 4 Prevention. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-              <Link href="/terms" className="text-white/40 hover:text-white transition-colors">
-                Terms & Conditions
-              </Link>
-              <Link href="/privacy" className="text-white/40 hover:text-white transition-colors">
-                Privacy Policy
+              <Link href="/legal" className="text-white/40 hover:text-white transition-colors">
+                Legal Policies
               </Link>
             </div>
           </div>

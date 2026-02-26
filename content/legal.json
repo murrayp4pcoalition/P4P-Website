@@ -1,0 +1,110 @@
+{
+  "header": {
+    "badge": "Legal",
+    "title": "Legal Policies",
+    "description": "Terms and Conditions, Privacy Policy, and Accessibility Statement for Murray Partners 4 Prevention.",
+    "address": "141 E. 5600 S. #300, Murray, UT 84107",
+    "website": "https://murrayp4p.com"
+  },
+  "effectiveDate": "2026",
+  "terms": {
+    "title": "Terms and Conditions",
+    "intro": "By accessing or using our website at https://murrayp4p.com, you agree to comply with and be bound by the following Terms and Conditions. If you do not agree, please do not use this website.",
+    "sections": [
+      {
+        "title": "1. Use of Website",
+        "content": "You may use this site for lawful purposes only. You must not use this website in a way that violates any laws, infringes on anyone's rights, or is fraudulent or harmful."
+      },
+      {
+        "title": "2. Intellectual Property",
+        "content": "All content, graphics, logos, and software on this website are the property of Murray Partners 4 Prevention or its content suppliers and are protected by intellectual property laws. Unauthorized use is prohibited."
+      },
+      {
+        "title": "3. Disclaimers",
+        "content": "This website is provided \"as is\" without warranties of any kind. We do not guarantee that the website will be uninterrupted or error-free."
+      },
+      {
+        "title": "4. Limitation of Liability",
+        "content": "Murray Partners 4 Prevention is not liable for any direct, indirect, incidental, or consequential damages arising out of your use or inability to use the website."
+      },
+      {
+        "title": "5. Links to Other Sites",
+        "content": "Our site may link to external sites that are not operated by us. We are not responsible for their content or privacy practices."
+      },
+      {
+        "title": "6. Governing Law",
+        "content": "These terms are governed by the laws of the State of Utah."
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "Murray Partners 4 Prevention is committed to protecting your privacy. This policy outlines how we collect, use, and safeguard your personal information.",
+    "sections": [
+      {
+        "title": "Information We Collect",
+        "subsections": [
+          {
+            "title": "Personal Information",
+            "content": "Such as your name, email, and phone number when voluntarily submitted via forms."
+          },
+          {
+            "title": "Non-Personal Information",
+            "content": "Like browser type, pages visited, and time spent on site."
+          }
+        ]
+      },
+      {
+        "title": "How We Use Information",
+        "items": [
+          "To respond to inquiries",
+          "To improve our website and services",
+          "To send newsletters or updates if you opt-in"
+        ]
+      },
+      {
+        "title": "Sharing Your Information",
+        "content": "We do not sell, rent, or share your personal information with third parties except as required by law or to provide requested services."
+      },
+      {
+        "title": "Cookies",
+        "content": "We use cookies to analyze website traffic and improve user experience. You can control cookies through your browser settings."
+      },
+      {
+        "title": "Data Security",
+        "content": "We take reasonable measures to protect your information from unauthorized access."
+      },
+      {
+        "title": "Your Rights",
+        "content": "You can request access, correction, or deletion of your personal information by contacting us at support@murrayp4p.com"
+      }
+    ]
+  },
+  "accessibility": {
+    "title": "Accessibility Statement",
+    "intro": "Murray Partners 4 Prevention is committed to making our website accessible to everyone, including people with disabilities.",
+    "sections": [
+      {
+        "title": "Our Commitment",
+        "content": "We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA standards. We are continually working to enhance the accessibility and usability of our website."
+      },
+      {
+        "title": "Accessibility Features",
+        "items": [
+          "Keyboard navigation support",
+          "Text alternatives for images",
+          "Color contrast considerations"
+        ]
+      },
+      {
+        "title": "Contact for Accessibility Issues",
+        "content": "If you encounter any accessibility barriers or need assistance, please contact us:",
+        "contactInfo": {
+          "email": "support@murrayp4p.com",
+          "address": "141 E. 5600 S. #300, Murray, UT 84107"
+        }
+      }
+    ]
+  },
+  "footer": "These policies may be updated periodically. Please check this page regularly for updates."
+}
