@@ -30,6 +30,32 @@ const tierInfo = {
   supporter: { label: 'Supporter', color: 'from-slate-500 to-slate-600', textColor: 'text-white/70', bgColor: 'bg-white/10' },
 };
 
+// Organization categories for coalition members
+const categories = [
+  'All Categories',
+  'Healthcare',
+  'Education',
+  'Government',
+  'Business',
+  'Nonprofit',
+  'Youth',
+  'Technology',
+  'Faith-Based',
+  'Law Enforcement',
+  'Mental Health',
+  'Social Services',
+  'Recreation',
+  'Arts & Culture',
+  'Environmental',
+  'Housing',
+  'Senior Services',
+  'Civic Organization',
+  'Media',
+  'Financial Services',
+  'Legal Services',
+  'Other'
+];
+
 export default function MembersPage() {
   const { header, members, cta } = membersContent;
   const typedMembers = members as Member[];
@@ -39,8 +65,7 @@ export default function MembersPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedTier, setSelectedTier] = useState<'all' | 'founding' | 'partner' | 'supporter'>('all');
 
-  // Get unique categories
-  const allCategories = ['All Categories', ...Array.from(new Set(typedMembers.map(m => m.category))).sort()];
+  // Use static categories list (matches Power Hub)
 
   const filteredMembers = typedMembers.filter((member) => {
     const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -101,7 +126,7 @@ export default function MembersPage() {
                       onChange={(e) => setSelectedCategory(e.target.value)}
                       className="input-glass select-glass pl-12 w-full sm:w-52 lg:w-64"
                     >
-                      {allCategories.map((category) => (
+                      {categories.map((category) => (
                         <option key={category} value={category}>{category}</option>
                       ))}
                     </select>
