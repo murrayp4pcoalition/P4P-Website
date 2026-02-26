@@ -539,9 +539,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    rows={3}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] resize-none text-gray-900 bg-white placeholder:text-gray-400"
-                    placeholder="Brief description of the organization and their role in P4P..."
+                    rows={5}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] resize-y text-gray-900 bg-white placeholder:text-gray-400 min-h-[120px]"
+                    placeholder="Describe the organization and their role in P4P. You can write as much as needed - this field is expandable..."
                   />
                 </div>
 

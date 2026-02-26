@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Search, MapPin, Phone, Globe, Filter, Grid, List, Star, Building2, ExternalLink } from 'lucide-react';
+import { Search, MapPin, Phone, Globe, Filter, Grid, List, Star, Building2, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
@@ -29,6 +29,41 @@ const tierInfo = {
   partner: { label: 'Partner', color: 'from-amber-500 to-amber-600', textColor: 'text-amber-300', bgColor: 'bg-amber-500/20' },
   supporter: { label: 'Supporter', color: 'from-slate-500 to-slate-600', textColor: 'text-white/70', bgColor: 'bg-white/10' },
 };
+
+// Expandable Description Component
+function ExpandableDescription({ description, maxLength = 100 }: { description: string; maxLength?: number }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const needsExpansion = description.length > maxLength;
+
+  if (!needsExpansion) {
+    return <p className="mt-2 text-white/60 text-sm">{description}</p>;
+  }
+
+  return (
+    <div className="mt-2">
+      <p className="text-white/60 text-sm">
+        {isExpanded ? description : `${description.slice(0, maxLength)}...`}
+      </p>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsExpanded(!isExpanded);
+        }}
+        className="mt-1 flex items-center gap-1 text-xs text-orange-400 hover:text-orange-300 transition-colors font-medium"
+      >
+        {isExpanded ? (
+          <>
+            Show less <ChevronUp className="w-3 h-3" />
+          </>
+        ) : (
+          <>
+            Read more <ChevronDown className="w-3 h-3" />
+          </>
+        )}
+      </button>
+    </div>
+  );
+}
 
 // Organization categories for coalition members
 const categories = [
@@ -226,9 +261,7 @@ export default function MembersPage() {
                     {member.name}
                   </h3>
 
-                  <p className="mt-2 text-white/60 text-sm line-clamp-2">
-                    {member.description}
-                  </p>
+                  <ExpandableDescription description={member.description} maxLength={120} />
 
                   <div className="mt-3 space-y-1.5">
                     {member.address && (
