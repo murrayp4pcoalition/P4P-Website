@@ -1,16 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import Header from '@/components/power-hub/Header';
 import {
   Plus,
   Search,
   Edit2,
   Trash2,
-  Eye,
-  EyeOff,
-  Star,
   MapPin,
   Loader2,
   X,
@@ -18,13 +14,14 @@ import {
   ImageIcon,
   RefreshCw,
   AlertCircle,
-  Database
+  Save,
+  CheckCircle
 } from 'lucide-react';
 import Image from 'next/image';
 
 // P4P Tier display names and colors
 const tierInfo = {
-  founding_partner: { label: 'Founding Partner', color: 'bg-orange-100 text-orange-700', border: 'border-orange-200' },
+  founding: { label: 'Founding Partner', color: 'bg-orange-100 text-orange-700', border: 'border-orange-200' },
   partner: { label: 'Partner', color: 'bg-purple-100 text-purple-700', border: 'border-purple-200' },
   supporter: { label: 'Supporter', color: 'bg-gray-100 text-gray-700', border: 'border-gray-200' },
 };
@@ -55,28 +52,46 @@ const categories = [
 ];
 
 interface Member {
-  id: string;
+  id: number;
   name: string;
   category: string;
-  description: string | null;
-  address: string;
-  phone: string | null;
-  website: string | null;
-  image_url: string | null;
-  tier: 'founding_partner' | 'partner' | 'supporter';
-  is_active: boolean;
+  description: string;
+  address?: string;
+  phone?: string;
+  website?: string;
+  image?: string;
+  tier: 'founding' | 'partner' | 'supporter';
+}
+
+interface MembersContent {
+  header: {
+    badge: string;
+    title: string;
+    description: string;
+    backgroundImage: string;
+  };
+  members: Member[];
+  tierInfo: Record<string, { label: string }>;
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+  };
 }
 
 export default function MembersPage() {
-  const [members, setMembers] = useState<Member[]>([]);
+  const [content, setContent] = useState<MembersContent | null>(null);
+  const [sha, setSha] = useState<string>('');
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isAddingMode, setIsAddingMode] = useState(false);
   const [editingMember, setEditingMember] = useState<Member | null>(null);
   const [uploading, setUploading] = useState(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [error, setError] = useState('');
-  const [configured, setConfigured] = useState(true);
+  const [success, setSuccess] = useState('');
 
   // Form State
   const [formData, setFormData] = useState({
@@ -86,18 +101,11 @@ export default function MembersPage() {
     address: '',
     phone: '',
     website: '',
-    tier: 'supporter' as 'founding_partner' | 'partner' | 'supporter',
-    is_active: true,
-    image_url: ''
+    tier: 'supporter' as 'founding' | 'partner' | 'supporter',
+    image: ''
   });
 
   useEffect(() => {
-    // Check if Supabase is configured
-    if (!isSupabaseConfigured()) {
-      setConfigured(false);
-      setLoading(false);
-      return;
-    }
     fetchMembers();
   }, []);
 
@@ -105,92 +113,92 @@ export default function MembersPage() {
     setLoading(true);
     setError('');
     try {
-      const { data, error } = await supabase
-        .from('members')
-        .select('*')
-        .order('tier', { ascending: true })
-        .order('name', { ascending: true });
+      const response = await fetch('/api/power-hub/content?file=members.json');
+      const data = await response.json();
 
-      if (error) {
-        setError('Error loading members: ' + error.message);
-      } else {
-        setMembers(data || []);
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to load members');
       }
+
+      setContent(data.content);
+      setSha(data.sha);
     } catch (err) {
-      setError('Failed to connect to database');
+      setError(err instanceof Error ? err.message : 'Failed to load members');
     }
     setLoading(false);
   }
 
+  async function saveMembers(updatedMembers: Member[]) {
+    if (!content) return;
+
+    setSaving(true);
+    setError('');
+    try {
+      const updatedContent = {
+        ...content,
+        members: updatedMembers
+      };
+
+      const response = await fetch('/api/power-hub/content', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          filename: 'members.json',
+          content: updatedContent,
+          sha: sha
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to save members');
+      }
+
+      // Update local state with new SHA
+      setContent(updatedContent);
+      setSha(result.newSha);
+      setSuccess('Members saved and deployed!');
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save members');
+    }
+    setSaving(false);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setLoading(true);
+    if (!content) return;
 
+    const newMember: Member = {
+      id: editingMember?.id || Math.max(0, ...content.members.map(m => m.id)) + 1,
+      name: formData.name,
+      category: formData.category,
+      description: formData.description,
+      address: formData.address || undefined,
+      phone: formData.phone || undefined,
+      website: formData.website || undefined,
+      image: formData.image || undefined,
+      tier: formData.tier
+    };
+
+    let updatedMembers: Member[];
     if (editingMember) {
-      const { error } = await supabase
-        .from('members')
-        .update({
-          name: formData.name,
-          category: formData.category,
-          description: formData.description || null,
-          address: formData.address,
-          phone: formData.phone || null,
-          website: formData.website || null,
-          tier: formData.tier,
-          is_active: formData.is_active,
-          image_url: formData.image_url || null
-        })
-        .eq('id', editingMember.id);
-
-      if (error) setError('Error updating member: ' + error.message);
+      updatedMembers = content.members.map(m => m.id === editingMember.id ? newMember : m);
     } else {
-      const { error } = await supabase
-        .from('members')
-        .insert([{
-          name: formData.name,
-          category: formData.category,
-          description: formData.description || null,
-          address: formData.address,
-          phone: formData.phone || null,
-          website: formData.website || null,
-          tier: formData.tier,
-          is_active: formData.is_active,
-          image_url: formData.image_url || null
-        }]);
-
-      if (error) setError('Error adding member: ' + error.message);
+      updatedMembers = [...content.members, newMember];
     }
 
+    await saveMembers(updatedMembers);
     resetForm();
-    await fetchMembers();
   }
 
-  async function toggleActive(member: Member) {
-    const { error } = await supabase
-      .from('members')
-      .update({ is_active: !member.is_active })
-      .eq('id', member.id);
-
-    if (error) {
-      setError('Error toggling status: ' + error.message);
-    } else {
-      setMembers(members.map(m => m.id === member.id ? { ...m, is_active: !m.is_active } : m));
-    }
-  }
-
-  async function deleteMember(id: string) {
+  async function deleteMember(id: number) {
+    if (!content) return;
     if (!confirm('Are you sure you want to delete this member?')) return;
 
-    const { error } = await supabase
-      .from('members')
-      .delete()
-      .eq('id', id);
-
-    if (error) {
-      setError('Error deleting member: ' + error.message);
-    } else {
-      setMembers(members.filter(m => m.id !== id));
-    }
+    const updatedMembers = content.members.filter(m => m.id !== id);
+    await saveMembers(updatedMembers);
   }
 
   function startEdit(member: Member) {
@@ -198,15 +206,14 @@ export default function MembersPage() {
     setFormData({
       name: member.name,
       category: member.category,
-      description: member.description || '',
-      address: member.address,
+      description: member.description,
+      address: member.address || '',
       phone: member.phone || '',
       website: member.website || '',
       tier: member.tier,
-      is_active: member.is_active,
-      image_url: member.image_url || ''
+      image: member.image || ''
     });
-    setLogoPreview(member.image_url || null);
+    setLogoPreview(member.image || null);
     setIsAddingMode(true);
   }
 
@@ -221,7 +228,6 @@ export default function MembersPage() {
 
     setUploading(true);
     try {
-      // Use server-side API for upload
       const uploadFormData = new FormData();
       uploadFormData.append('file', file);
 
@@ -236,7 +242,7 @@ export default function MembersPage() {
         throw new Error(result.error || 'Upload failed');
       }
 
-      setFormData({ ...formData, image_url: result.url });
+      setFormData({ ...formData, image: result.url });
       setLogoPreview(result.url);
     } catch (error: any) {
       alert('Error uploading logo: ' + error.message);
@@ -254,55 +260,24 @@ export default function MembersPage() {
       phone: '',
       website: '',
       tier: 'supporter',
-      is_active: true,
-      image_url: ''
+      image: ''
     });
     setEditingMember(null);
     setLogoPreview(null);
     setIsAddingMode(false);
   }
 
+  const members = content?.members || [];
   const filteredMembers = members.filter(m =>
     m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     m.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Show configuration needed message
-  if (!configured) {
-    return (
-      <div>
-        <Header title="Coalition Members" subtitle="Manage P4P coalition member organizations" />
-        <div className="p-8">
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
-            <div className="flex items-start gap-4">
-              <Database size={24} className="text-amber-600 mt-0.5" />
-              <div>
-                <h3 className="text-lg font-semibold text-amber-800">Supabase Configuration Required</h3>
-                <p className="text-amber-700 mt-2">
-                  To use the Members feature, you need to connect a Supabase database.
-                </p>
-                <div className="mt-4 p-4 bg-white rounded-lg border border-amber-200">
-                  <p className="text-sm font-medium text-gray-700 mb-2">Setup Steps:</p>
-                  <ol className="text-sm text-gray-600 space-y-2 list-decimal list-inside">
-                    <li>Create a project at <a href="https://supabase.com" target="_blank" className="text-[#F27A21] hover:underline">supabase.com</a></li>
-                    <li>Go to Project Settings → API</li>
-                    <li>Copy your Project URL and anon key</li>
-                    <li>Add to <code className="bg-gray-100 px-1 rounded">.env.local</code>:
-                      <pre className="mt-2 p-2 bg-gray-50 rounded text-xs overflow-x-auto">
-{`NEXT_PUBLIC_SUPABASE_URL=your_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
-                      </pre>
-                    </li>
-                    <li>Run the SQL schema from <code className="bg-gray-100 px-1 rounded">lib/supabase.ts</code></li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Sort: founding first, then partner, then supporter
+  const sortedMembers = [...filteredMembers].sort((a, b) => {
+    const tierOrder = { founding: 0, partner: 1, supporter: 2 };
+    return tierOrder[a.tier] - tierOrder[b.tier];
+  });
 
   return (
     <div>
@@ -341,6 +316,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
           </div>
         </div>
 
+        {/* Success Message */}
+        {success && (
+          <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 mb-6">
+            <CheckCircle size={20} />
+            <p>{success}</p>
+          </div>
+        )}
+
         {/* Error Display */}
         {error && (
           <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 mb-6">
@@ -369,26 +352,25 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Organization</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Category</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Tier</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">Status</th>
                   <th className="px-6 py-4 text-right text-sm font-semibold text-gray-600">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {filteredMembers.length === 0 ? (
+                {sortedMembers.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-6 py-12 text-center text-gray-400">
+                    <td colSpan={4} className="px-6 py-12 text-center text-gray-400">
                       No members found. Add your first coalition member above.
                     </td>
                   </tr>
                 ) : (
-                  filteredMembers.map((member) => (
+                  sortedMembers.map((member) => (
                     <tr key={member.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-                            {member.image_url ? (
+                            {member.image ? (
                               <Image
-                                src={member.image_url}
+                                src={member.image}
                                 alt={member.name}
                                 width={32}
                                 height={32}
@@ -401,31 +383,20 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                           </div>
                           <div>
                             <div className="font-medium text-gray-900">{member.name}</div>
-                            <div className="text-xs text-gray-400 flex items-center gap-1">
-                              <MapPin size={10} />
-                              {member.address.split(',')[0]}
-                            </div>
+                            {member.address && (
+                              <div className="text-xs text-gray-400 flex items-center gap-1">
+                                <MapPin size={10} />
+                                {member.address.split(',')[0]}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">{member.category}</td>
                       <td className="px-6 py-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${tierInfo[member.tier].color}`}>
-                          {tierInfo[member.tier].label}
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${tierInfo[member.tier]?.color || 'bg-gray-100 text-gray-700'}`}>
+                          {tierInfo[member.tier]?.label || member.tier}
                         </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <button
-                          onClick={() => toggleActive(member)}
-                          className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-                            member.is_active
-                              ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                              : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                          }`}
-                        >
-                          {member.is_active ? <Eye size={12} /> : <EyeOff size={12} />}
-                          {member.is_active ? 'Active' : 'Hidden'}
-                        </button>
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="flex justify-end gap-2">
@@ -437,7 +408,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                           </button>
                           <button
                             onClick={() => deleteMember(member.id)}
-                            className="p-2 rounded-lg hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors"
+                            disabled={saving}
+                            className="p-2 rounded-lg hover:bg-red-50 text-gray-500 hover:text-red-500 transition-colors disabled:opacity-50"
                           >
                             <Trash2 size={16} />
                           </button>
@@ -448,6 +420,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                 )}
               </tbody>
             </table>
+          </div>
+        )}
+
+        {/* Saving Indicator */}
+        {saving && (
+          <div className="fixed bottom-6 right-6 flex items-center gap-2 px-4 py-2 bg-[#F27A21] text-white rounded-lg shadow-lg">
+            <Loader2 size={18} className="animate-spin" />
+            Saving & Deploying...
           </div>
         )}
 
@@ -477,7 +457,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                           <img src={logoPreview} alt="Preview" className="w-full h-full object-contain p-2" />
                           <button
                             type="button"
-                            onClick={() => { setLogoPreview(null); setFormData({ ...formData, image_url: '' }); }}
+                            onClick={() => { setLogoPreview(null); setFormData({ ...formData, image: '' }); }}
                             className="absolute inset-0 bg-red-500/80 items-center justify-center hidden group-hover:flex"
                           >
                             <X size={20} className="text-white" />
@@ -535,8 +515,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Description (Optional)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                   <textarea
+                    required
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={5}
@@ -546,9 +527,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Address (Optional)</label>
                   <input
-                    required
                     type="text"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
@@ -580,30 +560,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Partnership Tier</label>
-                    <select
-                      value={formData.tier}
-                      onChange={(e) => setFormData({ ...formData, tier: e.target.value as any })}
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white"
-                    >
-                      <option value="supporter">Supporter</option>
-                      <option value="partner">Partner</option>
-                      <option value="founding_partner">Founding Partner</option>
-                    </select>
-                  </div>
-                  <div className="flex items-center pt-6">
-                    <label className="flex items-center gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={formData.is_active}
-                        onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-                        className="w-5 h-5 rounded border-gray-300 text-[#F27A21] focus:ring-[#F27A21]"
-                      />
-                      <span className="font-medium text-gray-700">Show in Directory</span>
-                    </label>
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Partnership Tier</label>
+                  <select
+                    value={formData.tier}
+                    onChange={(e) => setFormData({ ...formData, tier: e.target.value as any })}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white"
+                  >
+                    <option value="supporter">Supporter</option>
+                    <option value="partner">Partner</option>
+                    <option value="founding">Founding Partner</option>
+                  </select>
                 </div>
 
                 <div className="flex gap-4 pt-4">
@@ -616,10 +583,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                   </button>
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={saving}
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#F27A21] text-white rounded-lg hover:bg-[#F9A45A] transition-colors disabled:opacity-50 font-medium"
                   >
-                    {loading ? <Loader2 size={18} className="animate-spin" /> : null}
+                    {saving ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
                     {editingMember ? 'Update Member' : 'Add Member'}
                   </button>
                 </div>
