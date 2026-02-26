@@ -29,6 +29,31 @@ const tierInfo = {
   supporter: { label: 'Supporter', color: 'bg-gray-100 text-gray-700', border: 'border-gray-200' },
 };
 
+// Organization categories for coalition members
+const categories = [
+  'Healthcare',
+  'Education',
+  'Government',
+  'Business',
+  'Nonprofit',
+  'Youth',
+  'Technology',
+  'Faith-Based',
+  'Law Enforcement',
+  'Mental Health',
+  'Social Services',
+  'Recreation',
+  'Arts & Culture',
+  'Environmental',
+  'Housing',
+  'Senior Services',
+  'Civic Organization',
+  'Media',
+  'Financial Services',
+  'Legal Services',
+  'Other'
+];
+
 interface Member {
   id: string;
   name: string;
@@ -495,14 +520,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                    <input
+                    <select
                       required
-                      type="text"
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white placeholder:text-gray-400"
-                      placeholder="e.g. Government, Healthcare, Education"
-                    />
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white"
+                    >
+                      <option value="">Select a category...</option>
+                      {categories.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
