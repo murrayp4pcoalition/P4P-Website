@@ -311,7 +311,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
               placeholder="Search members..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] w-64"
+              className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] w-64 text-gray-900 bg-white placeholder:text-gray-400"
             />
           </div>
         </div>
@@ -489,7 +489,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21]"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white placeholder:text-gray-400"
                       placeholder="e.g. Murray City Health Department"
                     />
                   </div>
@@ -500,7 +500,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                       type="text"
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21]"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white placeholder:text-gray-400"
                       placeholder="e.g. Government, Healthcare, Education"
                     />
                   </div>
@@ -512,7 +512,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] resize-none"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] resize-none text-gray-900 bg-white placeholder:text-gray-400"
                     placeholder="Brief description of the organization and their role in P4P..."
                   />
                 </div>
@@ -524,7 +524,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                     type="text"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21]"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white placeholder:text-gray-400"
                     placeholder="123 Main St, Murray, UT 84107"
                   />
                 </div>
@@ -536,7 +536,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21]"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white placeholder:text-gray-400"
                       placeholder="(801) 000-0000"
                     />
                   </div>
@@ -546,7 +546,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                       type="text"
                       value={formData.website}
                       onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21]"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white placeholder:text-gray-400"
                       placeholder="example.com"
                     />
                   </div>
@@ -558,7 +558,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}
                     <select
                       value={formData.tier}
                       onChange={(e) => setFormData({ ...formData, tier: e.target.value as any })}
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21]"
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] text-gray-900 bg-white"
                     >
                       <option value="supporter">Supporter</option>
                       <option value="partner">Partner</option>
