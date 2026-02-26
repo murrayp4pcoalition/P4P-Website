@@ -14,7 +14,7 @@
       "address": "Salt Lake City, UT",
       "phone": "(385) 468-4100",
       "website": "slco.org/health",
-      "image": "https://autaprcvep3wmic5.public.blob.vercel-storage.com/uploads/1771178018817-Screenshot_2026-01-27_at_5.25.26_AM_copy.png",
+      "image": "/images/partners/salt-lake-health.png",
       "tier": "founding"
     },
     {
@@ -25,7 +25,7 @@
       "address": "5121 Cottonwood Street, Murray, UT 84107",
       "phone": "(801) 507-7000",
       "website": "intermountainhealthcare.org",
-      "image": "https://autaprcvep3wmic5.public.blob.vercel-storage.com/uploads/1771178386425-Screenshot_2026-02-15_at_10.30.15_AM.png",
+      "image": "/images/partners/intermountain-health.png",
       "tier": "founding"
     },
     {
@@ -36,7 +36,7 @@
       "address": "5440 S. State Street, Murray, UT 84107",
       "phone": "(801) 288-1131",
       "website": "murrayschools.org",
-      "image": "/images/p4p-logo.png",
+      "image": "/images/partners/murray-school-district.png",
       "tier": "founding"
     },
     {
@@ -47,7 +47,7 @@
       "address": "10 East 4800 South, Murray, UT 84107",
       "phone": "(801) 270-2429",
       "website": "murray.utah.gov",
-      "image": "https://autaprcvep3wmic5.public.blob.vercel-storage.com/uploads/1771195227029-Screenshot_2026-02-15_at_10.30.30_AM.png",
+      "image": "/images/partners/murray-city.png",
       "tier": "founding"
     },
     {
@@ -58,7 +58,7 @@
       "address": "5381 Green Street, Murray, UT 84123",
       "phone": "(801) 442-7955",
       "website": "selecthealth.org",
-      "image": "/images/p4p-logo.png",
+      "image": "/images/partners/select-health.png",
       "tier": "founding"
     },
     {
@@ -69,7 +69,7 @@
       "address": "141 E 5600 S Suite 300, Murray, UT 84107",
       "phone": "(801) 263-2632",
       "website": "themurraychamber.com",
-      "image": "/images/p4p-logo.png",
+      "image": "/images/partners/murray-chamber.png",
       "tier": "partner"
     },
     {
@@ -78,7 +78,7 @@
       "category": "Nonprofit",
       "description": "Proudly dedicated to serving our community through Unity for Service and prevention of child abuse.",
       "website": "exchangeclub.org",
-      "image": "/images/p4p-logo.png",
+      "image": "/images/partners/exchange-club.png",
       "tier": "partner"
     },
     {
@@ -87,7 +87,7 @@
       "category": "Nonprofit",
       "description": "Dedicated to serving our community through impactful projects, fellowship, and leadership development.",
       "website": "rotary.org",
-      "image": "/images/p4p-logo.png",
+      "image": "/images/partners/murray-rotary.png",
       "tier": "partner"
     },
     {
@@ -97,29 +97,18 @@
       "description": "A union of student leaders and business partners who come together through networking, internships, and community service.",
       "address": "141 E 5600 S Suite 315, Murray, UT 84107",
       "phone": "(801) 808-0830",
-      "image": "/images/p4p-logo.png",
+      "image": "/images/partners/murray-youth-council.png",
       "tier": "partner"
     },
     {
-      "id": 1,
-      "name": "Salt Lake County Health Department",
-      "category": "Healthcare",
-      "description": "Offering a long list of programs including tobacco prevention, STD clinic, food protection, and community health initiatives.",
-      "address": "Salt Lake City, UT",
-      "phone": "(385) 468-4100",
-      "website": "slco.org/health",
-      "image": "https://autaprcvep3wmic5.public.blob.vercel-storage.com/uploads/1771178018817-Screenshot_2026-01-27_at_5.25.26_AM_copy.png",
-      "tier": "founding"
-    },
-    {
-      "id": "10",
+      "id": 10,
       "name": "Total Success AI",
       "category": "Technology",
       "description": "Offering training, strategy and implementation for all things AI-related and ensuring a human-first strategy",
       "address": "Sandy, UT",
-      "phone": "801718-3851",
+      "phone": "(801) 718-3851",
       "website": "https://www.totalsuccessai.com/",
-      "image": "https://autaprcvep3wmic5.public.blob.vercel-storage.com/uploads/1771178018817-Screenshot_2026-01-27_at_5.25.26_AM_copy.png",
+      "image": "/images/p4p-logo.png",
       "tier": "founding"
     }
   ],
