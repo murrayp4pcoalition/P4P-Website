@@ -1,12 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
-  FileText,
   FileJson,
   Image as ImageIcon,
+  Users,
+  Code,
+  Calendar,
   Sparkles,
   Settings,
   LogOut
@@ -15,8 +18,10 @@ import {
 const menuItems = [
   { name: 'Dashboard', href: '/power-hub/dashboard', icon: LayoutDashboard },
   { name: 'Content', href: '/power-hub/dashboard/content', icon: FileJson },
-  { name: 'Pages', href: '/power-hub/dashboard/pages', icon: FileText },
   { name: 'Media', href: '/power-hub/dashboard/media', icon: ImageIcon },
+  { name: 'Members', href: '/power-hub/dashboard/members', icon: Users },
+  { name: 'Scripts', href: '/power-hub/dashboard/scripts', icon: Code },
+  { name: 'Calendar', href: '/power-hub/dashboard/calendar', icon: Calendar },
   { name: 'AI Assist', href: '/power-hub/dashboard/ai', icon: Sparkles },
   { name: 'Settings', href: '/power-hub/dashboard/settings', icon: Settings },
 ];
@@ -35,8 +40,14 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-white/10">
         <Link href="/power-hub/dashboard" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center font-bold text-lg">
-            P4P
+          <div className="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+            <Image
+              src="/images/p4p-logo.png"
+              alt="Partners 4 Prevention"
+              width={40}
+              height={40}
+              className="w-full h-full object-contain p-1"
+            />
           </div>
           <div>
             <h1 className="font-bold text-lg">Power Hub</h1>
