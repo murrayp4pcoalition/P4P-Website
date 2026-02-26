@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 import FadeIn from './animations/FadeIn';
 import StaggerChildren, { StaggerItem } from './animations/StaggerChildren';
 import homeContent from '@/content/home.json';
@@ -45,7 +46,21 @@ export default function Partners() {
                 whileTap={{ scale: 0.98 }}
                 className="glass-card overflow-hidden h-full group cursor-pointer block"
               >
-                {/* Gradient Header */}
+                {/* Logo Section with White Background */}
+                {'logo' in partner && partner.logo && (
+                  <div className="bg-white p-4 flex items-center justify-center">
+                    <div className="relative w-full h-20">
+                      <Image
+                        src={partner.logo}
+                        alt={`${partner.name} logo`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Gradient Divider */}
                 <div className="h-2 bg-gradient-to-r from-orange-500 to-orange-600" />
 
                 {/* Content */}

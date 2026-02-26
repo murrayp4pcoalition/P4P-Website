@@ -14,7 +14,7 @@ export default function PowerHubLayout({
   return (
     <div
       className="fixed inset-0 bg-white overflow-auto"
-      style={{ zIndex: 9999 }}
+      style={{ zIndex: 99999 }}
     >
       {children}
     </div>

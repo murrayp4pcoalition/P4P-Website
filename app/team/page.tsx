@@ -9,7 +9,7 @@ import Link from 'next/link';
 import teamContent from '@/content/team.json';
 
 export default function TeamPage() {
-  const { header, officers, members, cta } = teamContent;
+  const { header, officers, keyLeaders, boardMembers, cta } = teamContent;
 
   return (
     <>
@@ -80,7 +80,7 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Coalition Members */}
+      {/* Key Leaders */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -88,38 +88,66 @@ export default function TeamPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white">{members.sectionTitle}</h2>
-            <p className="mt-4 text-white/60">{members.sectionDescription}</p>
+            <h2 className="text-3xl font-bold text-white">{keyLeaders.sectionTitle}</h2>
+            <p className="mt-4 text-white/60">{keyLeaders.sectionDescription}</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {members.members.map((person, index) => (
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {keyLeaders.members.map((leader, index) => (
               <motion.div
-                key={`${person.name}-${index}`}
+                key={`${leader.name}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="glass-card p-8 text-center"
+                transition={{ delay: index * 0.03 }}
+                className="glass-card p-4 text-center"
               >
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 mx-auto mb-6 flex items-center justify-center shadow-lg">
-                  <span className="text-2xl font-bold text-white">
-                    {person.name.split(' ').map(n => n[0]).join('')}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 mx-auto mb-3 flex items-center justify-center shadow-lg">
+                  <span className="text-lg font-bold text-white">
+                    {leader.name.split(' ').filter(n => !['Councilwoman', 'Councilman', 'Mayor', 'Sgt', 'Sgt.', 'Pro', 'Tem'].includes(n)).map(n => n[0]).join('').slice(0, 2)}
                   </span>
                 </div>
-                <h3 className="text-xl font-semibold text-white">{person.name}</h3>
-                <p className="text-orange-400 font-medium">{person.title}</p>
-                <p className="text-white/60 text-sm font-medium mt-1">{person.organization}</p>
-                <p className="mt-4 text-white/60">{person.bio}</p>
-                <a
-                  href={`mailto:${person.email}`}
-                  className="inline-flex items-center gap-2 mt-4 text-sm text-orange-400 hover:text-orange-300 transition-colors"
-                >
-                  <Mail className="w-4 h-4" />
-                  Contact
-                </a>
+                <h3 className="text-base font-semibold text-white">{leader.name}</h3>
+                <p className="text-orange-400 text-sm font-medium">{leader.role}</p>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Board Members */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold text-white">{boardMembers.sectionTitle}</h2>
+            <p className="mt-4 text-white/60">{boardMembers.sectionDescription}</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="glass-card p-8"
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {boardMembers.members.map((name, index) => (
+                <motion.div
+                  key={`${name}-${index}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.01 }}
+                  className="text-center py-2"
+                >
+                  <span className="text-white/80 text-sm hover:text-orange-400 transition-colors">
+                    {name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 

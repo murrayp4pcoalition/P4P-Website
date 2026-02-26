@@ -49,47 +49,56 @@
       {
         "name": "Salt Lake County Health Department",
         "description": "Offering a long list of programs including tobacco prevention, STD clinic, food protection, and community health initiatives.",
-        "url": "https://slco.org/health/"
+        "url": "https://slco.org/health/",
+        "logo": "/images/partners/salt-lake-health.png"
       },
       {
         "name": "Intermountain Medical Center",
         "description": "Providing advanced medical care in a friendly and supportive environment for the Murray community.",
-        "url": "https://intermountainhealthcare.org/"
+        "url": "https://intermountainhealthcare.org/",
+        "logo": "/images/partners/intermountain-health.png"
       },
       {
         "name": "Murray School District",
         "description": "Dedicated to cultivating a safe, supportive, and inspiring environment where every student is empowered to succeed.",
-        "url": "https://murrayschools.org/"
+        "url": "https://murrayschools.org/",
+        "logo": "/images/partners/murray-school-district.png"
       },
       {
         "name": "Murray City",
         "description": "Dedicated to preserving our rich history while building a vibrant, connected, and forward-thinking community.",
-        "url": "https://murray.utah.gov/"
+        "url": "https://murray.utah.gov/",
+        "logo": "/images/partners/murray-city.png"
       },
       {
         "name": "Select Health",
         "description": "Offer plans to serve all members of our community from individuals and families to employers.",
-        "url": "https://selecthealth.org/"
+        "url": "https://selecthealth.org/",
+        "logo": "/images/partners/select-health.png"
       },
       {
         "name": "Murray Chamber of Commerce",
         "description": "Empowering local businesses, fostering community connections, and driving economic growth in Murray.",
-        "url": "https://themurraychamber.com/"
+        "url": "https://themurraychamber.com/",
+        "logo": "/images/partners/murray-chamber.png"
       },
       {
         "name": "Exchange Club",
         "description": "Proudly dedicated to serving our community through Unity for Service and prevention of child abuse.",
-        "url": "#"
+        "url": "#",
+        "logo": "/images/partners/exchange-club.png"
       },
       {
         "name": "Murray Rotary",
         "description": "Dedicated to serving our community through impactful projects, fellowship, and leadership development.",
-        "url": "#"
+        "url": "#",
+        "logo": "/images/partners/murray-rotary.png"
       },
       {
         "name": "Murray Youth Community Council",
         "description": "A union of student leaders and business partners who come together through networking, internships, and community service.",
-        "url": "#"
+        "url": "#",
+        "logo": "/images/partners/murray-youth-council.png"
       }
     ]
   }
