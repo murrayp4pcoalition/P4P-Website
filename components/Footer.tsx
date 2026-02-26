@@ -34,7 +34,7 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Facebook, href: 'https://facebook.com/MurrayP4P', label: 'Facebook' },
+  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61568345200368', label: 'Facebook' },
   { icon: Instagram, href: 'https://instagram.com/murrayp4p', label: 'Instagram' },
   { icon: Twitter, href: 'https://twitter.com/murrayp4p', label: 'X (Twitter)' },
   { icon: Linkedin, href: 'https://linkedin.com/company/murray-p4p', label: 'LinkedIn' },
