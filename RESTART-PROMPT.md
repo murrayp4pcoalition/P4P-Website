@@ -157,6 +157,15 @@ git add -A && git commit -m "message" && git push https://murrayp4pcoalition:git
 3. **Private repo** - Only visible when logged into murrayp4pcoalition GitHub
 4. **Coalition owns everything** - Separate from Brett's personal accounts
 5. **Power Hub deploys too** - Uses same git push mechanism
+6. **Git identity is set** - This repo uses coalition identity (murrayp4pcoalition) for commits
+
+### If Git Identity Gets Reset (Vercel shows "Blocked")
+Run this to fix:
+```bash
+cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website"
+git config user.name "murrayp4pcoalition"
+git config user.email "murrayp4pcoalition@gmail.com"
+```
 
 ---
 
