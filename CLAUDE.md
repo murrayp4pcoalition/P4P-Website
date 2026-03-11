@@ -9,11 +9,16 @@
 **Status:** Production Ready - Now with Power Hub CMS!
 
 ### Quick Links
-- **Production URL:** https://p4p-website.vercel.app (stable URL)
-- **Power Hub CMS:** https://p4p-website.vercel.app/power-hub
-- **GitHub Repo:** https://github.com/BrettLechtenbrerg/P4P-Website
-- **Vercel Project:** https://vercel.com/bretts-projects-3e254e58/p4p-website
+- **Production URL:** https://p4-p-website.vercel.app
+- **Power Hub CMS:** https://p4-p-website.vercel.app/power-hub
+- **GitHub Repo:** https://github.com/murrayp4pcoalition/P4P-Website (PRIVATE)
+- **Vercel Account:** murrayp4pcoalition (separate from Brett's account)
 - **Current P4P Site (GoHighLevel):** https://murrayp4p.com/
+
+### Coalition Account Credentials
+- **GitHub:** murrayp4pcoalition / murrayp4pcoalition@gmail.com
+- **Vercel:** Connected via GitHub OAuth
+- **Supabase:** murrayp4pcoalition@gmail.com
 
 ### Project Location
 ```
@@ -332,3 +337,20 @@ This avoids issues with standard uploads and ensures proper builds.
 - **Credentials:** p4padmin / p4p2026
 - **Git:** 11 total commits, all pushed
 - **Version: 2.0.0** - Major Feature Release!
+
+### March 10, 2026 - Session 7: Infrastructure Migration
+- **Issue:** Original GitHub repo (BrettLechtenbrerg/P4P-Website) was deleted/inaccessible
+- **Solution:** Migrated to coalition's own infrastructure:
+  - Created new GitHub account: `murrayp4pcoalition`
+  - Created PRIVATE repo: `murrayp4pcoalition/P4P-Website`
+  - Set up new Vercel account linked to coalition GitHub
+  - Pushed all 20+ local commits to new repo
+  - Added Supabase environment variables to Vercel
+  - Deployed successfully to `p4-p-website.vercel.app`
+- **All code preserved:** No work was lost - everything was on local machine
+- **New URLs:**
+  - Production: https://p4-p-website.vercel.app
+  - Power Hub: https://p4-p-website.vercel.app/power-hub
+  - GitHub: https://github.com/murrayp4pcoalition/P4P-Website
+- **Git:** All commits migrated to new repo
+- **Version: 2.0.1** - Infrastructure Migration
