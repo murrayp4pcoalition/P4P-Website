@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Loader2 } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,11 +19,38 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
-    if (username === 'p4padmin' && password === 'p4p2026') {
-      localStorage.setItem('p4p_power_hub_auth', 'true');
-      router.push('/power-hub/dashboard');
-    } else {
-      setError('Invalid username or password');
+    try {
+      // Try to get credentials from Supabase first
+      let storedUsername = 'p4padmin'; // Default
+      let storedPassword = 'p4p2026'; // Default
+
+      try {
+        const { data } = await supabase
+          .from('portal_settings')
+          .select('setting_value')
+          .eq('setting_key', 'credentials')
+          .single();
+
+        if (data?.setting_value) {
+          storedUsername = data.setting_value.username || storedUsername;
+          storedPassword = data.setting_value.password || storedPassword;
+        }
+      } catch {
+        // If Supabase fails, use defaults (this is fine for first-time setup)
+        console.log('Using default credentials (Supabase not configured or empty)');
+      }
+
+      // Check credentials
+      if (username === storedUsername && password === storedPassword) {
+        localStorage.setItem('p4p_power_hub_auth', 'true');
+        router.push('/power-hub/dashboard');
+      } else {
+        setError('Invalid username or password');
+        setLoading(false);
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('Login failed. Please try again.');
       setLoading(false);
     }
   };
@@ -95,7 +123,10 @@ export default function LoginPage() {
               className="w-full bg-[#F27A21] hover:bg-[#F9A45A] text-white py-3 px-4 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
             >
               {loading ? (
-                <span>Logging in...</span>
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  Logging in...
+                </>
               ) : (
                 <>
                   <LogIn size={18} />
@@ -110,11 +141,6 @@ export default function LoginPage() {
               Powered by <span className="font-medium text-[#F27A21]">Total Success AI</span>
             </p>
           </div>
-        </div>
-
-        {/* Demo credentials hint */}
-        <div className="mt-6 text-center text-white/80 text-sm">
-          <p>Demo: p4padmin / p4p2026</p>
         </div>
       </div>
     </div>

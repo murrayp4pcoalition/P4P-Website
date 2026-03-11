@@ -16,6 +16,7 @@ export default function SettingsPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Status state
   const [saving, setSaving] = useState(false);
@@ -89,14 +90,14 @@ export default function SettingsPage() {
 
     try {
       // Get current credentials from Supabase
+      let storedPassword = 'p4p2026'; // Default
+      let storedUsername = 'p4padmin'; // Default
+
       const { data: settings } = await supabase
         .from('portal_settings')
         .select('setting_value')
         .eq('setting_key', 'credentials')
         .single();
-
-      let storedPassword = 'p4p2026'; // Default
-      let storedUsername = 'p4padmin'; // Default
 
       if (settings?.setting_value) {
         storedPassword = settings.setting_value.password || storedPassword;
@@ -149,11 +150,12 @@ export default function SettingsPage() {
       setNewPassword('');
       setConfirmPassword('');
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error updating credentials:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       setCredentialMessage({
         type: 'error',
-        text: error.message?.includes('portal_settings')
+        text: errorMessage.includes('portal_settings')
           ? 'Database table not set up. Run the SQL migration first.'
           : 'Failed to update credentials. Please try again.'
       });
@@ -188,91 +190,119 @@ export default function SettingsPage() {
               </p>
             </div>
 
-            <div className="space-y-4">
-              {/* Current Password */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Current Password <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type={showCurrentPassword ? 'text' : 'password'}
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                    placeholder="Enter your current password"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 pr-12"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    {showCurrentPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
-              </div>
-
-              <hr className="my-4" />
-
-              {/* New Username */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  New Username <span className="text-gray-400">(leave blank to keep current)</span>
-                </label>
-                <input
-                  type="text"
-                  value={newUsername}
-                  onChange={(e) => setNewUsername(e.target.value)}
-                  placeholder="Enter new username"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900"
-                />
-              </div>
-
-              {/* New Password */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  New Password <span className="text-gray-400">(leave blank to keep current)</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type={showNewPassword ? 'text' : 'password'}
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder="Enter new password (min 6 characters)"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 pr-12"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowNewPassword(!showNewPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    {showNewPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
-              </div>
-
-              {/* Confirm Password */}
-              {newPassword && (
+            <div className="space-y-5">
+              {/* Step 1: Verify Identity */}
+              <div className="p-4 bg-orange-50 rounded-lg border border-orange-100">
+                <h3 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="w-5 h-5 bg-[#F27A21] text-white rounded-full flex items-center justify-center text-xs">1</span>
+                  Verify Your Identity
+                </h3>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Confirm New Password
+                    Current Password <span className="text-red-500">*</span>
                   </label>
-                  <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirm new password"
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 transition-all text-gray-900 ${
-                      confirmPassword && confirmPassword !== newPassword
-                        ? 'border-red-300 focus:border-red-500'
-                        : 'border-gray-200 focus:border-[#F27A21]'
-                    }`}
-                  />
-                  {confirmPassword && confirmPassword !== newPassword && (
-                    <p className="text-red-500 text-sm mt-1">Passwords do not match</p>
+                  <div className="relative">
+                    <input
+                      type={showCurrentPassword ? 'text' : 'password'}
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                      placeholder="Enter your current password"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 bg-white pr-12"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      {showCurrentPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 2: New Credentials */}
+              <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h3 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                  <span className="w-5 h-5 bg-gray-600 text-white rounded-full flex items-center justify-center text-xs">2</span>
+                  Enter New Credentials
+                </h3>
+
+                <div className="space-y-4">
+                  {/* New Username */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      New Username <span className="text-gray-400 text-xs">(leave blank to keep current)</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={newUsername}
+                      onChange={(e) => setNewUsername(e.target.value)}
+                      placeholder="Enter new username"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 bg-white"
+                    />
+                  </div>
+
+                  {/* New Password */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      New Password <span className="text-gray-400 text-xs">(leave blank to keep current)</span>
+                    </label>
+                    <div className="relative">
+                      <input
+                        type={showNewPassword ? 'text' : 'password'}
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        placeholder="Enter new password (min 6 characters)"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 bg-white pr-12"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowNewPassword(!showNewPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      >
+                        {showNewPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Confirm Password */}
+                  {newPassword && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Confirm New Password
+                      </label>
+                      <div className="relative">
+                        <input
+                          type={showConfirmPassword ? 'text' : 'password'}
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          placeholder="Confirm new password"
+                          className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 transition-all text-gray-900 bg-white pr-12 ${
+                            confirmPassword && confirmPassword !== newPassword
+                              ? 'border-red-300 focus:border-red-500'
+                              : 'border-gray-200 focus:border-[#F27A21]'
+                          }`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        >
+                          {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </button>
+                      </div>
+                      {confirmPassword && confirmPassword !== newPassword && (
+                        <p className="text-red-500 text-sm mt-1">Passwords do not match</p>
+                      )}
+                      {confirmPassword && confirmPassword === newPassword && newPassword.length >= 6 && (
+                        <p className="text-green-600 text-sm mt-1 flex items-center gap-1">
+                          <Check size={14} /> Passwords match
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
-              )}
+              </div>
 
               {/* Message */}
               {credentialMessage && (
@@ -328,7 +358,7 @@ export default function SettingsPage() {
                   type="text"
                   value={siteName}
                   onChange={(e) => setSiteName(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 bg-white placeholder-gray-400"
                 />
               </div>
 
@@ -340,7 +370,7 @@ export default function SettingsPage() {
                   type="url"
                   value={siteUrl}
                   onChange={(e) => setSiteUrl(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F27A21]/20 focus:border-[#F27A21] transition-all text-gray-900 bg-white placeholder-gray-400"
                 />
               </div>
 

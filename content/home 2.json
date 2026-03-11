@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "badge": "Murray Partners 4 Prevention",
+    "headline": "A connected and compassionate Murray where all residents are empowered to thrive",
+    "subheadline": "Growing and building a stronger, safer community together.",
+    "tags": [
+      "Supporting Residents",
+      "Connecting Families",
+      "Empowering Youth",
+      "Fostering Lifelong Growth"
+    ],
+    "cta": {
+      "primary": {
+        "text": "Contact Us",
+        "href": "/contact"
+      },
+      "secondary": {
+        "text": "Learn More",
+        "href": "/about"
+      }
+    },
+    "stats": [
+      { "number": "9+", "label": "Partner Organizations" },
+      { "number": "1000+", "label": "Residents Reached" },
+      { "number": "20+", "label": "Community Events" },
+      { "number": "5+", "label": "Years Serving Murray" }
+    ],
+    "backgroundImage": "/images/hero/p4p-hero.jpg"
+  },
+  "partners": {
+    "sectionTitle": "Partner Organizations",
+    "sectionSubtitle": "Working together with community leaders and organizations to build a stronger, safer Murray.",
+    "ctaTitle": "Interested in Partnering?",
+    "ctaDescription": "Join our coalition of community organizations working together to make Murray a better place for all residents.",
+    "ctaButton": "Become a Partner",
+    "items": [
+      {
+        "name": "Salt Lake County Health Department",
+        "description": "Offering a long list of programs including tobacco prevention, STD clinic, food protection, and community health initiatives.",
+        "url": "https://slco.org/health/"
+      },
+      {
+        "name": "Intermountain Medical Center",
+        "description": "Providing advanced medical care in a friendly and supportive environment for the Murray community.",
+        "url": "https://intermountainhealthcare.org/"
+      },
+      {
+        "name": "Murray School District",
+        "description": "Dedicated to cultivating a safe, supportive, and inspiring environment where every student is empowered to succeed.",
+        "url": "https://murrayschools.org/"
+      },
+      {
+        "name": "Murray City",
+        "description": "Dedicated to preserving our rich history while building a vibrant, connected, and forward-thinking community.",
+        "url": "https://murray.utah.gov/"
+      },
+      {
+        "name": "Select Health",
+        "description": "Offer plans to serve all members of our community from individuals and families to employers.",
+        "url": "https://selecthealth.org/"
+      },
+      {
+        "name": "Murray Chamber of Commerce",
+        "description": "Empowering local businesses, fostering community connections, and driving economic growth in Murray.",
+        "url": "https://themurraychamber.com/"
+      },
+      {
+        "name": "Exchange Club",
+        "description": "Proudly dedicated to serving our community through Unity for Service and prevention of child abuse.",
+        "url": "#"
+      },
+      {
+        "name": "Murray Rotary",
+        "description": "Dedicated to serving our community through impactful projects, fellowship, and leadership development.",
+        "url": "#"
+      },
+      {
+        "name": "Murray Youth Community Council",
+        "description": "A union of student leaders and business partners who come together through networking, internships, and community service.",
+        "url": "#"
+      }
+    ]
+  }
+}
