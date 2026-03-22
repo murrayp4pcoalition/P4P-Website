@@ -6,7 +6,7 @@ const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/X059zzO350KH
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, email, phone, subject, message } = body;
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -31,6 +31,7 @@ export async function POST(request: Request) {
       full_name: name,
       name: name,
       email: email,
+      phone: phone || '',
 
       // Source tracking
       source: 'P4P Website Contact Form',

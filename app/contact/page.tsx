@@ -14,6 +14,7 @@ export default function ContactPage() {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: '',
   });
@@ -42,7 +43,7 @@ export default function ContactPage() {
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
-        setFormState({ name: '', email: '', subject: '', message: '' });
+        setFormState({ name: '', email: '', phone: '', subject: '', message: '' });
       }, 5000);
     } catch (err) {
       setError('Something went wrong. Please try again or email us directly.');
@@ -165,6 +166,20 @@ export default function ContactPage() {
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         className="input-glass"
                         placeholder="john@example.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-2">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        value={formState.phone}
+                        onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                        className="input-glass"
+                        placeholder="(555) 123-4567"
                       />
                     </div>
 
