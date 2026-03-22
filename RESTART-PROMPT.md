@@ -35,17 +35,17 @@ This project uses the **coalition's own accounts** (NOT Brett's personal account
 
 ## All URLs & Credentials
 
-### Live Website
+### Live Website (Production Domain)
 | Page | URL |
 |------|-----|
-| **Homepage** | https://p4-p-website.vercel.app |
-| **About** | https://p4-p-website.vercel.app/about |
-| **Team** | https://p4-p-website.vercel.app/team |
-| **Members** | https://p4-p-website.vercel.app/members |
-| **Events** | https://p4-p-website.vercel.app/events |
-| **Contact** | https://p4-p-website.vercel.app/contact |
-| **Get Involved** | https://p4-p-website.vercel.app/get-involved |
-| **Power Hub CMS** | https://p4-p-website.vercel.app/power-hub |
+| **Homepage** | https://murrayp4p.com/ |
+| **About** | https://murrayp4p.com/about |
+| **Team** | https://murrayp4p.com/team |
+| **Members** | https://murrayp4p.com/members |
+| **Events** | https://murrayp4p.com/events |
+| **Contact** | https://murrayp4p.com/contact |
+| **Get Involved** | https://murrayp4p.com/get-involved |
+| **Power Hub CMS** | https://murrayp4p.com/power-hub |
 
 ### GitHub (Code Repository)
 - **Login URL:** https://github.com/login
@@ -62,7 +62,7 @@ This project uses the **coalition's own accounts** (NOT Brett's personal account
 - **Auto-Deploy:** YES - any push to main branch triggers rebuild
 
 ### Power Hub CMS (Content Management)
-- **URL:** https://p4-p-website.vercel.app/power-hub
+- **URL:** https://murrayp4p.com/power-hub
 - **Username:** `p4padmin`
 - **Password:** `p4p2026`
 
@@ -103,7 +103,7 @@ cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website" && git add -A &
 
 ### Content Updates via Power Hub (No Code Needed)
 
-1. Go to https://p4-p-website.vercel.app/power-hub
+1. Go to https://murrayp4p.com/power-hub
 2. Login: `p4padmin` / `p4p2026`
 3. Edit content in the visual editor
 4. Click "Deploy" button

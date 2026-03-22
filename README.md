@@ -9,7 +9,8 @@ A modern, world-class website for the Murray Partners 4 Prevention Coalition, bu
 
 ## 🌐 Live Site
 
-**Production:** https://p4p-website-6az6uzr9b-bretts-projects-3e254e58.vercel.app
+**Production:** https://murrayp4p.com/
+**Vercel Dashboard:** https://vercel.com/murrayp4pcoalitions-projects/p4-p-website
 
 ## 📋 About
 
@@ -92,8 +93,8 @@ vercel --prod --yes
 
 ## 🔗 Related
 
-- **Current Site:** https://murrayp4p.com/ (GoHighLevel)
 - **Reference Design:** [Murray Chamber of Commerce](https://macc-website-2.vercel.app/)
+- **GitHub Repo:** https://github.com/murrayp4pcoalition/P4P-Website (PRIVATE)
 
 ## 📄 License
 

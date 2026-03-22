@@ -4,19 +4,19 @@
 
 | Page | URL |
 |------|-----|
-| **Homepage** | https://p4-p-website.vercel.app |
-| **About** | https://p4-p-website.vercel.app/about |
-| **Team** | https://p4-p-website.vercel.app/team |
-| **Members** | https://p4-p-website.vercel.app/members |
-| **Events** | https://p4-p-website.vercel.app/events |
-| **Contact** | https://p4-p-website.vercel.app/contact |
-| **Get Involved** | https://p4-p-website.vercel.app/get-involved |
+| **Homepage** | https://murrayp4p.com/ |
+| **About** | https://murrayp4p.com/about |
+| **Team** | https://murrayp4p.com/team |
+| **Members** | https://murrayp4p.com/members |
+| **Events** | https://murrayp4p.com/events |
+| **Contact** | https://murrayp4p.com/contact |
+| **Get Involved** | https://murrayp4p.com/get-involved |
 
 ---
 
 ## ✏️ Power Hub CMS (Edit Website Content)
 
-**URL:** https://p4-p-website.vercel.app/power-hub
+**URL:** https://murrayp4p.com/power-hub
 
 | Field | Value |
 |-------|-------|
@@ -90,4 +90,4 @@ Contact Brett Lechtenberg for technical support.
 
 ---
 
-*Last Updated: March 10, 2026*
+*Last Updated: March 22, 2026*

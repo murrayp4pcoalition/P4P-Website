@@ -3,17 +3,17 @@
 ## Project Overview
 
 **Project Name:** Murray Partners 4 Prevention (P4P) Coalition Website
-**Version:** 2.0.0
+**Version:** 2.1.0
 **Created:** February 11, 2026
-**Last Updated:** February 14, 2026 (Session 6)
-**Status:** Production Ready - Now with Power Hub CMS!
+**Last Updated:** March 22, 2026 (Session 8)
+**Status:** 🚀 LIVE at murrayp4p.com - Production with Power Hub CMS!
 
 ### Quick Links
-- **Production URL:** https://p4-p-website.vercel.app
-- **Power Hub CMS:** https://p4-p-website.vercel.app/power-hub
+- **Production URL:** https://murrayp4p.com/
+- **Power Hub CMS:** https://murrayp4p.com/power-hub
 - **GitHub Repo:** https://github.com/murrayp4pcoalition/P4P-Website (PRIVATE)
+- **Vercel Dashboard:** https://vercel.com/murrayp4pcoalitions-projects/p4-p-website
 - **Vercel Account:** murrayp4pcoalition (separate from Brett's account)
-- **Current P4P Site (GoHighLevel):** https://murrayp4p.com/
 
 ### Coalition Account Credentials
 - **GitHub:** murrayp4pcoalition / murrayp4pcoalition@gmail.com
@@ -154,7 +154,7 @@ git add -A && git commit -m "message" && git push
 The Power Hub is an embedded content management system that allows non-technical users to edit website content without touching code.
 
 ### Access
-- **URL:** https://p4p-website.vercel.app/power-hub
+- **URL:** https://murrayp4p.com/power-hub
 - **Username:** `p4padmin`
 - **Password:** `p4p2026`
 - **Hidden:** robots: noindex, nofollow (won't appear in search engines)
@@ -354,3 +354,14 @@ This avoids issues with standard uploads and ensures proper builds.
   - GitHub: https://github.com/murrayp4pcoalition/P4P-Website
 - **Git:** All commits migrated to new repo
 - **Version: 2.0.1** - Infrastructure Migration
+
+### March 22, 2026 - Session 8: Custom Domain Live
+- **Production Domain:** Site now live at https://murrayp4p.com/
+- **Updated Documentation:** All references to p4-p-website.vercel.app updated to murrayp4p.com
+- **Files Updated:**
+  - CLAUDE.md - Production URL, Power Hub URL
+  - README.md - Live site URL
+  - RESTART-PROMPT.md - All page URLs
+  - P4P-QUICK-REFERENCE.md - All page URLs
+- **Deployment Workflow Confirmed:** Git push → GitHub → Vercel auto-deploy (no CLI)
+- **Version: 2.1.0** - Production Domain
