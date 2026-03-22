@@ -16,16 +16,18 @@ export async function POST(request: Request) {
       );
     }
 
+    // Split name into first and last name for GHL
+    const nameParts = name.trim().split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
     // Send to GoHighLevel webhook
-    // GHL Mapping Reference:
-    // - full_name: Contact's full name
-    // - email: Contact's email address
-    // - phone: Contact's phone (not collected here)
-    // - tags: Array of tags to apply
-    // - customField: Custom fields object
-    // - source: Where the lead came from
     const ghlPayload = {
-      // Standard GHL contact fields
+      // GHL standard contact fields
+      firstName: firstName,
+      lastName: lastName,
+      first_name: firstName,
+      last_name: lastName,
       full_name: name,
       name: name,
       email: email,
