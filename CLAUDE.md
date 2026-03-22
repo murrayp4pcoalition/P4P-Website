@@ -3,9 +3,9 @@
 ## Project Overview
 
 **Project Name:** Murray Partners 4 Prevention (P4P) Coalition Website
-**Version:** 2.1.0
+**Version:** 2.2.0
 **Created:** February 11, 2026
-**Last Updated:** March 22, 2026 (Session 8)
+**Last Updated:** March 22, 2026 (Session 9)
 **Status:** 🚀 LIVE at murrayp4p.com - Production with Power Hub CMS!
 
 ### Quick Links
@@ -78,7 +78,9 @@
 │   │       ├── content/page.tsx   # Content files list
 │   │       ├── content/[file]/page.tsx  # JSON editor
 │   │       └── settings/page.tsx  # Site info & links
-│   └── api/power-hub/     # 🆕 CMS API routes
+│   ├── api/contact/       # 🆕 Contact form API (GHL webhook)
+│   │   └── route.ts              # POST handler → GoHighLevel
+│   └── api/power-hub/     # CMS API routes
 │       ├── auth/route.ts          # Login/verify token
 │       ├── content/route.ts       # Read/write JSON files
 │       └── deploy/route.ts        # Git push to deploy
@@ -221,7 +223,7 @@ PORTAL_PASSWORD=p4p2026     # Default if not set
 - [ ] About page: Verify/update mission statement and focus areas
 - [ ] Events page: Replace sample events with real P4P events
 - [ ] Partner/Member logos: Add actual organization logos
-- [ ] Contact form: Connect to backend (currently shows success message)
+- [x] Contact form: Connected to GoHighLevel webhook (creates contacts with all fields)
 - [ ] Social media links: Update to real P4P social profiles
 
 ### 🚀 Future Enhancements
@@ -365,3 +367,25 @@ This avoids issues with standard uploads and ensures proper builds.
   - P4P-QUICK-REFERENCE.md - All page URLs
 - **Deployment Workflow Confirmed:** Git push → GitHub → Vercel auto-deploy (no CLI)
 - **Version: 2.1.0** - Production Domain
+
+### March 22, 2026 - Session 9: GoHighLevel Contact Form Integration
+- **🆕 GHL Webhook Integration:** Contact form now sends leads to GoHighLevel CRM
+  - Created `/api/contact` route to handle form submissions
+  - Webhook URL: `https://services.leadconnectorhq.com/hooks/X059zzO350KHgB9dXvPT/webhook-trigger/...`
+  - Splits full name into firstName/lastName for GHL compatibility
+  - Sends: firstName, lastName, email, phone, source, tags, subject, message, notes
+- **Phone Number Field Added:** Contact form now collects phone numbers
+- **GHL Workflow Created:** "Coalition Contact" workflow in GHL
+  - Trigger: Inbound Webhook
+  - Action 1: Create/Update Contact (maps all fields)
+  - Action 2: Add Tag ("coalition contact", subject)
+- **Field Mapping Reference:**
+  - `{{inboundWebhookRequest.firstName}}` → First Name
+  - `{{inboundWebhookRequest.lastName}}` → Last Name
+  - `{{inboundWebhookRequest.email}}` → Email
+  - `{{inboundWebhookRequest.phone}}` → Phone
+  - `{{inboundWebhookRequest.source}}` → Contact Source
+- **GitHub:** Added BrettLechtenbrerg as collaborator (for push access)
+- **Git:** 3 new commits pushed
+- **Live & Tested:** Form submissions create contacts in GHL with all fields
+- **Version: 2.2.0** - GHL Integration
