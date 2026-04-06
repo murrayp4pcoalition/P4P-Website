@@ -11,37 +11,20 @@ import {
   Twitter,
   Mail,
 } from 'lucide-react';
+import siteContent from '@/content/site.json';
 
-const footerLinks = {
-  'Navigation': [
-    { label: 'Home', href: '/' },
-    { label: 'About Us', href: '/about' },
-    { label: 'Our Team', href: '/team' },
-    { label: 'Members', href: '/members' },
-    { label: 'Events', href: '/events' },
-  ],
-  'Get Involved': [
-    { label: 'Volunteer', href: '/get-involved#volunteer' },
-    { label: 'Donate', href: '/get-involved#donate' },
-    { label: 'Partner With Us', href: '/get-involved#partner' },
-    { label: 'Contact', href: '/contact' },
-  ],
-  'Resources': [
-    { label: 'Member Directory', href: '/members' },
-    { label: 'Events Calendar', href: '/events' },
-    { label: 'Partner Organizations', href: '/#partners' },
-  ],
+// Map platform names to icons
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Facebook,
+  Instagram,
+  Twitter,
+  LinkedIn: Linkedin,
+  YouTube: Youtube,
 };
 
-const socialLinks = [
-  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61568345200368', label: 'Facebook' },
-  { icon: Instagram, href: 'https://instagram.com/murrayp4p', label: 'Instagram' },
-  { icon: Twitter, href: 'https://twitter.com/murrayp4p', label: 'X (Twitter)' },
-  { icon: Linkedin, href: 'https://linkedin.com/company/murray-p4p', label: 'LinkedIn' },
-  { icon: Youtube, href: 'https://youtube.com/@murrayp4p', label: 'YouTube' },
-];
-
 export default function Footer() {
+  const { organization, socialLinks, footerLinks } = siteContent;
+
   return (
     <footer className="footer-glass relative overflow-hidden w-full">
       {/* Top Wave */}
@@ -58,8 +41,8 @@ export default function Footer() {
                 className="relative"
               >
                 <Image
-                  src="/images/p4p-logo.png"
-                  alt="Murray Partners 4 Prevention"
+                  src={organization.logo}
+                  alt={organization.name}
                   width={200}
                   height={54}
                   className="h-14 w-auto object-contain"
@@ -68,52 +51,87 @@ export default function Footer() {
             </Link>
 
             <p className="mt-6 text-white/50 text-sm leading-relaxed max-w-xs">
-              A connected and compassionate Murray where all residents are empowered to thrive, grow, and build a stronger, safer community together.
+              {organization.tagline}
             </p>
 
             {/* Contact Info */}
             <div className="mt-6 space-y-3">
-              <a href="mailto:director@murrayp4p.com" className="flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors">
+              <a href={`mailto:${organization.email}`} className="flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors">
                 <Mail className="w-4 h-4 text-orange-400" />
-                director@murrayp4p.com
+                {organization.email}
               </a>
             </div>
 
             {/* Social Links */}
             <div className="mt-6 flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:border-orange-500/50 transition-all"
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+              {socialLinks.map((social) => {
+                const IconComponent = iconMap[social.platform];
+                return (
+                  <a
+                    key={social.platform}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.platform}
+                    className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:border-orange-500/50 transition-all"
+                  >
+                    {IconComponent && <IconComponent className="w-5 h-5" />}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {/* Link Columns */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 className="text-white font-semibold mb-4">{category}</h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/60 hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Navigation Column */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Navigation</h4>
+            <ul className="space-y-3">
+              {footerLinks.navigation.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/60 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Get Involved Column */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Get Involved</h4>
+            <ul className="space-y-3">
+              {footerLinks.getInvolved.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/60 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources Column */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-white/60 hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -122,7 +140,7 @@ export default function Footer() {
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-white/40 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Murray Partners 4 Prevention. All rights reserved.
+              © {new Date().getFullYear()} {organization.name}. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
               <Link href="/legal" className="text-white/40 hover:text-white transition-colors">

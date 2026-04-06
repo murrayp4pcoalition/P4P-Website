@@ -1,0 +1,62 @@
+{
+  "organization": {
+    "name": "Murray Partners 4 Prevention",
+    "tagline": "A connected and compassionate Murray where all residents are empowered to thrive, grow, and build a stronger, safer community together.",
+    "email": "director@murrayp4p.com",
+    "logo": "/images/p4p-logo.png"
+  },
+  "socialLinks": [
+    {
+      "platform": "Facebook",
+      "url": "https://www.facebook.com/profile.php?id=61568345200368"
+    },
+    {
+      "platform": "Instagram",
+      "url": "https://instagram.com/murrayp4p"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/murrayp4p"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/company/murray-p4p"
+    },
+    {
+      "platform": "YouTube",
+      "url": "https://youtube.com/@murrayp4p"
+    }
+  ],
+  "contactCta": {
+    "headline": "Ready to Make a Difference?",
+    "description": "Connect with Murray Partners 4 Prevention and help build a stronger, safer community together.",
+    "primaryButton": {
+      "text": "Contact Us",
+      "href": "/contact"
+    },
+    "secondaryButton": {
+      "text": "Learn More",
+      "href": "/about"
+    }
+  },
+  "footerLinks": {
+    "navigation": [
+      { "label": "Home", "href": "/" },
+      { "label": "About Us", "href": "/about" },
+      { "label": "Our Team", "href": "/team" },
+      { "label": "Members", "href": "/members" },
+      { "label": "Events", "href": "/events" }
+    ],
+    "getInvolved": [
+      { "label": "Volunteer", "href": "/get-involved#volunteer" },
+      { "label": "Donate", "href": "/get-involved#donate" },
+      { "label": "Partner With Us", "href": "/get-involved#partner" },
+      { "label": "Contact", "href": "/contact" }
+    ],
+    "resources": [
+      { "label": "Member Directory", "href": "/members" },
+      { "label": "Events Calendar", "href": "/events" },
+      { "label": "Partner Organizations", "href": "/#partners" }
+    ]
+  }
+}
