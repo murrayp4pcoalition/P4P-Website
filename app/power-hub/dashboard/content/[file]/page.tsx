@@ -101,20 +101,58 @@ function JsonEditor({
     const key = path.join('.');
     const isCollapsed = collapsed[key];
 
+    // Get contextual label based on the array name
+    const arrayName = path.length > 0 ? String(path[path.length - 1]) : '';
+    const getAddLabel = () => {
+      if (arrayName.toLowerCase().includes('event')) return 'Add New Event';
+      if (arrayName.toLowerCase().includes('member')) return 'Add New Member';
+      if (arrayName.toLowerCase().includes('partner')) return 'Add New Partner';
+      if (arrayName.toLowerCase().includes('team')) return 'Add New Team Member';
+      return 'Add New Item';
+    };
+
+    const handleAddItem = () => {
+      // Create a new item based on the first item's structure (or empty string if no items)
+      const newItem = data.length > 0 && typeof data[0] === 'object'
+        ? JSON.parse(JSON.stringify(data[0])) // Deep clone to avoid reference issues
+        : '';
+      // Clear the values but keep the structure
+      if (typeof newItem === 'object' && newItem !== null) {
+        Object.keys(newItem).forEach(key => {
+          if (typeof newItem[key] === 'string') newItem[key] = '';
+          else if (typeof newItem[key] === 'number') newItem[key] = 0;
+          else if (typeof newItem[key] === 'boolean') newItem[key] = false;
+        });
+      }
+      onChange(path, [...data, newItem]);
+    };
+
     return (
       <div className="border border-gray-200 rounded-lg overflow-hidden">
-        <button
-          onClick={() => setCollapsed({ ...collapsed, [key]: !isCollapsed })}
-          className="w-full flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 text-left text-sm font-medium text-gray-700"
-        >
-          {isCollapsed ? <ChevronRight size={16} /> : <ChevronDown size={16} />}
-          Array ({data.length} items)
-        </button>
+        <div className="flex items-center justify-between px-3 py-2 bg-gray-50">
+          <button
+            onClick={() => setCollapsed({ ...collapsed, [key]: !isCollapsed })}
+            className="flex items-center gap-2 hover:bg-gray-100 rounded px-2 py-1 text-left text-sm font-medium text-gray-700"
+          >
+            {isCollapsed ? <ChevronRight size={16} /> : <ChevronDown size={16} />}
+            {data.length} {data.length === 1 ? 'item' : 'items'}
+          </button>
+
+          {/* Prominent Add Button - Always Visible */}
+          <button
+            onClick={handleAddItem}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#F27A21] to-orange-600 text-white text-sm font-medium rounded-lg hover:from-orange-600 hover:to-orange-700 shadow-md hover:shadow-lg transition-all"
+          >
+            <Plus size={16} />
+            {getAddLabel()}
+          </button>
+        </div>
+
         {!isCollapsed && (
-          <div className="p-3 space-y-3 bg-white">
+          <div className="p-3 space-y-3 bg-white max-h-[600px] overflow-y-auto">
             {data.map((item, index) => (
-              <div key={index} className="flex items-start gap-2">
-                <span className="text-xs font-mono text-gray-400 pt-2">[{index}]</span>
+              <div key={index} className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                <span className="text-xs font-mono text-gray-400 pt-2 min-w-[28px]">[{index + 1}]</span>
                 <div className="flex-1">
                   <JsonEditor
                     data={item}
@@ -129,22 +167,13 @@ function JsonEditor({
                     newArray.splice(index, 1);
                     onChange(path, newArray);
                   }}
-                  className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
+                  className="p-2 text-red-500 hover:bg-red-100 rounded-lg transition-colors"
+                  title="Delete this item"
                 >
-                  <Trash2 size={14} />
+                  <Trash2 size={16} />
                 </button>
               </div>
             ))}
-            <button
-              onClick={() => {
-                const newItem = typeof data[0] === 'object' ? { ...data[0] } : '';
-                onChange(path, [...data, newItem]);
-              }}
-              className="flex items-center gap-2 px-3 py-2 text-sm text-[#F27A21] hover:bg-[#F27A21]/10 rounded-lg w-full"
-            >
-              <Plus size={14} />
-              Add Item
-            </button>
           </div>
         )}
       </div>
