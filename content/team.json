@@ -48,100 +48,136 @@
     "sectionDescription": "Community leaders driving initiatives across Murray's partner organizations.",
     "members": [
       {
+        "name": "Sheri Van Bibber",
+        "role": "Coalition Director"
+      },
+      {
+        "name": "Sierra Marsh",
+        "role": "MCSD Prevention Specialist Coordinator"
+      },
+      {
+        "name": "Tori Jensen",
+        "role": "Murray Youth Advocate/Coalition Admin"
+      },
+      {
+        "name": "Whitney Rosas",
+        "role": "Salt Lake County"
+      },
+      {
+        "name": "Susan Banks",
+        "role": "MCSD Teacher/Youth Advisor/Resident"
+      },
+      {
+        "name": "Doug Roberts",
+        "role": "Murray Police Department"
+      },
+      {
+        "name": "Craig Burnett",
+        "role": "Murray Chief of Police"
+      },
+      {
+        "name": "Kathy White",
+        "role": "Chamber of Commerce President"
+      },
+      {
+        "name": "Brett Lechtenberg",
+        "role": "Chamber Foundation"
+      },
+      {
+        "name": "Kelly Taeoalii",
+        "role": "MCSD Board of Education President"
+      },
+      {
+        "name": "Pam Cotter",
+        "role": "Murray City Council"
+      },
+      {
+        "name": "Joey Mittleman",
+        "role": "Murray Fire Chief"
+      },
+      {
+        "name": "Nick Haskin",
+        "role": "Murray Emergency Manager - Fire Dept"
+      },
+      {
+        "name": "Jen Covington",
+        "role": "MCSD Superintendent"
+      },
+      {
         "name": "Darren Dean",
-        "role": "MCSD Admin"
+        "role": "MCSD Human Resources"
       },
       {
-        "name": "Amy Bucker",
-        "role": "MSD Social Worker"
+        "name": "Cory Plant",
+        "role": "Murray Senior Center"
       },
       {
-        "name": "Sgt Brent Hawker",
-        "role": "Murray Police"
+        "name": "Jen Lietner",
+        "role": "Parks & Rec"
       },
       {
-        "name": "Councilwoman Rosalba Dominguez",
+        "name": "Kim Sorensen",
+        "role": "Parks & Rec"
+      },
+      {
+        "name": "Brett Hales",
+        "role": "Murray Mayor"
+      },
+      {
+        "name": "Doug Hill",
+        "role": "Murray City Manager"
+      },
+      {
+        "name": "Cheree Larson",
+        "role": "District PTA President"
+      },
+      {
+        "name": "Bob Dunn",
+        "role": "Former CEO B&G Club"
+      },
+      {
+        "name": "Stephanie Sonada",
+        "role": "IMC"
+      },
+      {
+        "name": "Jared DeMann",
+        "role": "President/Owner Murray Magazine"
+      },
+      {
+        "name": "Brandon Burningham",
+        "role": "Exchange Club President"
+      },
+      {
+        "name": "Kathy Nefetos",
+        "role": "Interfaith Representative"
+      },
+      {
+        "name": "Jim Brass",
+        "role": "Food Pantry"
+      },
+      {
+        "name": "Jenn Kikel-Lynn",
+        "role": "Main Street CEO"
+      },
+      {
+        "name": "Rowan Coates",
+        "role": "Murray Arts Dept"
+      },
+      {
+        "name": "Paul Pickett",
         "role": "Murray City Council"
       },
       {
-        "name": "Sgt. David Christiansen",
-        "role": "Murray Police"
-      },
-      {
-        "name": "Mayor Jenny Wilson",
-        "role": "SL County"
-      },
-      {
-        "name": "Nate Christopherson",
-        "role": "Health Dept"
-      },
-      {
-        "name": "Sydney Rassmussen",
-        "role": "Health Dept"
-      },
-      {
-        "name": "Ashley Torgerson",
-        "role": "Health Dept"
-      },
-      {
-        "name": "Heather Sargent",
-        "role": "SelectHealth"
-      },
-      {
-        "name": "Jeff Drubel",
-        "role": "Intermountain"
-      },
-      {
-        "name": "Paula Julander",
-        "role": "Exchange Club"
-      },
-      {
-        "name": "Chris Crowder",
-        "role": "Exchange Club"
-      },
-      {
-        "name": "Jim Waddell",
-        "role": "Murray Rotary"
-      },
-      {
-        "name": "Maile Elzey",
-        "role": "Murray Rotary"
-      },
-      {
-        "name": "Ted Cross",
-        "role": "Business"
-      },
-      {
-        "name": "Karlie Jensen",
-        "role": "Marketing"
-      },
-      {
-        "name": "Brian Burnett",
-        "role": "Murray City Mayor"
-      },
-      {
-        "name": "Mayor Pro Tem Diane Turner",
+        "name": "Diane Turner",
         "role": "Murray City Council"
       },
       {
-        "name": "Councilwoman Kat Martinez",
+        "name": "Adam Hock",
         "role": "Murray City Council"
       },
       {
-        "name": "Councilman Jim Speiser",
+        "name": "Clark Bullen",
         "role": "Murray City Council"
-      },
-      {
-        "name": "Councilman Ron Hancock",
-        "role": "Murray City Council"
-      },
-      {
-        "name": "Chris Hershberger",
-        "role": "Murray Youth Council Advisor"
-      },
-      {
-        "name": "Alex Farnsworth",
-        "role": "Murray Youth Council Advisor"
       }
     ]
   },
