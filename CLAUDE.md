@@ -3,10 +3,10 @@
 ## Project Overview
 
 **Project Name:** Murray Partners 4 Prevention (P4P) Coalition Website
-**Version:** 2.3.0
+**Version:** 2.4.0
 **Created:** February 11, 2026
-**Last Updated:** April 6, 2026 (Session 10)
-**Status:** 🚀 LIVE at murrayp4p.com - Production with Power Hub CMS!
+**Last Updated:** April 7, 2026 (Session 11)
+**Status:** 🚀 LIVE at murrayp4p.com - Production CMS (Staff Self-Sufficient!)
 
 ### Quick Links
 - **Production URL:** https://murrayp4p.com/
@@ -424,3 +424,34 @@ This avoids issues with standard uploads and ensures proper builds.
   - `site.json` - Footer, Social links, CTA banner
 - **Git:** 5 commits pushed (all synced)
 - **Version: 2.3.0** - Full CMS Coverage
+
+### April 7, 2026 - Session 11: Power Hub Production Ready & Content Updates
+- **Fixed Deployment Crash:** Events page crashed when empty events existed
+  - Added `parseDateParts()` helper for safe date parsing
+  - Added filter to skip events with empty title/date
+  - Removed empty event objects from events.json
+- **Power Hub Now Works in Production:**
+  - Added GitHub environment variables to Vercel:
+    - `GITHUB_TOKEN` - New PAT (classic) for API access
+    - `GITHUB_OWNER` - murrayp4pcoalition
+    - `GITHUB_REPO` - P4P-Website
+    - `GITHUB_BRANCH` - main
+  - Content API uses GitHub REST API (not git CLI)
+  - Staff can now edit content independently without Brett
+- **Events Page Updated:** 15 upcoming events with "Event" badge
+  - April 6: Pinwheels for Child Abuse Awareness Month
+  - April 7: Murray Coalition presentation to City Council
+  - April 8: Murray Youth Community Council Meeting
+  - April 28: Murray P4P Coalition Meeting
+  - May 18: MHS Awards/Scholarship Banquet
+  - May 19: Murray P4P Coalition Meeting
+  - June 13: Community Block Party
+  - July 4: 4th of July Parade - Hand Out Flags
+  - Plus monthly coalition meetings through December
+- **Team Page Updated:**
+  - Coalition Staff: Sheri Van Bibber (Director), Sierra Marsh (Chair), Tori Jensen (Admin), Murray Chamber Foundation (Treasurer)
+  - Key Leaders: 34 community leaders
+  - Board Members: 64 members alphabetically
+- **Git:** 5 new commits pushed
+- **Staff Self-Sufficient:** P4P team can now manage all content via Power Hub
+- **Version: 2.4.0** - Production CMS

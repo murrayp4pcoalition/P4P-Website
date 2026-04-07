@@ -45,90 +45,84 @@ This project uses the **coalition's own accounts** (NOT Brett's personal account
 | **Events** | https://murrayp4p.com/events |
 | **Contact** | https://murrayp4p.com/contact |
 | **Get Involved** | https://murrayp4p.com/get-involved |
+| **Legal** | https://murrayp4p.com/legal |
 | **Power Hub CMS** | https://murrayp4p.com/power-hub |
 
 ### GitHub (Code Repository)
-- **Login URL:** https://github.com/login
-- **Username:** `murrayp4pcoalition`
-- **Email:** `murrayp4pcoalition@gmail.com`
-- **Password:** `MurrayP4PCoalitionIs#1`
 - **Repo URL:** https://github.com/murrayp4pcoalition/P4P-Website
 - **Repo Type:** PRIVATE
+- **Username:** `murrayp4pcoalition`
+- **Email:** `murrayp4pcoalition@gmail.com`
 
 ### Vercel (Hosting & Auto-Deploy)
-- **Login URL:** https://vercel.com/login
-- **Login Method:** Click "Continue with GitHub" → use murrayp4pcoalition account
 - **Dashboard:** https://vercel.com/murrayp4pcoalitions-projects/p4-p-website
+- **Environment Variables:** https://vercel.com/murrayp4pcoalitions-projects/p4-p-website/settings/environment-variables
 - **Auto-Deploy:** YES - any push to main branch triggers rebuild
+- **Login Method:** Click "Continue with GitHub" → use murrayp4pcoalition account
 
 ### Power Hub CMS (Content Management)
 - **URL:** https://murrayp4p.com/power-hub
 - **Username:** `p4padmin`
 - **Password:** `p4p2026`
 
-### Supabase (Database)
-- **Login URL:** https://supabase.com/dashboard
-- **Email:** `murrayp4pcoalition@gmail.com`
-- **Password:** `MurrayP4PCoalitionIs#1`
-- **Project Name:** Murray Partners 4 Prevention Coalition
-- **Database Password:** `MurrayPartners4PreventionCoalitionIs#1`
-
-### Coalition Gmail
-- **Email:** `murrayp4pcoalition@gmail.com`
-- **Password:** `MurrayP4PCoalitionIs#1`
-- **Recovery Email:** `brett@brettlechtenberg.com`
-- **Phone Verification:** `801-718-3851`
+### Vercel Environment Variables (Required for Power Hub)
+| Variable | Value |
+|----------|-------|
+| `GITHUB_TOKEN` | (PAT token - stored in Vercel, not in code) |
+| `GITHUB_OWNER` | `murrayp4pcoalition` |
+| `GITHUB_REPO` | `P4P-Website` |
+| `GITHUB_BRANCH` | `main` |
 
 ---
 
-## How Auto-Deploy Works
+## How Deployments Work
 
+### Code Changes (Developer)
 ```
-Edit Code → Commit → Push to GitHub → Vercel Auto-Deploys → Live in ~60 seconds
-```
-
-### NO CLI AUTH NEEDED
-
-Use this Personal Access Token (PAT) embedded in git commands:
-
-```
-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
+Edit Code → git add → git commit → git push origin main → Vercel Auto-Deploys
 ```
 
-### Push Command (Copy This Exactly)
-
-```bash
-cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website" && git add -A && git commit -m "Your commit message here" && git push https://murrayp4pcoalition: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@github.com/murrayp4pcoalition/P4P-Website.git main
+### Content Changes (Staff via Power Hub)
+```
+Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits → Vercel Auto-Deploys
 ```
 
-### Content Updates via Power Hub (No Code Needed)
-
-1. Go to https://murrayp4p.com/power-hub
-2. Login: `p4padmin` / `p4p2026`
-3. Edit content in the visual editor
-4. Click "Deploy" button
-5. Site updates automatically
+**Staff are self-sufficient** - they don't need Brett to make content updates!
 
 ---
 
-## What's Built (v2.0.1)
+## What's Built (v2.4.0)
 
-- 9 public pages (Home, About, Team, Members, Events, Contact, Get Involved, Terms, Privacy)
-- Power Hub CMS for content management
-- JSON-based content system
-- Supabase database integration
-- Glassmorphic black/orange design
-- Mobile-optimized (320px - 1920px+)
-- Framer Motion animations
+### Pages
+- 9 public pages (Home, About, Team, Members, Events, Contact, Get Involved, Legal)
+- Power Hub CMS at /power-hub (hidden from search engines)
 
-## What Still Needs Real Content
+### Features
+- ✅ Power Hub CMS - Staff can edit ALL content independently
+- ✅ GitHub API integration - No git CLI needed on server
+- ✅ GoHighLevel contact form integration
+- ✅ JSON-based content system (9 content files)
+- ✅ Glassmorphic black/orange design
+- ✅ Mobile-optimized (320px - 1920px+)
+- ✅ Framer Motion animations
 
-- [ ] Team page: Real officers/members with photos
-- [ ] Members page: Real coalition member organizations
-- [ ] Events page: Real P4P events
-- [ ] Partner logos: Actual organization logos
-- [ ] Contact form: Backend integration
-- [ ] Social links: Real P4P social profiles
+### Content Files (All Editable via Power Hub)
+| File | Controls |
+|------|----------|
+| `home.json` | Hero, Partners, Stats |
+| `about.json` | Mission, Values, Focus Areas |
+| `contact.json` | Contact page content |
+| `events.json` | Upcoming & Past Events |
+| `team.json` | Staff, Key Leaders, Board Members |
+| `members.json` | Coalition member organizations |
+| `get-involved.json` | Volunteer, Donate, Partner info |
+| `legal.json` | Terms, Privacy, Accessibility |
+| `site.json` | Footer, Social links, CTA banner |
+
+### Current Content Status (as of April 7, 2026)
+- ✅ Events: 15 upcoming events (April - December 2026)
+- ✅ Team: 4 Staff, 34 Key Leaders, 64 Board Members
+- ✅ All content editable via Power Hub
 
 ---
 
@@ -138,28 +132,25 @@ cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website" && git add -A &
 # Navigate to project
 cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website"
 
-# Start local dev server
-npm run dev
-
 # Build (test before deploy)
 npm run build
 
-# Push changes (auto-deploys via Vercel)
-git add -A && git commit -m "message" && git push https://murrayp4pcoalition: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@github.com/murrayp4pcoalition/P4P-Website.git main
+# Push changes (uses cached git credentials)
+git add -A && git commit -m "message" && git push origin main
 ```
 
 ---
 
 ## Critical Rules
 
-1. **NO gh CLI auth** - Use the PAT token in git push URL (avoids account conflicts)
+1. **Cached credentials work** - Regular `git push origin main` uses Mac keychain
 2. **Auto-deploy is ON** - Every push to main triggers Vercel rebuild
 3. **Private repo** - Only visible when logged into murrayp4pcoalition GitHub
 4. **Coalition owns everything** - Separate from Brett's personal accounts
-5. **Power Hub deploys too** - Uses same git push mechanism
-6. **Git identity is set** - This repo uses coalition identity (murrayp4pcoalition) for commits
+5. **Power Hub uses GitHub API** - Environment variables in Vercel (not in code)
+6. **No PAT tokens in code** - GitHub blocks commits with secrets
 
-### If Git Identity Gets Reset (Vercel shows "Blocked")
+### If Git Identity Gets Reset
 Run this to fix:
 ```bash
 cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website"
