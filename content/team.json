@@ -49,135 +49,168 @@
     "members": [
       {
         "name": "Sheri Van Bibber",
-        "role": "Coalition Director"
+        "role": "Coalition Director",
+        "image": null
       },
       {
         "name": "Sierra Marsh",
-        "role": "MCSD Prevention Specialist Coordinator"
+        "role": "MCSD Prevention Specialist Coordinator",
+        "image": null
       },
       {
         "name": "Tori Jensen",
-        "role": "Murray Youth Advocate/Coalition Admin"
+        "role": "Murray Youth Advocate/Coalition Admin",
+        "image": null
       },
       {
         "name": "Whitney Rosas",
-        "role": "Salt Lake County"
+        "role": "Salt Lake County",
+        "image": null
       },
       {
         "name": "Susan Banks",
-        "role": "MCSD Teacher/Youth Advisor/Resident"
+        "role": "MCSD Teacher/Youth Advisor/Resident",
+        "image": null
       },
       {
         "name": "Doug Roberts",
-        "role": "Murray Police Department"
+        "role": "Murray Police Department",
+        "image": null
       },
       {
         "name": "Craig Burnett",
-        "role": "Murray Chief of Police"
+        "role": "Murray Chief of Police",
+        "image": null
       },
       {
         "name": "Kathy White",
-        "role": "Chamber of Commerce President"
+        "role": "Chamber of Commerce President",
+        "image": null
       },
       {
         "name": "Brett Lechtenberg",
-        "role": "Chamber Foundation"
+        "role": "Chamber Foundation",
+        "image": null
       },
       {
         "name": "Kelly Taeoalii",
-        "role": "MCSD Board of Education President"
+        "role": "MCSD Board of Education President",
+        "image": null
       },
       {
         "name": "Pam Cotter",
-        "role": "Murray City Council"
+        "role": "Murray City Council",
+        "image": null
       },
       {
         "name": "Joey Mittleman",
-        "role": "Murray Fire Chief"
+        "role": "Murray Fire Chief",
+        "image": null
       },
       {
         "name": "Nick Haskin",
-        "role": "Murray Emergency Manager - Fire Dept"
+        "role": "Murray Emergency Manager - Fire Dept",
+        "image": null
       },
       {
         "name": "Jen Covington",
-        "role": "MCSD Superintendent"
+        "role": "MCSD Superintendent",
+        "image": null
       },
       {
         "name": "Darren Dean",
-        "role": "MCSD Human Resources"
+        "role": "MCSD Human Resources",
+        "image": null
       },
       {
         "name": "Cory Plant",
-        "role": "Murray Senior Center"
+        "role": "Murray Senior Center",
+        "image": null
       },
       {
         "name": "Jen Lietner",
-        "role": "Parks & Rec"
+        "role": "Parks & Rec",
+        "image": null
       },
       {
         "name": "Kim Sorensen",
-        "role": "Parks & Rec"
+        "role": "Parks & Rec",
+        "image": null
       },
       {
         "name": "Brett Hales",
-        "role": "Murray Mayor"
+        "role": "Murray Mayor",
+        "image": null
       },
       {
         "name": "Doug Hill",
-        "role": "Murray City Manager"
+        "role": "Murray City Manager",
+        "image": null
       },
       {
         "name": "Cheree Larson",
-        "role": "District PTA President"
+        "role": "District PTA President",
+        "image": null
       },
       {
         "name": "Bob Dunn",
-        "role": "Former CEO B&G Club"
+        "role": "Former CEO B&G Club",
+        "image": null
       },
       {
         "name": "Stephanie Sonada",
-        "role": "IMC"
+        "role": "IMC",
+        "image": null
       },
       {
         "name": "Jared DeMann",
-        "role": "President/Owner Murray Magazine"
+        "role": "President/Owner Murray Magazine",
+        "image": null
       },
       {
         "name": "Brandon Burningham",
-        "role": "Exchange Club President"
+        "role": "Exchange Club President",
+        "image": null
       },
       {
         "name": "Kathy Nefetos",
-        "role": "Interfaith Representative"
+        "role": "Interfaith Representative",
+        "image": null
       },
       {
         "name": "Jim Brass",
-        "role": "Food Pantry"
+        "role": "Food Pantry",
+        "image": null
       },
       {
         "name": "Jenn Kikel-Lynn",
-        "role": "Main Street CEO"
+        "role": "Main Street CEO",
+        "image": null
       },
       {
         "name": "Rowan Coates",
-        "role": "Murray Arts Dept"
+        "role": "Murray Arts Dept",
+        "image": null
       },
       {
         "name": "Paul Pickett",
-        "role": "Murray City Council"
+        "role": "Murray City Council",
+        "image": null
       },
       {
         "name": "Diane Turner",
-        "role": "Murray City Council"
+        "role": "Murray City Council",
+        "image": null
       },
       {
         "name": "Adam Hock",
-        "role": "Murray City Council"
+        "role": "Murray City Council",
+        "image": null
       },
       {
         "name": "Clark Bullen",
-        "role": "Murray City Council"
+        "role": "Murray City Council",
+        "image": null
       }
     ]
   },

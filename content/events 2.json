@@ -1,0 +1,65 @@
+{
+  "header": {
+    "badge": "Events",
+    "title": "Community Events",
+    "description": "Join us at upcoming events and help build a stronger Murray community.",
+    "backgroundImage": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1920&q=80"
+  },
+  "upcomingEvents": [
+    {
+      "title": "Coalition Monthly Meeting",
+      "date": "March 15, 2026",
+      "time": "6:00 PM - 7:30 PM",
+      "location": "Murray City Hall",
+      "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
+      "type": "Meeting"
+    },
+    {
+      "title": "Youth Leadership Workshop",
+      "date": "March 22, 2026",
+      "time": "10:00 AM - 2:00 PM",
+      "location": "Murray High School",
+      "description": "A hands-on workshop for young leaders to develop skills in community organizing and prevention advocacy.",
+      "type": "Workshop"
+    },
+    {
+      "title": "Community Health Fair",
+      "date": "April 5, 2026",
+      "time": "9:00 AM - 3:00 PM",
+      "location": "Murray Park",
+      "description": "Free health screenings, wellness resources, and family activities for the Murray community.",
+      "type": "Community Event"
+    },
+    {
+      "title": "Prevention Education Seminar",
+      "date": "April 12, 2026",
+      "time": "7:00 PM - 8:30 PM",
+      "location": "Murray Library",
+      "description": "Educational seminar on substance abuse prevention and resources available to Murray families.",
+      "type": "Seminar"
+    }
+  ],
+  "pastEvents": [
+    {
+      "title": "Back to School Resource Fair",
+      "date": "August 2025",
+      "description": "Provided school supplies and resources to over 500 Murray families."
+    },
+    {
+      "title": "Summer Safety Campaign",
+      "date": "June 2025",
+      "description": "Community-wide safety awareness initiative reaching thousands of residents."
+    },
+    {
+      "title": "Youth Empowerment Conference",
+      "date": "May 2025",
+      "description": "Brought together 200+ young leaders for a day of workshops and networking."
+    }
+  ],
+  "cta": {
+    "title": "Want to Host an Event?",
+    "description": "Partner with us to bring prevention education and community resources to your neighborhood or organization.",
+    "buttonText": "Contact Us",
+    "buttonLink": "/contact"
+  }
+}

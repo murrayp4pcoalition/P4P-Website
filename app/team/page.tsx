@@ -101,10 +101,21 @@ export default function TeamPage() {
                 transition={{ delay: index * 0.03 }}
                 className="glass-card p-4 text-center"
               >
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 mx-auto mb-3 flex items-center justify-center shadow-lg">
-                  <span className="text-lg font-bold text-white">
-                    {leader.name.split(' ').filter(n => !['Councilwoman', 'Councilman', 'Mayor', 'Sgt', 'Sgt.', 'Pro', 'Tem'].includes(n)).map(n => n[0]).join('').slice(0, 2)}
-                  </span>
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 mx-auto mb-3 flex items-center justify-center shadow-lg overflow-hidden">
+                  {leader.image ? (
+                    <Image
+                      src={leader.image}
+                      alt={leader.name}
+                      width={56}
+                      height={56}
+                      className="w-full h-full object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <span className="text-lg font-bold text-white">
+                      {leader.name.split(' ').filter(n => !['Councilwoman', 'Councilman', 'Mayor', 'Sgt', 'Sgt.', 'Pro', 'Tem'].includes(n)).map(n => n[0]).join('').slice(0, 2)}
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-base font-semibold text-white">{leader.name}</h3>
                 <p className="text-orange-400 text-sm font-medium">{leader.role}</p>
