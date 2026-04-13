@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Header from '@/components/power-hub/Header';
-import { Upload, Grid, List, Search, Trash2, Copy, Check, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
+import { Upload, Grid, List, Search, Trash2, Copy, Check, Loader2, AlertCircle, RefreshCw, Lock } from 'lucide-react';
 
 interface MediaFile {
   id: string;
@@ -10,6 +10,7 @@ interface MediaFile {
   url: string;
   size: string;
   uploaded: string;
+  isStatic?: boolean;
 }
 
 export default function MediaPage() {
@@ -119,7 +120,8 @@ export default function MediaPage() {
   };
 
   const filteredMedia = media.filter((file) =>
-    file.name.toLowerCase().includes(searchQuery.toLowerCase())
+    file.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    file.uploaded.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -272,12 +274,24 @@ export default function MediaPage() {
         {!loading && viewMode === 'grid' && filteredMedia.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredMedia.map((file) => (
-              <div key={file.id} className="bg-white rounded-xl border border-gray-200 p-3 group">
+              <div key={file.id} className={`bg-white rounded-xl border p-3 group ${file.isStatic ? 'border-blue-200 bg-blue-50/30' : 'border-gray-200'}`}>
                 <div className="aspect-square relative rounded-lg overflow-hidden bg-gray-100 mb-3">
                   <img src={file.url} alt={file.name} className="w-full h-full object-cover" />
+                  {file.isStatic && (
+                    <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
+                      <Lock size={10} />
+                      {file.uploaded}
+                    </div>
+                  )}
                 </div>
                 <p className="text-sm font-medium truncate mb-1">{file.name}</p>
-                <p className="text-xs text-gray-400 mb-3">{file.size} • {file.uploaded}</p>
+                <p className="text-xs text-gray-400 mb-3">
+                  {file.isStatic ? (
+                    <span className="text-blue-600">Built-in Image</span>
+                  ) : (
+                    <>{file.size} • {file.uploaded}</>
+                  )}
+                </p>
 
                 {/* Always visible URL and actions */}
                 <div className="space-y-2">
@@ -309,13 +323,15 @@ export default function MediaPage() {
                       {copiedUrl === file.url ? <Check size={14} /> : <Copy size={14} />}
                       {copiedUrl === file.url ? 'Copied!' : 'Copy URL'}
                     </button>
-                    <button
-                      onClick={() => deleteFile(file.id)}
-                      className="p-2 border border-gray-200 rounded-lg hover:bg-red-50 hover:border-red-200 transition-colors"
-                      title="Delete"
-                    >
-                      <Trash2 size={14} className="text-red-500" />
-                    </button>
+                    {!file.isStatic && (
+                      <button
+                        onClick={() => deleteFile(file.id)}
+                        className="p-2 border border-gray-200 rounded-lg hover:bg-red-50 hover:border-red-200 transition-colors"
+                        title="Delete"
+                      >
+                        <Trash2 size={14} className="text-red-500" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -327,12 +343,26 @@ export default function MediaPage() {
         {!loading && viewMode === 'list' && filteredMedia.length > 0 && (
           <div className="bg-white rounded-xl border border-gray-200">
             {filteredMedia.map((file) => (
-              <div key={file.id} className="flex items-center justify-between p-4 border-b border-gray-100 last:border-0 gap-4">
+              <div key={file.id} className={`flex items-center justify-between p-4 border-b border-gray-100 last:border-0 gap-4 ${file.isStatic ? 'bg-blue-50/30' : ''}`}>
                 <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <img src={file.url} alt={file.name} className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
+                  <div className="relative flex-shrink-0">
+                    <img src={file.url} alt={file.name} className="w-12 h-12 rounded-lg object-cover" />
+                    {file.isStatic && (
+                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
+                        <Lock size={10} className="text-white" />
+                      </div>
+                    )}
+                  </div>
                   <div className="min-w-0 flex-1">
-                    <p className="font-medium truncate">{file.name}</p>
-                    <p className="text-sm text-gray-500">{file.size} • {file.uploaded}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium truncate">{file.name}</p>
+                      {file.isStatic && (
+                        <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">{file.uploaded}</span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-500">
+                      {file.isStatic ? 'Built-in Image' : `${file.size} • ${file.uploaded}`}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
@@ -352,12 +382,14 @@ export default function MediaPage() {
                     {copiedUrl === file.url ? <Check size={14} /> : <Copy size={14} />}
                     {copiedUrl === file.url ? 'Copied!' : 'Copy URL'}
                   </button>
-                  <button
-                    onClick={() => deleteFile(file.id)}
-                    className="p-2 hover:bg-red-100 rounded-lg transition-colors"
-                  >
-                    <Trash2 size={16} className="text-red-500" />
-                  </button>
+                  {!file.isStatic && (
+                    <button
+                      onClick={() => deleteFile(file.id)}
+                      className="p-2 hover:bg-red-100 rounded-lg transition-colors"
+                    >
+                      <Trash2 size={16} className="text-red-500" />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
