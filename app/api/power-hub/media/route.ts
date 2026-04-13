@@ -3,7 +3,16 @@ import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 
 // Static images from /public/images/ that should always be visible
+// Also includes known uploaded team photos for easy reference
 const STATIC_IMAGES = [
+  // Team Photos (uploaded to Vercel Blob)
+  {
+    id: 'team-sheri-van-bibber',
+    name: 'Sheri Van Bibber',
+    path: 'https://autaprcvep3wmic5.public.blob.vercel-storage.com/uploads/1771178694433-625670363_10164203972139375_8873740102680172454_n.jpg',
+    category: 'Team Photos',
+  },
+  // Site Assets
   {
     id: 'static-logo',
     name: 'P4P Logo',
