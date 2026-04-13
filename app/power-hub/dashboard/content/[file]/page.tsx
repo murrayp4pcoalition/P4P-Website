@@ -22,7 +22,106 @@ import {
   Trash2,
   Rocket,
   GitCommit,
+  HelpCircle,
+  Image,
+  Users,
+  UserPlus,
+  X,
 } from 'lucide-react';
+import Link from 'next/link';
+
+// Context-specific help content for different files
+const FILE_HELP: Record<string, { title: string; sections: Array<{ icon: React.ReactNode; title: string; steps: string[] }> }> = {
+  team: {
+    title: '👥 Team Page Management Guide',
+    sections: [
+      {
+        icon: <Users size={18} className="text-orange-500" />,
+        title: 'Coalition Staff (with photos)',
+        steps: [
+          'Find the "officers" → "members" section below',
+          'Click the orange "Add New Member" button to add a person',
+          'Fill in: name, title, subtitle, bio, email',
+          'For the image field: Go to Media Library, upload a photo, copy the URL, paste it here',
+          'To remove: Click the red trash icon next to the person',
+        ],
+      },
+      {
+        icon: <UserPlus size={18} className="text-blue-500" />,
+        title: 'Key Leaders (with photos)',
+        steps: [
+          'Find the "key Leaders" → "members" section below',
+          'Click "Add New Member" to add a leader',
+          'Fill in: name, role',
+          'For the image field: Go to Media Library, upload a photo, copy the URL, paste it here',
+          'Leave image empty (null) to show initials instead',
+        ],
+      },
+      {
+        icon: <Users size={18} className="text-green-500" />,
+        title: 'Board Members (names only)',
+        steps: [
+          'Find the "board Members" → "members" section below',
+          'This is a simple list of names (no photos)',
+          'Click "Add New Member" to add a name',
+          'Type the full name in the text field',
+          'To remove: Click the red trash icon',
+        ],
+      },
+      {
+        icon: <Image size={18} className="text-purple-500" />,
+        title: 'Adding Photos',
+        steps: [
+          'Go to Media Library (sidebar menu)',
+          'Upload the person\'s photo',
+          'Click "Copy URL" on the uploaded image',
+          'Come back here and paste the URL in the "image" field',
+          'Tip: Use square photos for best results',
+        ],
+      },
+    ],
+  },
+  events: {
+    title: '📅 Events Page Management Guide',
+    sections: [
+      {
+        icon: <Plus size={18} className="text-orange-500" />,
+        title: 'Adding Events',
+        steps: [
+          'Find the "upcoming" section for future events',
+          'Click "Add New Event" button',
+          'Fill in: title, date, time, location, description',
+          'For badge: use "Event", "Meeting", "Workshop", etc.',
+          'The registrationUrl is optional - add a link if people need to sign up',
+        ],
+      },
+      {
+        icon: <Trash2 size={18} className="text-red-500" />,
+        title: 'Removing Past Events',
+        steps: [
+          'Find events that have already happened',
+          'Click the red trash icon to remove them',
+          'Or move them to the "past" section if you want to keep a record',
+        ],
+      },
+    ],
+  },
+  members: {
+    title: '🏢 Member Organizations Guide',
+    sections: [
+      {
+        icon: <Plus size={18} className="text-orange-500" />,
+        title: 'Adding Organizations',
+        steps: [
+          'Find the "organizations" section',
+          'Click "Add New Member"',
+          'Fill in: name, category (e.g., "Healthcare", "Education")',
+          'Add website URL and description',
+        ],
+      },
+    ],
+  },
+};
 
 // Recursive JSON editor component
 function JsonEditor({
@@ -223,6 +322,79 @@ function JsonEditor({
   return <span className="text-gray-400">Unknown type</span>;
 }
 
+// Help Panel Component
+function HelpPanel({ file }: { file: string }) {
+  const [isOpen, setIsOpen] = useState(true);
+  const helpContent = FILE_HELP[file];
+
+  if (!helpContent) return null;
+
+  return (
+    <div className="mb-6 bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-2xl overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-4 hover:bg-orange-100/50 transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <HelpCircle size={20} className="text-orange-500" />
+          <span className="font-semibold text-gray-800">{helpContent.title}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-orange-600">
+            {isOpen ? 'Hide Guide' : 'Show Guide'}
+          </span>
+          {isOpen ? <ChevronDown size={18} className="text-orange-500" /> : <ChevronRight size={18} className="text-orange-500" />}
+        </div>
+      </button>
+
+      {isOpen && (
+        <div className="px-4 pb-4">
+          <div className="grid md:grid-cols-2 gap-4">
+            {helpContent.sections.map((section, idx) => (
+              <div key={idx} className="bg-white rounded-xl p-4 border border-orange-100">
+                <div className="flex items-center gap-2 mb-3">
+                  {section.icon}
+                  <h4 className="font-semibold text-gray-800">{section.title}</h4>
+                </div>
+                <ol className="space-y-2">
+                  {section.steps.map((step, stepIdx) => (
+                    <li key={stepIdx} className="flex items-start gap-2 text-sm text-gray-600">
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-100 text-orange-600 text-xs flex items-center justify-center font-medium">
+                        {stepIdx + 1}
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+
+          {/* Quick Actions */}
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link
+              href="/power-hub/dashboard/media"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors text-sm font-medium"
+            >
+              <Image size={16} />
+              Open Media Library
+            </Link>
+            <a
+              href="https://murrayp4p.com/team"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors text-sm font-medium"
+            >
+              <Users size={16} />
+              View Live Team Page
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function EditContentPage({
   params,
 }: {
@@ -385,6 +557,9 @@ export default function EditContentPage({
               <span>You have unsaved changes</span>
             </div>
           )}
+
+          {/* Context-Specific Help Panel */}
+          {!loading && <HelpPanel file={file} />}
 
           {/* Content Editor */}
           {loading ? (
