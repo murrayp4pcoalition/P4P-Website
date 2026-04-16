@@ -32,8 +32,7 @@ import {
   birthToThreeStats,
 } from '@/lib/parenting-suite-config';
 
-// Placeholder components
-import HeroIllustration from '@/components/parenting-suite/placeholders/HeroIllustration';
+// Placeholder components (HeroIllustration replaced with real image)
 import PhoneMockupSammie from '@/components/parenting-suite/placeholders/PhoneMockupSammie';
 import PhoneMockupGeno from '@/components/parenting-suite/placeholders/PhoneMockupGeno';
 import PhoneMockupStacey from '@/components/parenting-suite/placeholders/PhoneMockupStacey';
@@ -182,9 +181,24 @@ export default function ParentingSuitePage() {
               </div>
             </FadeIn>
 
-            {/* Right column: Hero illustration */}
+            {/* Right column: Hero image */}
             <FadeIn direction="right" delay={0.2}>
-              <HeroIllustration />
+              <div className="relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  <img
+                    src="/images/parenting-suite/hero-mom-baby-phone.jpg"
+                    alt="Parent using the Parenting Suite app with their child"
+                    className="w-full h-auto object-cover"
+                  />
+                  {/* Warm overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#1E3560]/20 to-transparent" />
+                </div>
+                {/* Decorative accent */}
+                <div
+                  className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full opacity-60 blur-xl"
+                  style={{ backgroundColor: colors.persimmon }}
+                />
+              </div>
             </FadeIn>
           </div>
         </div>
