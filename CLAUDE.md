@@ -3,14 +3,15 @@
 ## Project Overview
 
 **Project Name:** Murray Partners 4 Prevention (P4P) Coalition Website
-**Version:** 2.4.0
+**Version:** 2.5.0
 **Created:** February 11, 2026
-**Last Updated:** April 7, 2026 (Session 11)
+**Last Updated:** April 16, 2026 (Session 12)
 **Status:** 🚀 LIVE at murrayp4p.com - Production CMS (Staff Self-Sufficient!)
 
 ### Quick Links
 - **Production URL:** https://murrayp4p.com/
 - **Power Hub CMS:** https://murrayp4p.com/power-hub
+- **Parenting Suite (HIDDEN):** https://murrayp4p.com/resources/parenting-suite
 - **GitHub Repo:** https://github.com/murrayp4pcoalition/P4P-Website (PRIVATE)
 - **Vercel Dashboard:** https://vercel.com/murrayp4pcoalitions-projects/p4-p-website
 - **Vercel Account:** murrayp4pcoalition (separate from Brett's account)
@@ -455,3 +456,30 @@ This avoids issues with standard uploads and ensures proper builds.
 - **Git:** 5 new commits pushed
 - **Staff Self-Sufficient:** P4P team can now manage all content via Power Hub
 - **Version: 2.4.0** - Production CMS
+
+### April 16, 2026 - Session 12: GIFT CONNECT Parenting Suite Page
+- **New Page:** `/resources/parenting-suite` - Promotes GIFT CONNECT Parenting Suite
+  - **Status:** HIDDEN (not in navigation, accessible via direct URL only)
+  - **URL:** https://murrayp4p.com/resources/parenting-suite
+- **Page Features (9 Sections):**
+  - Section A: Hero with background image, video thumbnail with play button
+  - Section B: About the Parenting Suite
+  - Section C: Download section with QR codes (App Store + Google Play)
+  - Section D: Meet the Tools (Sammie, Geno, Stacey cards + Text Sammie)
+  - Section E: Watch the Video (same thumbnail as hero)
+  - Section F: Everything Included (10 feature icons)
+  - Section G: Why Birth to Three Matters (stats)
+  - Section H: Support, Privacy, Disclaimer panels
+  - Section I: Closing CTA
+- **Technical Implementation:**
+  - Config file: `/lib/parenting-suite-config.ts` (all URLs in one place)
+  - Placeholder SVGs: `/components/parenting-suite/placeholders/`
+  - Video thumbnail: `/public/images/parenting-suite/video-thumbnail.png`
+  - Hero background: `/public/images/parenting-suite/hero-bg.jpg`
+- **GIFT CONNECT Brand Colors:**
+  - Navy: `#1E3560` (primary)
+  - Persimmon: `#E8682A` (accent)
+  - Gold: `#F5A623` (accent only - not on white)
+- **Video:** Vimeo ID 1171939931 with custom thumbnail + play button
+- **Git:** 5 new commits pushed
+- **Version: 2.5.0** - Parenting Suite Page (Hidden)

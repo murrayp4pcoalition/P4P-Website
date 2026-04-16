@@ -91,11 +91,12 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 
 ---
 
-## What's Built (v2.4.0)
+## What's Built (v2.5.0)
 
 ### Pages
 - 9 public pages (Home, About, Team, Members, Events, Contact, Get Involved, Legal)
 - Power Hub CMS at /power-hub (hidden from search engines)
+- **NEW:** GIFT CONNECT Parenting Suite at /resources/parenting-suite (HIDDEN - not in nav)
 
 ### Features
 - ✅ Power Hub CMS - Staff can edit ALL content independently
@@ -105,6 +106,7 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 - ✅ Glassmorphic black/orange design
 - ✅ Mobile-optimized (320px - 1920px+)
 - ✅ Framer Motion animations
+- ✅ **NEW:** GIFT CONNECT Parenting Suite page with video, QR codes, and app store links
 
 ### Content Files (All Editable via Power Hub)
 | File | Controls |
@@ -119,10 +121,13 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 | `legal.json` | Terms, Privacy, Accessibility |
 | `site.json` | Footer, Social links, CTA banner |
 
-### Current Content Status (as of April 7, 2026)
+### Current Content Status (as of April 16, 2026)
 - ✅ Events: 15 upcoming events (April - December 2026)
 - ✅ Team: 4 Staff, 34 Key Leaders, 64 Board Members
 - ✅ All content editable via Power Hub
+- ✅ **Parenting Suite Page:** HIDDEN at /resources/parenting-suite
+  - Config: `/lib/parenting-suite-config.ts`
+  - Video thumbnail: `/public/images/parenting-suite/video-thumbnail.png`
 
 ---
 
