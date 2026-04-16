@@ -117,88 +117,86 @@ export default function ParentingSuitePage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: colors.offWhite }}>
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION A — HERO
+          SECTION A — HERO (Full-width background image)
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative overflow-hidden"
-        style={{ backgroundColor: colors.navy }}
-      >
+      <section className="relative w-full pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="/images/parenting-suite/hero-bg.jpg"
+            alt="Parent with child using smartphone"
+            className="w-full h-full object-cover"
+          />
+          {/* Navy gradient overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1E3560]/95 via-[#1E3560]/85 to-[#1E3560]/70" />
+          {/* Persimmon accent glow */}
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-[#E8682A]/20 to-transparent" />
+        </div>
+
         {/* Persimmon accent band at bottom */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-2"
+          className="absolute bottom-0 left-0 right-0 h-2 z-10"
           style={{ backgroundColor: colors.persimmon }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left column: Text + CTAs */}
-            <FadeIn direction="left">
-              <div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                  GIFT CONNECT Parenting Suite
-                </h1>
-                <p className="mt-6 text-xl sm:text-2xl text-white/90">
-                  Free AI-powered parenting support for Murray families. Available 24/7 on any phone, in 80+ languages.
-                </p>
-                <p className="mt-4 text-white/70">
-                  Brought to Murray by Partners 4 Prevention, in partnership with GIFT CONNECT.
-                </p>
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="max-w-3xl">
+            <FadeIn direction="up">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                GIFT CONNECT Parenting Suite
+              </h1>
+            </FadeIn>
 
-                {/* CTAs */}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <a
-                    href={config.appStoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-white text-[#1E3560] hover:bg-gray-100 hover:-translate-y-1 shadow-lg"
-                  >
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
-                    Download on the App Store
-                  </a>
-                  <a
-                    href={config.googlePlayUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-white/10 text-white border border-white/30 hover:bg-white/20 hover:-translate-y-1"
-                  >
-                    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-                      <path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.25-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm3.35-4.31c.34.27.59.69.59 1.19s-.22.9-.57 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.27 1.31zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
-                    </svg>
-                    Get it on Google Play
-                  </a>
-                </div>
+            <FadeIn direction="up" delay={0.1}>
+              <p className="mt-6 text-xl sm:text-2xl text-white/90">
+                Free AI-powered parenting support for Murray families. Available 24/7 on any phone, in 80+ languages.
+              </p>
+            </FadeIn>
 
-                {/* Tertiary link */}
+            <FadeIn direction="up" delay={0.15}>
+              <p className="mt-4 text-white/70">
+                Brought to Murray by Partners 4 Prevention, in partnership with GIFT CONNECT.
+              </p>
+            </FadeIn>
+
+            {/* CTAs */}
+            <FadeIn direction="up" delay={0.2}>
+              <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="#meet-the-tools"
-                  className="mt-6 inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                  href={config.appStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-white text-[#1E3560] hover:bg-gray-100 hover:-translate-y-1 shadow-lg"
                 >
-                  Try it in your browser
-                  <ChevronDown className="w-4 h-4" />
+                  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                  </svg>
+                  Download on the App Store
+                </a>
+                <a
+                  href={config.googlePlayUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-white/10 text-white border border-white/30 hover:bg-white/20 hover:-translate-y-1"
+                >
+                  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+                    <path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.25-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm3.35-4.31c.34.27.59.69.59 1.19s-.22.9-.57 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.27 1.31zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
+                  </svg>
+                  Get it on Google Play
                 </a>
               </div>
             </FadeIn>
 
-            {/* Right column: Hero image */}
-            <FadeIn direction="right" delay={0.2}>
-              <div className="relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <img
-                    src="/images/parenting-suite/hero-mom-baby-phone.jpg"
-                    alt="Parent using the Parenting Suite app with their child"
-                    className="w-full h-auto object-cover"
-                  />
-                  {/* Warm overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#1E3560]/20 to-transparent" />
-                </div>
-                {/* Decorative accent */}
-                <div
-                  className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full opacity-60 blur-xl"
-                  style={{ backgroundColor: colors.persimmon }}
-                />
-              </div>
+            {/* Tertiary link */}
+            <FadeIn direction="up" delay={0.25}>
+              <a
+                href="#meet-the-tools"
+                className="mt-6 inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+              >
+                Try it in your browser
+                <ChevronDown className="w-4 h-4" />
+              </a>
             </FadeIn>
           </div>
         </div>
