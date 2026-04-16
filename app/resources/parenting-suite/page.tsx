@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
@@ -19,6 +20,7 @@ import {
   Info,
   AlertCircle,
   ChevronDown,
+  Play,
 } from 'lucide-react';
 import Footer from '@/components/Footer';
 import FadeIn from '@/components/animations/FadeIn';
@@ -107,6 +109,62 @@ function QRCodePlaceholder({ url, label }: { url: string; label: string }) {
       </div>
       <span className="mt-2 text-sm text-gray-600">{label}</span>
     </div>
+  );
+}
+
+// Video Thumbnail with Play Button
+function VideoThumbnail({ videoId, thumbnailSrc }: { videoId: string; thumbnailSrc: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  if (isPlaying) {
+    return (
+      <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+        <div style={{ paddingTop: '56.25%', position: 'relative' }}>
+          <iframe
+            src={`https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0`}
+            className="absolute inset-0 w-full h-full"
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title="GIFT CONNECT Parenting Suite Overview"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <button
+      onClick={() => setIsPlaying(true)}
+      className="relative w-full rounded-2xl overflow-hidden shadow-2xl group cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#E8682A]/50"
+      aria-label="Play video"
+    >
+      {/* Thumbnail Image */}
+      <div style={{ paddingTop: '56.25%', position: 'relative' }}>
+        <img
+          src={thumbnailSrc}
+          alt="GIFT CONNECT Parenting Suite video thumbnail"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+
+        {/* Dark overlay on hover */}
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
+
+        {/* Play Button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#E8682A] flex items-center justify-center shadow-2xl transform transition-all duration-300 group-hover:scale-110 group-hover:bg-[#d45a1c]">
+            <Play className="w-10 h-10 sm:w-12 sm:h-12 text-white ml-1" fill="white" />
+          </div>
+        </div>
+
+        {/* "Watch Video" text */}
+        <div className="absolute bottom-4 left-0 right-0 text-center">
+          <span className="bg-black/60 text-white px-4 py-2 rounded-full text-sm font-medium">
+            Watch Video
+          </span>
+        </div>
+      </div>
+    </button>
   );
 }
 
@@ -202,20 +260,12 @@ export default function ParentingSuitePage() {
               </FadeIn>
             </div>
 
-            {/* Right column: Video */}
+            {/* Right column: Video with Thumbnail */}
             <FadeIn direction="right" delay={0.2}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <div style={{ paddingTop: '56.25%', position: 'relative' }}>
-                  <iframe
-                    src={`https://player.vimeo.com/video/${config.vimeoVideoId}?title=0&byline=0&portrait=0`}
-                    className="absolute inset-0 w-full h-full"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                    title="GIFT CONNECT Parenting Suite Overview"
-                  />
-                </div>
-              </div>
+              <VideoThumbnail
+                videoId={config.vimeoVideoId}
+                thumbnailSrc="/images/parenting-suite/video-thumbnail.png"
+              />
             </FadeIn>
           </div>
         </div>
@@ -508,20 +558,11 @@ export default function ParentingSuitePage() {
               </p>
             </div>
 
-            {/* Vimeo embed */}
-            <div
-              className="relative rounded-2xl overflow-hidden shadow-lg"
-              style={{ paddingTop: '56.25%' }}
-            >
-              <iframe
-                src={`https://player.vimeo.com/video/${config.vimeoVideoId}?title=0&byline=0&portrait=0`}
-                className="absolute inset-0 w-full h-full"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="GIFT CONNECT Parenting Suite Overview"
-              />
-            </div>
+            {/* Video with Thumbnail */}
+            <VideoThumbnail
+              videoId={config.vimeoVideoId}
+              thumbnailSrc="/images/parenting-suite/video-thumbnail.png"
+            />
           </FadeIn>
         </div>
       </section>
