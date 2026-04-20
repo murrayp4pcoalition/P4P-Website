@@ -34,10 +34,8 @@ import {
   birthToThreeStats,
 } from '@/lib/parenting-suite-config';
 
-// Placeholder components (HeroIllustration replaced with real image)
-import PhoneMockupSammie from '@/components/parenting-suite/placeholders/PhoneMockupSammie';
-import PhoneMockupGeno from '@/components/parenting-suite/placeholders/PhoneMockupGeno';
-import PhoneMockupStacey from '@/components/parenting-suite/placeholders/PhoneMockupStacey';
+// Phone mockup component with real images
+import PhoneMockup from '@/components/parenting-suite/PhoneMockup';
 
 // Icon mapping for features
 const iconMap: Record<string, typeof MessageCircle> = {
@@ -402,15 +400,18 @@ export default function ParentingSuitePage() {
             </div>
           </FadeIn>
 
-          {/* Three flagship cards */}
-          <StaggerChildren staggerDelay={0.1} className="grid md:grid-cols-3 gap-8">
+          {/* Four flagship cards in 2x2 grid */}
+          <StaggerChildren staggerDelay={0.1} className="grid md:grid-cols-2 gap-8 lg:gap-10">
             {/* Card 1: Sammie Voice */}
             <StaggerItem>
               <motion.div
                 whileHover={{ y: -8 }}
                 className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
               >
-                <PhoneMockupSammie />
+                <PhoneMockup
+                  imageSrc="/images/parenting-suite/sammie-phone.png"
+                  alt="Sammie voice assistant app screenshot"
+                />
                 <h3
                   className="mt-6 text-xl font-bold"
                   style={{ color: colors.navy }}
@@ -442,7 +443,10 @@ export default function ParentingSuitePage() {
                 whileHover={{ y: -8 }}
                 className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
               >
-                <PhoneMockupGeno />
+                <PhoneMockup
+                  imageSrc="/images/parenting-suite/geno-phone.png"
+                  alt="Geno lullaby generator app screenshot"
+                />
                 <h3
                   className="mt-6 text-xl font-bold"
                   style={{ color: colors.navy }}
@@ -474,7 +478,10 @@ export default function ParentingSuitePage() {
                 whileHover={{ y: -8 }}
                 className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
               >
-                <PhoneMockupStacey />
+                <PhoneMockup
+                  imageSrc="/images/parenting-suite/stacy-phone.png"
+                  alt="Stacey storybook creator app screenshot"
+                />
                 <h3
                   className="mt-6 text-xl font-bold"
                   style={{ color: colors.navy }}
@@ -499,44 +506,42 @@ export default function ParentingSuitePage() {
                 </p>
               </motion.div>
             </StaggerItem>
-          </StaggerChildren>
 
-          {/* Card 4: Sammie Text (secondary) */}
-          <FadeIn direction="up" delay={0.3}>
-            <div className="mt-8 max-w-2xl mx-auto">
-              <div className="bg-gray-100 rounded-2xl p-6 flex items-center gap-6">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: `${colors.navy}15` }}
+            {/* Card 4: Sammie Text */}
+            <StaggerItem>
+              <motion.div
+                whileHover={{ y: -8 }}
+                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
+              >
+                <PhoneMockup
+                  imageSrc="/images/parenting-suite/text-phone.png"
+                  alt="Sammie text chat app screenshot"
+                />
+                <h3
+                  className="mt-6 text-xl font-bold"
+                  style={{ color: colors.navy }}
                 >
-                  <MessageCircle className="w-8 h-8" style={{ color: colors.navy }} />
-                </div>
-                <div className="flex-grow">
-                  <h3
-                    className="text-lg font-semibold"
-                    style={{ color: colors.navy }}
-                  >
-                    Prefer typing? Chat with Sammie by text.
-                  </h3>
-                  <p className="mt-1 text-gray-600 text-sm">
-                    The same science-backed parenting support as voice Sammie, in a text-chat interface. Useful when the baby is sleeping and you need quiet answers fast.
-                  </p>
-                </div>
+                  Sammie Text — Chat when you need quiet
+                </h3>
+                <p className="mt-3 text-gray-600 flex-grow">
+                  The same science-backed parenting support as voice Sammie, in a text-chat interface. Perfect when the baby is sleeping and you need quick, quiet answers without waking anyone.
+                </p>
                 <a
                   href={config.sammieTextUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-lg font-semibold transition-all hover:-translate-y-1 flex-shrink-0"
-                  style={{
-                    backgroundColor: `${colors.navy}10`,
-                    color: colors.navy,
-                  }}
+                  className="mt-6 inline-flex items-center gap-2 font-semibold transition-colors"
+                  style={{ color: colors.persimmon }}
                 >
-                  Open Text Sammie
+                  Chat with Sammie
+                  <ExternalLink className="w-4 h-4" />
                 </a>
-              </div>
-            </div>
-          </FadeIn>
+                <p className="mt-3 text-sm text-gray-500">
+                  Text chat · 80+ languages · Free
+                </p>
+              </motion.div>
+            </StaggerItem>
+          </StaggerChildren>
         </div>
       </section>
 
@@ -554,15 +559,23 @@ export default function ParentingSuitePage() {
                 See the Parenting Suite in action
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                A short walkthrough of what&apos;s inside and how Murray families are using it.
+                Watch this video to see Sammie being used in a parenting class in Delaware.
               </p>
             </div>
 
-            {/* Video with Thumbnail */}
-            <VideoThumbnail
-              videoId={config.vimeoVideoId}
-              thumbnailSrc="/images/parenting-suite/video-thumbnail.png"
-            />
+            {/* YouTube Video Embed */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div style={{ paddingTop: '56.25%', position: 'relative' }}>
+                <iframe
+                  src="https://www.youtube.com/embed/RS9H9bVrS_M"
+                  className="absolute inset-0 w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Sammie being used in a parenting class in Delaware"
+                />
+              </div>
+            </div>
           </FadeIn>
         </div>
       </section>
