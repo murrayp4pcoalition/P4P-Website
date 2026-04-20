@@ -37,6 +37,9 @@ import {
 // Phone mockup component with real images
 import PhoneMockup from '@/components/parenting-suite/PhoneMockup';
 
+// Real QR code component
+import QRCode from '@/components/parenting-suite/QRCode';
+
 // Icon mapping for features
 const iconMap: Record<string, typeof MessageCircle> = {
   MessageCircle,
@@ -51,64 +54,6 @@ const iconMap: Record<string, typeof MessageCircle> = {
   Users,
 };
 
-// Simple QR Code component (SVG-based placeholder - replace with qrcode library output)
-function QRCodePlaceholder({ url, label }: { url: string; label: string }) {
-  // Generate a simple pattern based on URL for visual distinction
-  const pattern = url.includes('apple') ? 'apple' : 'google';
-
-  return (
-    <div className="flex flex-col items-center">
-      <div
-        className="w-[150px] h-[150px] bg-white rounded-lg p-2 shadow-md"
-        aria-label={`QR code to download on ${label}`}
-      >
-        <svg viewBox="0 0 100 100" className="w-full h-full">
-          {/* QR code pattern simulation */}
-          <rect fill="#1E3560" x="10" y="10" width="25" height="25" />
-          <rect fill="#1E3560" x="65" y="10" width="25" height="25" />
-          <rect fill="#1E3560" x="10" y="65" width="25" height="25" />
-
-          {/* Inner patterns */}
-          <rect fill="white" x="15" y="15" width="15" height="15" />
-          <rect fill="white" x="70" y="15" width="15" height="15" />
-          <rect fill="white" x="15" y="70" width="15" height="15" />
-
-          <rect fill="#1E3560" x="18" y="18" width="9" height="9" />
-          <rect fill="#1E3560" x="73" y="18" width="9" height="9" />
-          <rect fill="#1E3560" x="18" y="73" width="9" height="9" />
-
-          {/* Center pattern varies by store */}
-          {pattern === 'apple' ? (
-            <>
-              <rect fill="#1E3560" x="40" y="40" width="20" height="20" />
-              <rect fill="#1E3560" x="45" y="10" width="10" height="10" />
-              <rect fill="#1E3560" x="45" y="80" width="10" height="10" />
-            </>
-          ) : (
-            <>
-              <rect fill="#1E3560" x="38" y="38" width="24" height="24" />
-              <rect fill="white" x="42" y="42" width="16" height="16" />
-              <rect fill="#1E3560" x="46" y="46" width="8" height="8" />
-            </>
-          )}
-
-          {/* Random data modules */}
-          <rect fill="#1E3560" x="40" y="10" width="5" height="5" />
-          <rect fill="#1E3560" x="55" y="10" width="5" height="5" />
-          <rect fill="#1E3560" x="10" y="40" width="5" height="5" />
-          <rect fill="#1E3560" x="10" y="50" width="5" height="5" />
-          <rect fill="#1E3560" x="85" y="40" width="5" height="5" />
-          <rect fill="#1E3560" x="85" y="55" width="5" height="5" />
-          <rect fill="#1E3560" x="40" y="85" width="5" height="5" />
-          <rect fill="#1E3560" x="70" y="70" width="5" height="5" />
-          <rect fill="#1E3560" x="80" y="80" width="5" height="5" />
-          <rect fill="#1E3560" x="65" y="85" width="5" height="5" />
-        </svg>
-      </div>
-      <span className="mt-2 text-sm text-gray-600">{label}</span>
-    </div>
-  );
-}
 
 // Video Thumbnail with Play Button
 function VideoThumbnail({ videoId, thumbnailSrc }: { videoId: string; thumbnailSrc: string }) {
@@ -343,7 +288,7 @@ export default function ParentingSuitePage() {
                   />
                 </a>
                 <div className="mt-6">
-                  <QRCodePlaceholder url={config.appStoreUrl} label="iPhone & iPad" />
+                  <QRCode url={config.appStoreUrl} label="iPhone & iPad" />
                 </div>
               </div>
             </FadeIn>
@@ -364,7 +309,7 @@ export default function ParentingSuitePage() {
                   />
                 </a>
                 <div className="mt-6">
-                  <QRCodePlaceholder url={config.googlePlayUrl} label="Android phones & tablets" />
+                  <QRCode url={config.googlePlayUrl} label="Android phones & tablets" />
                 </div>
               </div>
             </FadeIn>
