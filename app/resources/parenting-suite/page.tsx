@@ -54,6 +54,60 @@ const iconMap: Record<string, typeof MessageCircle> = {
   Users,
 };
 
+// Animated floating accent shapes
+function FloatingAccents() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Persimmon blob - top right */}
+      <motion.div
+        className="absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-10"
+        style={{ background: 'radial-gradient(circle, #E8682A 0%, transparent 70%)' }}
+        animate={{
+          scale: [1, 1.2, 1],
+          x: [0, 20, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      {/* Gold blob - bottom left */}
+      <motion.div
+        className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full opacity-10"
+        style={{ background: 'radial-gradient(circle, #F5A623 0%, transparent 70%)' }}
+        animate={{
+          scale: [1, 1.15, 1],
+          x: [0, -15, 0],
+          y: [0, 15, 0],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+      />
+    </div>
+  );
+}
+
+// Animated stat number
+function AnimatedStat({ number, label }: { number: string; label: string }) {
+  return (
+    <motion.div
+      className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-[#E8682A] hover:shadow-lg transition-shadow duration-300"
+      whileHover={{ scale: 1.02, x: 5 }}
+      transition={{ type: 'spring', stiffness: 300 }}
+    >
+      <motion.div
+        className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#1E3560] to-[#E8682A] bg-clip-text text-transparent"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        {number}
+      </motion.div>
+      <p className="mt-2 font-medium text-[#E8682A]">
+        {label}
+      </p>
+    </motion.div>
+  );
+}
+
 
 // Video Thumbnail with Play Button
 function VideoThumbnail({ videoId, thumbnailSrc }: { videoId: string; thumbnailSrc: string }) {
@@ -217,8 +271,10 @@ export default function ParentingSuitePage() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION B — ABOUT THE PARENTING SUITE
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-6 sm:px-8">
+      <section className="py-16 lg:py-24 relative overflow-hidden">
+        {/* Floating accent shapes */}
+        <FloatingAccents />
+        <div className="max-w-3xl mx-auto px-6 sm:px-8 relative z-10">
           <FadeIn direction="up">
             <h2
               className="text-3xl sm:text-4xl font-bold text-center"
@@ -255,13 +311,24 @@ export default function ParentingSuitePage() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION C — MEET THE TOOLS
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="meet-the-tools" className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <section id="meet-the-tools" className="py-16 lg:py-24 relative overflow-hidden">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1E3560]/5 via-transparent to-[#E8682A]/5" />
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
           <FadeIn direction="up">
             <div className="text-center mb-12">
+              <motion.span
+                className="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-4"
+                style={{ backgroundColor: `${colors.persimmon}15`, color: colors.persimmon }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                Try them free
+              </motion.span>
               <h2
-                className="text-3xl sm:text-4xl font-bold"
-                style={{ color: colors.navy }}
+                className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#1E3560] via-[#1E3560] to-[#E8682A] bg-clip-text text-transparent"
               >
                 Meet the tools that power the Suite
               </h2>
@@ -276,8 +343,8 @@ export default function ParentingSuitePage() {
             {/* Card 1: Sammie Voice */}
             <StaggerItem>
               <motion.div
-                whileHover={{ y: -8 }}
-                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
+                whileHover={{ y: -8, boxShadow: '0 20px 40px -12px rgba(232, 104, 42, 0.25)' }}
+                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col border-t-4 border-[#E8682A] hover:border-[#1E3560] transition-colors duration-300"
               >
                 <PhoneMockup
                   imageSrc="/images/parenting-suite/sammie-phone.png"
@@ -311,8 +378,8 @@ export default function ParentingSuitePage() {
             {/* Card 2: Geno */}
             <StaggerItem>
               <motion.div
-                whileHover={{ y: -8 }}
-                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
+                whileHover={{ y: -8, boxShadow: '0 20px 40px -12px rgba(30, 53, 96, 0.25)' }}
+                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col border-t-4 border-[#1E3560] hover:border-[#E8682A] transition-colors duration-300"
               >
                 <PhoneMockup
                   imageSrc="/images/parenting-suite/geno-phone.png"
@@ -346,8 +413,8 @@ export default function ParentingSuitePage() {
             {/* Card 3: Stacey */}
             <StaggerItem>
               <motion.div
-                whileHover={{ y: -8 }}
-                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
+                whileHover={{ y: -8, boxShadow: '0 20px 40px -12px rgba(245, 166, 35, 0.25)' }}
+                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col border-t-4 border-[#F5A623] hover:border-[#E8682A] transition-colors duration-300"
               >
                 <PhoneMockup
                   imageSrc="/images/parenting-suite/stacy-phone.png"
@@ -381,8 +448,8 @@ export default function ParentingSuitePage() {
             {/* Card 4: Sammie Text */}
             <StaggerItem>
               <motion.div
-                whileHover={{ y: -8 }}
-                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col"
+                whileHover={{ y: -8, boxShadow: '0 20px 40px -12px rgba(232, 104, 42, 0.25)' }}
+                className="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col border-t-4 border-[#E8682A] hover:border-[#1E3560] transition-colors duration-300"
               >
                 <PhoneMockup
                   imageSrc="/images/parenting-suite/text-phone.png"
@@ -438,44 +505,50 @@ export default function ParentingSuitePage() {
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             {/* App Store */}
             <FadeIn direction="left" delay={0.1}>
-              <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
+              <motion.div
+                className="bg-white rounded-2xl p-8 shadow-sm text-center border border-gray-100 hover:border-[#E8682A]/30 transition-colors duration-300"
+                whileHover={{ y: -4, boxShadow: '0 12px 24px -8px rgba(0,0,0,0.1)' }}
+              >
                 <a
                   href={config.appStoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block"
+                  className="inline-block hover:scale-105 transition-transform duration-200"
                 >
                   <img
                     src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                     alt="Download on the App Store"
-                    className="h-14 mx-auto hover:opacity-80 transition-opacity"
+                    className="h-14 mx-auto"
                   />
                 </a>
                 <div className="mt-6">
                   <QRCode url={config.appStoreUrl} label="iPhone & iPad" />
                 </div>
-              </div>
+              </motion.div>
             </FadeIn>
 
             {/* Google Play */}
             <FadeIn direction="right" delay={0.2}>
-              <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
+              <motion.div
+                className="bg-white rounded-2xl p-8 shadow-sm text-center border border-gray-100 hover:border-[#E8682A]/30 transition-colors duration-300"
+                whileHover={{ y: -4, boxShadow: '0 12px 24px -8px rgba(0,0,0,0.1)' }}
+              >
                 <a
                   href={config.googlePlayUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block"
+                  className="inline-block hover:scale-105 transition-transform duration-200"
                 >
                   <img
                     src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
                     alt="Get it on Google Play"
-                    className="h-14 mx-auto hover:opacity-80 transition-opacity"
+                    className="h-14 mx-auto"
                   />
                 </a>
                 <div className="mt-6">
                   <QRCode url={config.googlePlayUrl} label="Android phones & tablets" />
                 </div>
-              </div>
+              </motion.div>
             </FadeIn>
           </div>
 
@@ -600,23 +673,7 @@ export default function ParentingSuitePage() {
             <FadeIn direction="right" delay={0.2}>
               <div className="space-y-6">
                 {birthToThreeStats.map((stat) => (
-                  <div
-                    key={stat.number}
-                    className="bg-white rounded-xl p-6 shadow-sm"
-                  >
-                    <div
-                      className="text-4xl sm:text-5xl font-bold"
-                      style={{ color: colors.navy }}
-                    >
-                      {stat.number}
-                    </div>
-                    <p
-                      className="mt-2 font-medium"
-                      style={{ color: colors.persimmon }}
-                    >
-                      {stat.label}
-                    </p>
-                  </div>
+                  <AnimatedStat key={stat.number} number={stat.number} label={stat.label} />
                 ))}
 
                 <p className="text-sm text-gray-500 mt-4">
@@ -636,9 +693,14 @@ export default function ParentingSuitePage() {
           <StaggerChildren staggerDelay={0.1} className="grid md:grid-cols-2 gap-6">
             {/* Panel 1: About This Page */}
             <StaggerItem>
-              <div className="bg-gray-50 rounded-xl p-6 h-full">
+              <motion.div
+                className="bg-gray-50 rounded-xl p-6 h-full hover:bg-gray-100/80 transition-colors duration-300"
+                whileHover={{ scale: 1.01 }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <Info className="w-5 h-5" style={{ color: colors.navy }} />
+                  <div className="w-10 h-10 rounded-lg bg-[#1E3560]/10 flex items-center justify-center">
+                    <Info className="w-5 h-5" style={{ color: colors.navy }} />
+                  </div>
                   <h4 className="font-semibold" style={{ color: colors.navy }}>
                     About this page
                   </h4>
@@ -646,14 +708,19 @@ export default function ParentingSuitePage() {
                 <p className="text-gray-600 text-sm leading-relaxed">
                   This page is maintained by Murray Partners 4 Prevention to connect Murray families to the GIFT CONNECT Parenting Suite. The Suite is a program of GIFT CONNECT, a 501(c)(3) nonprofit dedicated to early childhood development.
                 </p>
-              </div>
+              </motion.div>
             </StaggerItem>
 
             {/* Panel 2: Support */}
             <StaggerItem>
-              <div className="bg-gray-50 rounded-xl p-6 h-full">
+              <motion.div
+                className="bg-gray-50 rounded-xl p-6 h-full hover:bg-gray-100/80 transition-colors duration-300"
+                whileHover={{ scale: 1.01 }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <Mail className="w-5 h-5" style={{ color: colors.navy }} />
+                  <div className="w-10 h-10 rounded-lg bg-[#E8682A]/10 flex items-center justify-center">
+                    <Mail className="w-5 h-5" style={{ color: colors.persimmon }} />
+                  </div>
                   <h4 className="font-semibold" style={{ color: colors.navy }}>
                     Support
                   </h4>
@@ -679,14 +746,19 @@ export default function ParentingSuitePage() {
                   .<br />
                   We respond within 2 business days.
                 </p>
-              </div>
+              </motion.div>
             </StaggerItem>
 
             {/* Panel 3: Privacy */}
             <StaggerItem>
-              <div className="bg-gray-50 rounded-xl p-6 h-full">
+              <motion.div
+                className="bg-gray-50 rounded-xl p-6 h-full hover:bg-gray-100/80 transition-colors duration-300"
+                whileHover={{ scale: 1.01 }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <Shield className="w-5 h-5" style={{ color: colors.navy }} />
+                  <div className="w-10 h-10 rounded-lg bg-[#1E3560]/10 flex items-center justify-center">
+                    <Shield className="w-5 h-5" style={{ color: colors.navy }} />
+                  </div>
                   <h4 className="font-semibold" style={{ color: colors.navy }}>
                     Privacy
                   </h4>
@@ -704,14 +776,19 @@ export default function ParentingSuitePage() {
                   </a>
                   .
                 </p>
-              </div>
+              </motion.div>
             </StaggerItem>
 
             {/* Panel 4: Disclaimer */}
             <StaggerItem>
-              <div className="bg-gray-50 rounded-xl p-6 h-full">
+              <motion.div
+                className="bg-gray-50 rounded-xl p-6 h-full hover:bg-gray-100/80 transition-colors duration-300"
+                whileHover={{ scale: 1.01 }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <AlertCircle className="w-5 h-5" style={{ color: colors.navy }} />
+                  <div className="w-10 h-10 rounded-lg bg-[#F5A623]/10 flex items-center justify-center">
+                    <AlertCircle className="w-5 h-5" style={{ color: colors.gold }} />
+                  </div>
                   <h4 className="font-semibold" style={{ color: colors.navy }}>
                     Disclaimer
                   </h4>
@@ -719,7 +796,7 @@ export default function ParentingSuitePage() {
                 <p className="text-gray-600 text-sm leading-relaxed">
                   The Parenting Suite is intended for educational and supportive purposes only. It is not a substitute for professional medical, psychological, or developmental advice. Always consult a qualified healthcare provider for medical questions. In an emergency, call 911.
                 </p>
-              </div>
+              </motion.div>
             </StaggerItem>
           </StaggerChildren>
         </div>
