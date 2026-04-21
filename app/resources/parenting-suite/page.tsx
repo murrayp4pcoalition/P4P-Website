@@ -253,81 +253,7 @@ export default function ParentingSuitePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION C — DOWNLOAD (PRIMARY CTA BLOCK)
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-24 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8">
-          <FadeIn direction="up">
-            <div className="text-center mb-12">
-              <h2
-                className="text-3xl sm:text-4xl font-bold"
-                style={{ color: colors.navy }}
-              >
-                Get the Parenting Suite
-              </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Scan the QR code or tap the badge to download. The app is free.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {/* App Store */}
-            <FadeIn direction="left" delay={0.1}>
-              <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
-                <a
-                  href={config.appStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block"
-                >
-                  <img
-                    src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                    alt="Download on the App Store"
-                    className="h-14 mx-auto hover:opacity-80 transition-opacity"
-                  />
-                </a>
-                <div className="mt-6">
-                  <QRCode url={config.appStoreUrl} label="iPhone & iPad" />
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Google Play */}
-            <FadeIn direction="right" delay={0.2}>
-              <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
-                <a
-                  href={config.googlePlayUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block"
-                >
-                  <img
-                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                    alt="Get it on Google Play"
-                    className="h-14 mx-auto hover:opacity-80 transition-opacity"
-                  />
-                </a>
-                <div className="mt-6">
-                  <QRCode url={config.googlePlayUrl} label="Android phones & tablets" />
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* SMS Access (conditional - hidden in v1) */}
-          {config.smsEnabled && (
-            <div className="mt-8 text-center">
-              <p className="text-gray-600">
-                No smartphone? Text <strong>{config.smsKeyword}</strong> to <strong>{config.smsShortCode}</strong> to use Sammie over SMS.
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION D — MEET THE TOOLS
+          SECTION C — MEET THE TOOLS
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="meet-the-tools" className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -491,9 +417,83 @@ export default function ParentingSuitePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION E — WATCH THE VIDEO
+          SECTION D — DOWNLOAD (PRIMARY CTA BLOCK)
           ═══════════════════════════════════════════════════════════════════════ */}
       <section className="py-16 lg:py-24 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8">
+          <FadeIn direction="up">
+            <div className="text-center mb-12">
+              <h2
+                className="text-3xl sm:text-4xl font-bold"
+                style={{ color: colors.navy }}
+              >
+                Get the Parenting Suite
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                Scan the QR code or tap the badge to download. The app is free.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {/* App Store */}
+            <FadeIn direction="left" delay={0.1}>
+              <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
+                <a
+                  href={config.appStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block"
+                >
+                  <img
+                    src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                    alt="Download on the App Store"
+                    className="h-14 mx-auto hover:opacity-80 transition-opacity"
+                  />
+                </a>
+                <div className="mt-6">
+                  <QRCode url={config.appStoreUrl} label="iPhone & iPad" />
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Google Play */}
+            <FadeIn direction="right" delay={0.2}>
+              <div className="bg-white rounded-2xl p-8 shadow-sm text-center">
+                <a
+                  href={config.googlePlayUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block"
+                >
+                  <img
+                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                    alt="Get it on Google Play"
+                    className="h-14 mx-auto hover:opacity-80 transition-opacity"
+                  />
+                </a>
+                <div className="mt-6">
+                  <QRCode url={config.googlePlayUrl} label="Android phones & tablets" />
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* SMS Access (conditional - hidden in v1) */}
+          {config.smsEnabled && (
+            <div className="mt-8 text-center">
+              <p className="text-gray-600">
+                No smartphone? Text <strong>{config.smsKeyword}</strong> to <strong>{config.smsShortCode}</strong> to use Sammie over SMS.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION E — WATCH THE VIDEO
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-6 sm:px-8">
           <FadeIn direction="up">
             <div className="text-center mb-10">
