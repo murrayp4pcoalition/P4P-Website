@@ -17,6 +17,7 @@ import {
   Heart,
   HandHeart,
   Building2,
+  BookOpen,
 } from 'lucide-react';
 
 // Navigation structure for P4P
@@ -45,6 +46,13 @@ const navigationItems = [
     label: 'Events',
     href: '/events',
     icon: Calendar,
+  },
+  {
+    label: 'Resources',
+    icon: BookOpen,
+    items: [
+      { label: 'Parenting', href: '/resources/parenting-suite' },
+    ],
   },
   {
     label: 'Get Involved',
