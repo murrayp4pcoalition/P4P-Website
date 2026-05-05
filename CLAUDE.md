@@ -72,20 +72,24 @@
 │   ├── get-involved/page.tsx  # Volunteer/Donate/Partner
 │   ├── terms/page.tsx     # Terms & Conditions (Jan 1, 2026)
 │   ├── privacy/page.tsx   # Privacy Policy (Jan 1, 2026)
-│   ├── power-hub/         # 🆕 Embedded CMS (hidden from public)
+│   ├── resources/         # 🆕 v2.6.0 — Resources hub + dynamic template
+│   │   ├── page.tsx                  # /resources — hub of visible resources
+│   │   ├── parenting-suite/page.tsx  # Bespoke GIFT CONNECT page (reads parenting-suite.json)
+│   │   └── [slug]/page.tsx           # Generic template (reads content/resources/<slug>.json)
+│   ├── power-hub/         # Embedded CMS (hidden from public)
 │   │   ├── page.tsx       # Login page
 │   │   ├── layout.tsx     # noindex/nofollow metadata
 │   │   └── dashboard/
 │   │       ├── page.tsx           # Dashboard home
 │   │       ├── layout.tsx         # Sidebar + auth check
-│   │       ├── content/page.tsx   # Content files list
-│   │       ├── content/[file]/page.tsx  # JSON editor
+│   │       ├── content/page.tsx   # Content files list (lists root + content/resources/)
+│   │       ├── content/[...file]/page.tsx  # JSON editor (catch-all — supports subfolders)
 │   │       └── settings/page.tsx  # Site info & links
-│   ├── api/contact/       # 🆕 Contact form API (GHL webhook)
+│   ├── api/contact/       # Contact form API (GHL webhook)
 │   │   └── route.ts              # POST handler → GoHighLevel
 │   └── api/power-hub/     # CMS API routes
 │       ├── auth/route.ts          # Login/verify token
-│       ├── content/route.ts       # Read/write JSON files
+│       ├── content/route.ts       # Read/write JSON files (walks content/ + content/resources/)
 │       └── deploy/route.ts        # Git push to deploy
 ├── components/
 │   ├── Navigation.tsx     # Main nav with mobile menu
@@ -98,9 +102,14 @@
 │       ├── FadeIn.tsx
 │       ├── ScaleIn.tsx
 │       └── StaggerChildren.tsx
-├── content/               # 🆕 JSON content files (editable via Power Hub)
-│   ├── home.json          # Hero, Partners, Stats data
-│   └── about.json         # About page content
+├── content/               # JSON content files (editable via Power Hub)
+│   ├── home.json              # Hero, Partners, Stats data
+│   ├── about.json             # About page content
+│   ├── team.json, members.json, events.json, contact.json, get-involved.json, legal.json, site.json
+│   ├── parenting-suite.json   # 🆕 v2.6.0 — GIFT CONNECT page content (was lib/parenting-suite-config.ts)
+│   ├── resources-index.json   # 🆕 v2.6.0 — Master Resources list (drives nav + /resources hub)
+│   └── resources/             # 🆕 v2.6.0 — Per-slug content for /resources/[slug] generic pages
+│       └── <slug>.json
 ├── public/
 │   └── images/
 │       ├── p4p-logo.png   # Downloaded from current site
@@ -121,10 +130,12 @@ cd ~/dev/P4P-Website
 npm run dev          # Start dev server (usually localhost:3000)
 
 # Build & Deploy
-npm run build        # Build for production
-vercel --prod --yes  # Deploy to Vercel (ALWAYS use CLI)
+npm run build        # Build for production locally to catch errors
+# DO NOT use `vercel --prod` from the CLI — deploy is GitHub-driven on the
+# coalition's Vercel team. Pushing to main is the deploy.
 
-# Git operations
+# Git operations — auth is pinned to murrayp4pcoalition via custom credential
+# helper, regardless of which `gh` user is globally active.
 git add -A && git commit -m "message" && git push
 ```
 
@@ -195,6 +206,44 @@ Set in `.env.local` or Vercel dashboard:
 PORTAL_USERNAME=p4padmin    # Default if not set
 PORTAL_PASSWORD=p4p2026     # Default if not set
 ```
+
+---
+
+## 📚 Resources System (NEW in v2.6.0 — May 5, 2026)
+
+Resources pages are now fully Power-Hub-managed. Staff can add a new resource page from the Power Hub without code.
+
+### Architecture
+```
+content/resources-index.json       ← Master list (drives nav + /resources hub cards)
+content/parenting-suite.json       ← Bespoke GIFT CONNECT page content
+content/resources/<slug>.json      ← Generic resource page content (one file per slug)
+
+app/resources/page.tsx             ← /resources hub (lists all `visible` resources, sorted by `order`)
+app/resources/parenting-suite/...  ← Bespoke page — reads parenting-suite.json
+app/resources/[slug]/page.tsx      ← Generic template — reads content/resources/<slug>.json
+```
+
+### How to add a new resource page (staff workflow)
+1. Power Hub → Content → `resources-index` → add an entry with `slug`, `navLabel`, `cardTitle`, `cardDescription`, `kind: "generic"`, `visible: true`, `order`. Save & Deploy.
+2. Power Hub → Content → add a new file at `resources/<slug>.json` with `metadata`, `hero`, `sections[]`, optional `contact.email`. Save & Deploy.
+3. Page is live at `/resources/<slug>` and appears in both the Resources nav dropdown and the `/resources` hub.
+
+### Generic template section types
+Defined in `app/resources/[slug]/page.tsx`:
+- `richText` — heading + paragraphs (plain text, blank-line splits paragraphs)
+- `featureGrid` — heading + array of `{ icon, title, description }`
+- `stats` — heading + array of `{ number, label }`
+- `callout` — heading + body + optional CTA
+
+Icon names are whitelisted in the template (BookOpen, Heart, Users, Star, etc.). Unknown names fall back to BookOpen.
+
+### Power Hub editor route
+The editor lives at `/power-hub/dashboard/content/[...file]` (catch-all). Subfolder paths like `resources/youth-programs` route cleanly through Next.js. The list page walks both `content/` and `content/resources/`.
+
+### Migration notes
+- `lib/parenting-suite-config.ts` is now a deprecation shim that re-exports from `content/parenting-suite.json`. Safe to delete after one clean deploy if no other importers appear.
+- The bespoke `/resources/parenting-suite` route is preserved — Next.js prefers static routes over dynamic ones, plus the dynamic template has an explicit `notFound()` guard for that slug.
 
 ---
 
@@ -485,3 +534,24 @@ This avoids issues with standard uploads and ensures proper builds.
 - **Video:** Vimeo ID 1171939931 with custom thumbnail + play button
 - **Git:** 5 new commits pushed
 - **Version: 2.5.0** - Parenting Suite Page (Hidden)
+
+### May 5, 2026 - Session 13: Resources System Wired into Power Hub (PM)
+- **Goal:** Make the Parenting Suite content editable by staff, and stand up a Resources framework for future pages without code edits.
+- **Built:**
+  - Extracted Parenting Suite content from `lib/parenting-suite-config.ts` into `content/parenting-suite.json` (links, video, features, stats, contact, SMS toggle, metadata).
+  - Converted `lib/parenting-suite-config.ts` into a thin deprecation shim that re-exports the JSON.
+  - Added `content/resources-index.json` — master list of resources (slug, navLabel, cardTitle, cardDescription, kind, visible, order).
+  - Built `/resources` hub page at `app/resources/page.tsx` (lists every visible resource as a card, sorted by `order`).
+  - Built generic resource template at `app/resources/[slug]/page.tsx` with `richText`, `featureGrid`, `stats`, `callout` section types and a whitelisted icon map.
+  - Switched Power Hub editor route from `[file]` to catch-all `[...file]` so subfolder paths (e.g. `resources/youth-programs`) route cleanly through Next.js.
+  - Extended Power Hub content API to walk both `content/` and `content/resources/`.
+  - Added tailored FILE_HELP entries for `parenting-suite` and `resources-index` in the Power Hub editor so non-technical staff have step-by-step guides.
+  - Made the Navigation `Resources` dropdown data-driven from `resources-index.json` (visibility/order honored).
+- **Build status:** TypeScript clean, build passes (the pre-existing `supabaseUrl is required` env-var requirement is unchanged).
+- **Smoke-tested:** /resources ✔, /resources/parenting-suite ✔, /resources/<unknown> → 404 ✔, generic template via temporary `test-smoke.json` ✔.
+- **Version: 2.6.0** - Power-Hub-managed Resources system
+- **Commit:** `c46b383`
+
+### May 5, 2026 - Session 14: Doc refresh
+- Updated `NEXT_SESSION.md`, `RESTART-PROMPT.md`, `CLAUDE.md`, `P4P-QUICK-REFERENCE.md` to reflect v2.6.0 (Resources system, Power Hub catch-all editor, new content files, corrected the stale `vercel --prod --yes` instruction).
+- No code changes.

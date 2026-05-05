@@ -98,22 +98,25 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 
 ---
 
-## What's Built (v2.5.0)
+## What's Built (v2.6.0)
 
 ### Pages
 - 9 public pages (Home, About, Team, Members, Events, Contact, Get Involved, Legal)
 - Power Hub CMS at /power-hub (hidden from search engines)
-- **NEW:** GIFT CONNECT Parenting Suite at /resources/parenting-suite (HIDDEN - not in nav)
+- **Resources hub** at /resources (lists every visible resource)
+- **GIFT CONNECT Parenting Suite** at /resources/parenting-suite (bespoke page, content from JSON)
+- **Generic resource template** at /resources/[slug] (CMS-driven — add a JSON, get a page)
 
 ### Features
 - ✅ Power Hub CMS - Staff can edit ALL content independently
 - ✅ GitHub API integration - No git CLI needed on server
 - ✅ GoHighLevel contact form integration
-- ✅ JSON-based content system (9 content files)
+- ✅ JSON-based content system (10+ content files; auto-discovers `content/resources/*.json`)
 - ✅ Glassmorphic black/orange design
 - ✅ Mobile-optimized (320px - 1920px+)
 - ✅ Framer Motion animations
-- ✅ **NEW:** GIFT CONNECT Parenting Suite page with video, QR codes, and app store links
+- ✅ GIFT CONNECT Parenting Suite page with video, QR codes, and app store links
+- ✅ **NEW (v2.6.0):** Power-Hub-managed Resources system — add new resource pages from `content/resources-index.json` + a matching `content/resources/<slug>.json` without touching code
 
 ### Content Files (All Editable via Power Hub)
 | File | Controls |
@@ -127,14 +130,19 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 | `get-involved.json` | Volunteer, Donate, Partner info |
 | `legal.json` | Terms, Privacy, Accessibility |
 | `site.json` | Footer, Social links, CTA banner |
+| `parenting-suite.json` | GIFT CONNECT page — links, video, features, stats, copy, SMS toggle |
+| `resources-index.json` | Resources dropdown + `/resources` hub — add/hide/reorder resource pages |
+| `resources/<slug>.json` | Generic resource page content (per-slug; rendered by `/resources/[slug]`) |
 
-### Current Content Status (as of April 16, 2026)
+### Current Content Status (as of May 5, 2026 — v2.6.0)
 - ✅ Events: 15 upcoming events (April - December 2026)
 - ✅ Team: 4 Staff, 34 Key Leaders, 64 Board Members
 - ✅ All content editable via Power Hub
-- ✅ **Parenting Suite Page:** HIDDEN at /resources/parenting-suite
-  - Config: `/lib/parenting-suite-config.ts`
+- ✅ **Parenting Suite page:** live at /resources/parenting-suite (visible in nav under Resources)
+  - Content: `/content/parenting-suite.json` (Power Hub editable)
+  - `/lib/parenting-suite-config.ts` is now a deprecation shim re-exporting from JSON
   - Video thumbnail: `/public/images/parenting-suite/video-thumbnail.png`
+- ✅ **Resources system:** /resources hub + /resources/[slug] generic template + nav dropdown, all driven by `/content/resources-index.json`
 
 ---
 
@@ -147,9 +155,14 @@ cd ~/dev/P4P-Website
 # Build (test before deploy)
 npm run build
 
-# Push changes (uses cached git credentials)
+# Push changes — git auth is pinned to murrayp4pcoalition via custom credential
+# helper, so push works regardless of the active `gh` user.
 git add -A && git commit -m "message" && git push origin main
 ```
+
+> **Note:** Vercel auto-deploys on push to `main`. Do NOT use `vercel --prod`
+> from the CLI — the live site is wired to GitHub on the coalition's Vercel team
+> and CLI deploys can land in the wrong project.
 
 ---
 

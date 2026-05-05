@@ -11,6 +11,8 @@
 | **Events** | https://murrayp4p.com/events |
 | **Contact** | https://murrayp4p.com/contact |
 | **Get Involved** | https://murrayp4p.com/get-involved |
+| **Resources** | https://murrayp4p.com/resources |
+| **Parenting Suite** | https://murrayp4p.com/resources/parenting-suite |
 
 ---
 
@@ -81,6 +83,16 @@
 | `events.json` | Upcoming and past events |
 | `contact.json` | Contact page info, social links |
 | `get-involved.json` | Volunteer/donate/partner info |
+| `legal.json` | Terms, privacy, accessibility |
+| `site.json` | Footer, social links, contact CTA banner |
+| `parenting-suite.json` | GIFT CONNECT page — links, video, features, stats, copy |
+| `resources-index.json` | Resources nav dropdown + `/resources` hub cards |
+| `resources/<slug>.json` | Individual resource pages at `/resources/<slug>` |
+
+### Adding a new Resource page (no code required)
+1. Power Hub → Content → `resources-index` → add a new entry, set `visible: true`, save.
+2. Power Hub → Content → add a file `resources/<slug>.json` with hero + sections, save.
+3. Page is live at `/resources/<slug>` and shows in the nav.
 
 ---
 
@@ -90,4 +102,4 @@ Contact Brett Lechtenberg for technical support.
 
 ---
 
-*Last Updated: March 22, 2026*
+*Last Updated: May 5, 2026 (v2.6.0 — Resources system)*

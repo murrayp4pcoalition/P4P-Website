@@ -30,13 +30,21 @@ Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** websit
 - Brand: Black `#1C1C1C` + Orange `#F27A21`, glassmorphic cards, animated aurora background.
 - No PAT tokens in code. `GITHUB_TOKEN` lives in Vercel env vars only.
 
-**Site structure (current — v2.5.0):**
+**Site structure (current — v2.6.0):**
 - `/` (home), `/about`, `/team`, `/members`, `/events`, `/contact`, `/get-involved`, `/legal`
+- `/resources` (hub), `/resources/parenting-suite` (bespoke), `/resources/[slug]` (generic CMS template)
 - `/power-hub` (CMS, hidden from search engines)
-- `/resources/parenting-suite` (HIDDEN — not in nav, GIFT CONNECT page)
+
+**Resources system (v2.6.0, May 5 2026):**
+- `content/resources-index.json` is the master list. Drives the nav dropdown AND the `/resources` hub cards. Edit `visible`, `order`, `navLabel`, `cardTitle`, `cardDescription` in Power Hub.
+- `content/parenting-suite.json` holds the bespoke Parenting Suite page content (links, video, features, stats, copy, SMS toggle).
+- `content/resources/<slug>.json` holds generic resource pages rendered by `app/resources/[slug]/page.tsx`. Section types: `richText`, `featureGrid`, `stats`, `callout`. Icon names are whitelisted in the template.
+- Power Hub editor uses a catch-all route `[...file]` so subfolders (e.g. `resources/youth-programs`) work cleanly. The editor list now walks `content/` AND `content/resources/`.
+- `lib/parenting-suite-config.ts` is now a deprecation shim that re-exports from JSON. Safe to delete after one clean deploy if no other importers appear.
 
 **Last sessions:**
-- May 5, 2026 — Project relocated from `~/Desktop/Claude Projects/` to `~/dev/P4P-Website`. Standardized docs (`AGENTS.md`, `NEXT_SESSION.md`, `.env.local.example`). Pinned per-repo GitHub credential helper so push always works as `murrayp4pcoalition`.
+- May 5, 2026 (PM) — Wired Resources into Power Hub: extracted Parenting Suite to JSON, added `content/resources-index.json`, built `/resources` hub + `/resources/[slug]` generic template, switched Power Hub editor to catch-all route, added tailored FILE_HELP entries for `parenting-suite` and `resources-index`. Commit `c46b383`.
+- May 5, 2026 (AM) — Project relocated from `~/Desktop/Claude Projects/` to `~/dev/P4P-Website`. Standardized docs (`AGENTS.md`, `NEXT_SESSION.md`, `.env.local.example`). Pinned per-repo GitHub credential helper so push always works as `murrayp4pcoalition`.
 - April 16, 2026 — GIFT CONNECT Parenting Suite page (video, QR codes, app-store links), Resources dropdown in nav, brand polish + animations.
 
 **Troubleshooting (only if push fails):**
