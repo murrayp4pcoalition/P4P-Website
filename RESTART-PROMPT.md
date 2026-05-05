@@ -8,15 +8,22 @@
 
 I want to work on the **Murray Partners 4 Prevention (P4P) Coalition Website**.
 
-**Read the project instructions first:**
-```
-/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website/CLAUDE.md
-```
+**Working directory:** `/Users/brettlechtenberg/dev/P4P-Website`
 
-**Project Location:**
-```
-/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website/
-```
+**Before starting, please:**
+1. `cd /Users/brettlechtenberg/dev/P4P-Website`
+2. Read `CLAUDE.md` and `AGENTS.md` for full project context
+3. Run `git status` and `git pull` to make sure you have the latest
+4. Vercel auto-deploys on push to `main` (coalition's own Vercel team)
+
+**Important rules for this project:**
+- NEVER work in `~/Desktop/Claude Projects/P4P-Website` (old iCloud-synced copy — corrupts git and freezes sessions). The current home is `~/dev/P4P-Website`.
+- Git identity for this repo must be the coalition account, not Brett's personal:
+  ```bash
+  git config user.name "murrayp4pcoalition"
+  git config user.email "murrayp4pcoalition@gmail.com"
+  ```
+  (Already set locally — verify with `git config user.email`.)
 
 ---
 
@@ -135,7 +142,7 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 
 ```bash
 # Navigate to project
-cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website"
+cd ~/dev/P4P-Website
 
 # Build (test before deploy)
 npm run build
@@ -158,7 +165,7 @@ git add -A && git commit -m "message" && git push origin main
 ### If Git Identity Gets Reset
 Run this to fix:
 ```bash
-cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website"
+cd ~/dev/P4P-Website
 git config user.name "murrayp4pcoalition"
 git config user.email "murrayp4pcoalition@gmail.com"
 ```

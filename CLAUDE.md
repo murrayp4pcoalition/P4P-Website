@@ -23,8 +23,10 @@
 
 ### Project Location
 ```
-/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website/
+/Users/brettlechtenberg/dev/P4P-Website/
 ```
+
+> ⚠️ **Do NOT work in `~/Desktop/Claude Projects/P4P-Website`.** That copy is iCloud-synced, corrupts git, and freezes sessions. The active home is `~/dev/P4P-Website`.
 
 ---
 
@@ -113,7 +115,7 @@
 
 ```bash
 # Navigate to project
-cd "/Users/brettlechtenberg/Desktop/Claude Projects/P4P-Website"
+cd ~/dev/P4P-Website
 
 # Development
 npm run dev          # Start dev server (usually localhost:3000)
@@ -243,7 +245,7 @@ This site was built to match the visual style of the **Murray Chamber of Commerc
 - **MACC Production:** https://macc-website-2.vercel.app/
 - **MACC Reference:** https://web-seven-beta-31.vercel.app/
 - **MACC GitHub:** https://github.com/BrettLechtenbrerg/MACC-Website
-- **MACC Project:** `/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website/`
+- **MACC Project:** `/Users/brettlechtenberg/dev/macc-web/`
 
 ---
 
