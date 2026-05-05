@@ -20,6 +20,7 @@ Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** websit
 
 **Important rules for this project:**
 - NEVER work in `~/Desktop/Claude Projects/P4P-Website` (old iCloud-synced copy — corrupts git and freezes sessions). The current home is `~/dev/P4P-Website`.
+- **Git auth is pinned per-repo** via a custom credential helper (`~/.local/bin/gh-credential-for-user murrayp4pcoalition`). `git push` will always authenticate as the coalition account, regardless of which `gh` user is globally active. Do NOT change `credential.helper` in this repo.
 - Git identity for this repo MUST be the coalition account, not Brett's personal:
   ```bash
   git config user.name "murrayp4pcoalition"
@@ -34,10 +35,13 @@ Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** websit
 - `/power-hub` (CMS, hidden from search engines)
 - `/resources/parenting-suite` (HIDDEN — not in nav, GIFT CONNECT page)
 
-**What was completed last session (April 16, 2026):**
-- ✅ GIFT CONNECT Parenting Suite page with video, QR codes, and app store links
-- ✅ Resources dropdown added to navigation (Parenting link)
-- ✅ Brand polish + animations on Parenting Suite page
+**Last sessions:**
+- May 5, 2026 — Project relocated from `~/Desktop/Claude Projects/` to `~/dev/P4P-Website`. Standardized docs (`AGENTS.md`, `NEXT_SESSION.md`, `.env.local.example`). Pinned per-repo GitHub credential helper so push always works as `murrayp4pcoalition`.
+- April 16, 2026 — GIFT CONNECT Parenting Suite page (video, QR codes, app-store links), Resources dropdown in nav, brand polish + animations.
+
+**Troubleshooting (only if push fails):**
+- 403 on push → run `gh auth status`. If `murrayp4pcoalition` is missing, run `gh auth login` and sign in as that account on https://github.com/login/device.
+- Wrong author on commits → `git config user.email` should return `murrayp4pcoalition@gmail.com`. If not, re-run the two `git config` commands above.
 
 ---
 
