@@ -102,10 +102,16 @@ export default function ContentListPage() {
               </div>
             ) : (
               <div className="divide-y divide-gray-100">
-                {contentFiles.map((file) => (
+                {contentFiles.map((file) => {
+                  // file.filename may include a subfolder (e.g. "resources/youth-programs.json").
+                  // The editor route is a catch-all (`[...file]`), so slashes pass through
+                  // as separate path segments — no URL encoding required.
+                  const slug = file.filename.replace('.json', '');
+                  const href = `/power-hub/dashboard/content/${slug}`;
+                  return (
                   <Link
                     key={file.filename}
-                    href={`/power-hub/dashboard/content/${file.filename.replace('.json', '')}`}
+                    href={href}
                     className="flex items-center justify-between p-5 hover:bg-[#F27A21]/5 transition-colors group"
                   >
                     <div className="flex items-center gap-4">
@@ -114,7 +120,7 @@ export default function ContentListPage() {
                       </div>
                       <div>
                         <p className="font-semibold text-gray-900 capitalize">
-                          {file.filename.replace('.json', '')} Page
+                          {slug.replace('/', ' / ')} Page
                         </p>
                         <p className="text-sm text-gray-500 flex items-center gap-2 mt-0.5">
                           <span>{formatFileSize(file.size)}</span>
@@ -130,7 +136,8 @@ export default function ContentListPage() {
                       <Edit3 className="w-5 h-5" />
                     </div>
                   </Link>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

@@ -1,0 +1,13 @@
+{
+  "resources": [
+    {
+      "slug": "parenting-suite",
+      "navLabel": "Parenting",
+      "cardTitle": "GIFT CONNECT Parenting Suite",
+      "cardDescription": "Free AI-powered parenting support for Murray families — voice assistant, lullabies, custom storybooks, and 24/7 guidance in 80+ languages.",
+      "kind": "bespoke",
+      "visible": true,
+      "order": 1
+    }
+  ]
+}

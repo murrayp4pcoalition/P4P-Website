@@ -26,6 +26,7 @@ import {
   Image,
   Users,
   UserPlus,
+  Edit3,
   X,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -117,6 +118,85 @@ const FILE_HELP: Record<string, { title: string; sections: Array<{ icon: React.R
           'Click "Add New Member"',
           'Fill in: name, category (e.g., "Healthcare", "Education")',
           'Add website URL and description',
+        ],
+      },
+    ],
+  },
+  'parenting-suite': {
+    title: '👶 GIFT CONNECT Parenting Suite Page',
+    sections: [
+      {
+        icon: <Edit3 size={18} className="text-orange-500" />,
+        title: 'Update App Store & Tool Links',
+        steps: [
+          'Open the "links" section below',
+          'Update appStoreUrl / googlePlayUrl when the apps move',
+          'sammieVoiceUrl, sammieTextUrl, genoUrl, staceyUrl point at each web tool',
+          'Save & Deploy when done — the change is live in ~5 minutes',
+        ],
+      },
+      {
+        icon: <Plus size={18} className="text-blue-500" />,
+        title: 'Swap the Vimeo Video',
+        steps: [
+          'Open the "video" section',
+          'Paste the new Vimeo video ID (numbers only, no URL) into vimeoVideoId',
+          'Example: from https://vimeo.com/1171939931 the ID is 1171939931',
+        ],
+      },
+      {
+        icon: <Users size={18} className="text-green-500" />,
+        title: 'Edit the Features List',
+        steps: [
+          'Open the "features" section to add, remove, or reword features',
+          'Each feature has: icon (name), title, description',
+          'Allowed icon names: MessageCircle, Music, BookOpen, Target, MapPin, PenTool, Lightbulb, Sun, Smartphone, Users',
+          'Use the orange "Add New Item" button to add a new feature',
+        ],
+      },
+      {
+        icon: <HelpCircle size={18} className="text-purple-500" />,
+        title: 'Edit Stats & Contact Info',
+        steps: [
+          '"stats" controls the three big numbers in the "Why Birth to Three" section',
+          '"contact" controls the support email shown on the page',
+          '"sms" — flip enabled to true once a short code is live, then fill shortCode & keyword',
+          '"metadata" controls the browser tab title and SEO description',
+        ],
+      },
+    ],
+  },
+  'resources-index': {
+    title: '📚 Resources — Add, Hide, Reorder',
+    sections: [
+      {
+        icon: <Plus size={18} className="text-orange-500" />,
+        title: 'Add a New Resource Page',
+        steps: [
+          'Step 1 — In the "resources" list below, click "Add New Item"',
+          'Step 2 — Fill in: slug (e.g. youth-programs), navLabel (Resources dropdown text), cardTitle, cardDescription',
+          'Step 3 — Set kind to "generic", visible to true, order to where it should appear',
+          'Step 4 — Save & Deploy this file',
+          'Step 5 — Back on the Content list, you\'ll now create the page itself: it lives at content/resources/<slug>.json',
+          'Step 6 — Until that JSON file exists, the page will 404. The Content list will show it once added.',
+        ],
+      },
+      {
+        icon: <Edit3 size={18} className="text-blue-500" />,
+        title: 'Hide or Reorder',
+        steps: [
+          'Set visible to false to remove a resource from the nav and the /resources hub (the page itself stays reachable directly)',
+          'Change order to reorder the dropdown — lower numbers appear first',
+          'Edit navLabel to rename the link in the nav (e.g. change "Parenting" to something else)',
+        ],
+      },
+      {
+        icon: <Trash2 size={18} className="text-red-500" />,
+        title: 'Remove a Resource',
+        steps: [
+          'Use the red trash icon to delete the entry here',
+          'Then delete its content/resources/<slug>.json file (or leave it — it just won\'t be linked anywhere)',
+          'parenting-suite is the bespoke flagship page; remove only if you really mean to take it down',
         ],
       },
     ],
@@ -398,10 +478,16 @@ function HelpPanel({ file }: { file: string }) {
 export default function EditContentPage({
   params,
 }: {
-  params: Promise<{ file: string }>;
+  // Catch-all route: `file` is an array of path segments.
+  // For "content/home.json"               -> ["home"]
+  // For "content/resources/youth.json"    -> ["resources", "youth"]
+  params: Promise<{ file: string[] }>;
 }) {
-  const { file } = use(params);
+  const { file: fileSegments } = use(params);
   const router = useRouter();
+  // Slug used for help-text lookup and the API filename query.
+  // e.g. "home" or "resources/youth-programs".
+  const file = fileSegments.join('/');
   const filename = `${file}.json`;
 
   const [content, setContent] = useState<Record<string, unknown> | null>(null);

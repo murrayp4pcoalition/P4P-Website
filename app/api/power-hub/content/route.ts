@@ -70,12 +70,21 @@ async function getFileFromGitHub(path: string) {
   };
 }
 
-// Helper: List files in a directory from GitHub
-async function listFilesFromGitHub(path: string) {
+// Helper: List JSON files in a single GitHub directory.
+// `prefix` is prepended to each returned filename (so subfolder files are
+// distinguishable in the editor list, e.g. "resources/youth-programs.json").
+async function listFilesFromGitHub(path: string, prefix: string = '') {
   const config = getConfig();
   const endpoint = `/repos/${config.owner}/${config.repo}/contents/${path}?ref=${config.branch}`;
 
-  const data = await githubFetch(endpoint);
+  let data;
+  try {
+    data = await githubFetch(endpoint);
+  } catch (err) {
+    // Subfolder may not exist yet — return empty list rather than 500.
+    console.warn(`listFilesFromGitHub: could not list ${path}:`, err);
+    return [];
+  }
 
   // Filter for JSON files only
   return data
@@ -83,10 +92,20 @@ async function listFilesFromGitHub(path: string) {
       file.type === 'file' && file.name.endsWith('.json')
     )
     .map((file: { name: string; sha: string; size: number }) => ({
-      filename: file.name,
+      filename: prefix ? `${prefix}${file.name}` : file.name,
       sha: file.sha,
       size: file.size,
     }));
+}
+
+// Helper: list all editable JSON files across the configured content folders.
+// Add additional subfolders here as the CMS grows.
+async function listAllContentFiles() {
+  const [root, resources] = await Promise.all([
+    listFilesFromGitHub('content'),
+    listFilesFromGitHub('content/resources', 'resources/'),
+  ]);
+  return [...root, ...resources];
 }
 
 // Helper: Update file on GitHub (creates commit)
@@ -142,8 +161,9 @@ export async function GET(request: Request) {
     const filename = searchParams.get('file');
 
     // If no specific file requested, return list of all content files
+    // (root content/ + content/resources/).
     if (!filename) {
-      const files = await listFilesFromGitHub('content');
+      const files = await listAllContentFiles();
 
       return NextResponse.json({
         files,

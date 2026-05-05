@@ -26,13 +26,10 @@ import Footer from '@/components/Footer';
 import FadeIn from '@/components/animations/FadeIn';
 import StaggerChildren, { StaggerItem } from '@/components/animations/StaggerChildren';
 
-// Config and data
-import {
-  parentingSuiteConfig,
-  giftConnectColors,
-  featuresList,
-  birthToThreeStats,
-} from '@/lib/parenting-suite-config';
+// Content from Power Hub CMS (editable JSON)
+import parentingSuiteContent from '@/content/parenting-suite.json';
+// Brand colors stay in code (they are visual / not staff-editable)
+import { giftConnectColors } from '@/lib/parenting-suite-config';
 
 // Phone mockup component with real images
 import PhoneMockup from '@/components/parenting-suite/PhoneMockup';
@@ -165,8 +162,21 @@ function VideoThumbnail({ videoId, thumbnailSrc }: { videoId: string; thumbnailS
   );
 }
 
+// Flatten JSON shape into the variables the existing UI expects.
+// This keeps the JSX below unchanged.
+const config = {
+  ...parentingSuiteContent.links,
+  vimeoVideoId: parentingSuiteContent.video.vimeoVideoId,
+  supportEmail: parentingSuiteContent.contact.supportEmail,
+  p4pContactEmail: parentingSuiteContent.contact.p4pContactEmail,
+  smsEnabled: parentingSuiteContent.sms.enabled,
+  smsShortCode: parentingSuiteContent.sms.shortCode,
+  smsKeyword: parentingSuiteContent.sms.keyword,
+};
+const featuresList = parentingSuiteContent.features;
+const birthToThreeStats = parentingSuiteContent.stats;
+
 export default function ParentingSuitePage() {
-  const config = parentingSuiteConfig;
   const colors = giftConnectColors;
 
   return (

@@ -20,6 +20,25 @@ import {
   BookOpen,
 } from 'lucide-react';
 
+// Resources dropdown is data-driven from Power Hub.
+// Staff edit content/resources-index.json to add, hide, or reorder resource pages.
+import resourcesIndex from '@/content/resources-index.json';
+
+type ResourceEntry = {
+  slug: string;
+  navLabel: string;
+  cardTitle?: string;
+  cardDescription?: string;
+  kind?: string;
+  visible: boolean;
+  order: number;
+};
+
+const resourceDropdownItems = (resourcesIndex.resources as ResourceEntry[])
+  .filter((r) => r.visible)
+  .sort((a, b) => a.order - b.order)
+  .map((r) => ({ label: r.navLabel, href: `/resources/${r.slug}` }));
+
 // Navigation structure for P4P
 const navigationItems = [
   {
@@ -47,13 +66,15 @@ const navigationItems = [
     href: '/events',
     icon: Calendar,
   },
-  {
-    label: 'Resources',
-    icon: BookOpen,
-    items: [
-      { label: 'Parenting', href: '/resources/parenting-suite' },
-    ],
-  },
+  ...(resourceDropdownItems.length > 0
+    ? [
+        {
+          label: 'Resources',
+          icon: BookOpen,
+          items: resourceDropdownItems,
+        },
+      ]
+    : []),
   {
     label: 'Get Involved',
     icon: HandHeart,
