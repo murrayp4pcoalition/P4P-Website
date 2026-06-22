@@ -9,7 +9,7 @@
     {
       "title": "Murray P4P Coalition Meeting",
       "date": "June 23, 2026",
-      "time": "4:00 PM - 5 PM",
+      "time": "4:00 PM - 5:00 PM",
       "location": "Murray City School District Office (5102 S. Commerce Dr.)",
       "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
       "type": "Event"
@@ -33,7 +33,7 @@
     {
       "title": "Murray P4P Coalition Meeting",
       "date": "August 25, 2026",
-      "time": "4:00 PM - 5 PM",
+      "time": "4:00 PM - 5:00 PM",
       "location": "Murray City School District Office (5102 S. Commerce Dr.)",
       "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
       "type": "Event"
@@ -41,7 +41,7 @@
     {
       "title": "Murray P4P Coalition Meeting",
       "date": "September 29, 2026",
-      "time": "4:00 PM - 5 PM",
+      "time": "4:00 PM - 5:00 PM",
       "location": "Murray City School District Office (5102 S. Commerce Dr.)",
       "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
       "type": "Event"
@@ -49,7 +49,7 @@
     {
       "title": "Murray P4P Coalition Meeting",
       "date": "October 27, 2026",
-      "time": "4:00 PM - 5 PM",
+      "time": "4:00 PM - 5:00 PM",
       "location": "Murray City School District Office (5102 S. Commerce Dr.)",
       "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
       "type": "Event"
@@ -57,7 +57,7 @@
     {
       "title": "Murray P4P Coalition Meeting",
       "date": "November 24, 2026",
-      "time": "4:00 PM - 5 PM",
+      "time": "4:00 PM - 5:00 PM",
       "location": "Murray City School District Office (5102 S. Commerce Dr.)",
       "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
       "type": "Event"
@@ -65,7 +65,7 @@
     {
       "title": "Murray P4P Coalition Meeting",
       "date": "December 29, 2026",
-      "time": "4:00 PM - 5 PM",
+      "time": "4:00 PM - 5:00 PM",
       "location": "Murray City School District Office (5102 S. Commerce Dr.)",
       "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
       "type": "Event"
@@ -75,17 +75,11 @@
       "date": "July 5, 2026",
       "time": "5:00-7:00 PM",
       "location": "Murray City Park - Pavilion #5",
-      "description": "",
+      "description": "Come Celebrate America's 250 Anniversary",
       "type": "Event"
     }
   ],
-  "pastEvents": [
-    {
-      "title": "Summer Safety Campaign",
-      "date": "June 2025",
-      "description": "Community-wide safety awareness initiative reaching thousands of residents."
-    }
-  ],
+  "pastEvents": [],
   "cta": {
     "title": "Want to Host an Event?",
     "description": "Partner with us to bring prevention education and community resources to your neighborhood or organization.",
