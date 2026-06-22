@@ -7,62 +7,6 @@
   },
   "upcomingEvents": [
     {
-      "title": "Pinwheels for Child Abuse Awareness Month",
-      "date": "April 6, 2026",
-      "time": "",
-      "location": "Murray City",
-      "description": "Join us in raising awareness for Child Abuse Prevention Month with our pinwheel display.",
-      "type": "Event"
-    },
-    {
-      "title": "Murray Coalition Presentation to City Council",
-      "date": "April 7, 2026",
-      "time": "",
-      "location": "Murray City Hall",
-      "description": "Murray Partners 4 Prevention presents to the Murray City Council.",
-      "type": "Event"
-    },
-    {
-      "title": "Murray Youth Community Council Meeting",
-      "date": "April 8, 2026",
-      "time": "",
-      "location": "",
-      "description": "Monthly meeting of the Murray Youth Community Council.",
-      "type": "Event"
-    },
-    {
-      "title": "Murray P4P Coalition Meeting",
-      "date": "April 28, 2026",
-      "time": "4:00 PM - 5 PM",
-      "location": "Murray City School District Office (5102 S. Commerce Dr.)",
-      "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
-      "type": "Event"
-    },
-    {
-      "title": "MHS Awards/Scholarship Banquet",
-      "date": "May 18, 2026",
-      "time": "",
-      "location": "Murray High School",
-      "description": "Annual Murray High School awards and scholarship banquet.",
-      "type": "Event"
-    },
-    {
-      "title": "Murray P4P Coalition Meeting",
-      "date": "May 19, 2026",
-      "time": "4:00 PM - 5 PM",
-      "location": "Murray City School District Office (5102 S. Commerce Dr.)",
-      "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
-      "type": "Event"
-    },
-    {
-      "title": "Community Block Party",
-      "date": "June 13, 2026",
-      "time": "",
-      "location": "Murray City",
-      "description": "Join us for a fun community block party! Activities, food, and connection with your neighbors.",
-      "type": "Event"
-    },
-    {
       "title": "Murray P4P Coalition Meeting",
       "date": "June 23, 2026",
       "time": "4:00 PM - 5 PM",
@@ -128,16 +72,6 @@
     }
   ],
   "pastEvents": [
-    {
-      "title": "Coalition Monthly Meeting",
-      "date": "March 2026",
-      "description": "Monthly coalition meeting with community members and stakeholders."
-    },
-    {
-      "title": "Back to School Resource Fair",
-      "date": "August 2025",
-      "description": "Provided school supplies and resources to over 500 Murray families."
-    },
     {
       "title": "Summer Safety Campaign",
       "date": "June 2025",
