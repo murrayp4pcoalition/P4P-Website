@@ -60,7 +60,7 @@ type RichTextSection = { type: 'richText'; heading?: string; body: string };
 type FeatureGridSection = {
   type: 'featureGrid';
   heading?: string;
-  items: Array<{ icon?: string; title: string; description: string }>;
+  items: Array<{ icon?: string; title: string; description: string; href?: string; linkLabel?: string }>;
 };
 type StatsSection = {
   type: 'stats';
@@ -167,18 +167,51 @@ function FeatureGrid({ section }: { section: FeatureGridSection }) {
       <StaggerChildren staggerDelay={0.06} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {section.items.map((item, i) => (
           <StaggerItem key={i}>
-            <div className="glass-card h-full p-6 rounded-2xl border border-white/10">
-              <div className="w-12 h-12 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center mb-4">
-                <ResourceIcon name={item.icon} className="w-6 h-6 text-orange-400" />
-              </div>
-              <h3 className="text-lg font-bold text-white">{item.title}</h3>
-              <p className="mt-2 text-white/70 text-sm leading-relaxed">{item.description}</p>
-            </div>
+            <FeatureCard item={item} />
           </StaggerItem>
         ))}
       </StaggerChildren>
     </div>
   );
+}
+
+function FeatureCard({
+  item,
+}: {
+  item: { icon?: string; title: string; description: string; href?: string; linkLabel?: string };
+}) {
+  const inner = (
+    <>
+      <div className="w-12 h-12 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/25 transition-colors">
+        <ResourceIcon name={item.icon} className="w-6 h-6 text-orange-400" />
+      </div>
+      <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors">
+        {item.title}
+      </h3>
+      <p className="mt-2 text-white/70 text-sm leading-relaxed">{item.description}</p>
+      {item.href && (
+        <span className="mt-4 inline-flex items-center gap-2 text-orange-400 font-medium text-sm group-hover:gap-3 transition-all">
+          {item.linkLabel || 'Visit'}
+          <ExternalLink className="w-4 h-4" />
+        </span>
+      )}
+    </>
+  );
+
+  if (item.href) {
+    return (
+      <a
+        href={item.href}
+        target={/^https?:\/\//i.test(item.href) ? '_blank' : undefined}
+        rel="noopener noreferrer"
+        className="group glass-card flex flex-col h-full p-6 rounded-2xl border border-white/10 hover:border-orange-500/40 transition-colors"
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return <div className="group glass-card flex flex-col h-full p-6 rounded-2xl border border-white/10">{inner}</div>;
 }
 
 function Stats({ section }: { section: StatsSection }) {

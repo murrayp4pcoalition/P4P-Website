@@ -8,6 +8,15 @@
       "kind": "bespoke",
       "visible": true,
       "order": 1
+    },
+    {
+      "slug": "family-resources",
+      "navLabel": "Family Resources",
+      "cardTitle": "Family & Parenting Resources",
+      "cardDescription": "A curated directory of free and low-cost family, parenting, and youth resources for Murray families — crisis support, parenting classes, food assistance, and more.",
+      "kind": "generic",
+      "visible": true,
+      "order": 2
     }
   ]
 }

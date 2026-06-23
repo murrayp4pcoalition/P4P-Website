@@ -9,6 +9,16 @@ import FadeIn from '@/components/animations/FadeIn';
 import StaggerChildren, { StaggerItem } from '@/components/animations/StaggerChildren';
 import eventsContent from '@/content/events.json';
 
+type EventItem = {
+  title?: string;
+  date?: string;
+  time?: string;
+  location?: string;
+  description?: string;
+  badge?: string;
+  type?: string;
+};
+
 // Helper to safely parse date for display
 function parseDateParts(dateStr: string) {
   if (!dateStr || !dateStr.includes(' ')) return { day: '', month: '' };
@@ -20,10 +30,11 @@ function parseDateParts(dateStr: string) {
 }
 
 export default function EventsPage() {
-  const { header, upcomingEvents: rawEvents, pastEvents, cta } = eventsContent;
+  const { header, upcomingEvents: rawEvents, pastEvents: rawPastEvents, cta } = eventsContent;
+  const pastEvents = rawPastEvents as EventItem[];
 
   // Filter out any empty/invalid events
-  const upcomingEvents = rawEvents.filter(e => e.title && e.date);
+  const upcomingEvents = (rawEvents as EventItem[]).filter((e) => e.title && e.date);
 
   return (
     <>
@@ -66,8 +77,8 @@ export default function EventsPage() {
                     {/* Date Badge */}
                     <div className="flex-shrink-0">
                       <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex flex-col items-center justify-center text-white shadow-lg">
-                        <span className="text-2xl font-bold">{parseDateParts(event.date).day}</span>
-                        <span className="text-xs uppercase tracking-wider">{parseDateParts(event.date).month}</span>
+                        <span className="text-2xl font-bold">{parseDateParts(event.date || '').day}</span>
+                        <span className="text-xs uppercase tracking-wider">{parseDateParts(event.date || '').month}</span>
                       </div>
                     </div>
 
