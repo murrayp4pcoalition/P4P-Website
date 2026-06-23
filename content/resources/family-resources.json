@@ -31,7 +31,8 @@
           "description": "Free, on-demand courses on parenting topics including anxiety, behavior, addiction, body image, and technology, plus an “Ask a Therapist” section. Murray City School District families can also access FREE one-on-one parent coaching.",
           "href": "https://parentguidance.org",
           "linkLabel": "parentguidance.org",
-          "qr": "/images/family-resources/qr/parent-guidance.svg"
+          "qr": "/images/family-resources/qr/parent-guidance.svg",
+          "logo": "/images/family-resources/logos/parent-guidance.png"
         },
         {
           "icon": "Users",
@@ -55,7 +56,8 @@
           "description": "Resources to help parents navigate the world of tech with their children, including free online courses and a Family Toolkit with step-by-step guides for nearly every app. Email Sierra Marsh for the access code, or find it in Murray City School District's ParentSquare communications.",
           "href": "mailto:smarsh@murrayschools.org",
           "linkLabel": "Email for access code",
-          "qr": "/images/family-resources/qr/social-institute.svg"
+          "qr": "/images/family-resources/qr/social-institute.svg",
+          "logo": "/images/family-resources/logos/social-institute.svg"
         },
         {
           "icon": "Shield",
@@ -63,7 +65,8 @@
           "description": "A statewide media and community education campaign giving parents concrete tools and strategies to keep kids' brains alcohol-free. Visit the No Bummer Summer campaign for a summer parenting quiz, bucket-list generator, and more.",
           "href": "https://www.summer.parentsempowered.org",
           "linkLabel": "parentsempowered.org",
-          "qr": "/images/family-resources/qr/parents-empowered.svg"
+          "qr": "/images/family-resources/qr/parents-empowered.svg",
+          "logo": "/images/family-resources/logos/parents-empowered.svg"
         },
         {
           "icon": "MessageCircle",
