@@ -302,7 +302,7 @@ export default async function GenericResourcePage({
   if (!data) notFound();
 
   return (
-    <main className="min-h-screen bg-[#1C1C1C] aurora-bg">
+    <div className="min-h-screen">
       <PageHeader
         badge={data.hero.eyebrow || 'Resource'}
         title={data.hero.headline}
@@ -367,6 +367,6 @@ export default async function GenericResourcePage({
       )}
 
       <Footer />
-    </main>
+    </div>
   );
 }

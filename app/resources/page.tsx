@@ -28,7 +28,7 @@ export default function ResourcesHubPage() {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <main className="min-h-screen bg-[#1C1C1C] aurora-bg">
+    <div className="min-h-screen">
       <PageHeader
         badge="Resources"
         title="Resources for Murray Families"
@@ -83,6 +83,6 @@ export default function ResourcesHubPage() {
       </section>
 
       <Footer />
-    </main>
+    </div>
   );
 }
