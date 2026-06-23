@@ -108,7 +108,8 @@
           "linkLabel": "murrayschools.org",
           "qr": "/images/family-resources/qr/mcsd-family-resources.svg"
         }
-      ]
+      ],
+      "columns": 2
     },
     {
       "type": "callout",

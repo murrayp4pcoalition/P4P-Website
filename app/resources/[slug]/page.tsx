@@ -69,6 +69,7 @@ type FeatureItem = {
 type FeatureGridSection = {
   type: 'featureGrid';
   heading?: string;
+  columns?: 2 | 3;
   items: FeatureItem[];
 };
 type StatsSection = {
@@ -173,7 +174,12 @@ function FeatureGrid({ section }: { section: FeatureGridSection }) {
           </h2>
         </FadeIn>
       )}
-      <StaggerChildren staggerDelay={0.06} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <StaggerChildren
+        staggerDelay={0.06}
+        className={`grid sm:grid-cols-2 gap-6 ${
+          section.columns === 2 ? 'lg:grid-cols-2 max-w-4xl mx-auto' : 'lg:grid-cols-3'
+        }`}
+      >
         {section.items.map((item, i) => (
           <StaggerItem key={i}>
             <FeatureCard item={item} />
@@ -206,11 +212,11 @@ function FeatureCard({ item }: { item: FeatureItem }) {
       </h3>
       <p className="mt-2 text-white/70 text-sm leading-relaxed">{item.description}</p>
 
-      <div className="mt-auto pt-4 flex items-end justify-between gap-3">
+      <div className="mt-auto pt-4 flex items-end justify-between gap-4">
         {item.href ? (
-          <span className="inline-flex items-center gap-2 text-orange-400 font-medium text-sm group-hover:gap-3 transition-all">
-            {item.linkLabel || 'Visit'}
-            <ExternalLink className="w-4 h-4" />
+          <span className="inline-flex min-w-0 items-center gap-2 text-orange-400 font-medium text-sm group-hover:gap-3 transition-all">
+            <span className="truncate">{item.linkLabel || 'Visit'}</span>
+            <ExternalLink className="w-4 h-4 shrink-0" />
           </span>
         ) : (
           <span />
@@ -218,7 +224,7 @@ function FeatureCard({ item }: { item: FeatureItem }) {
         {item.qr && (
           <div className="shrink-0 bg-white rounded-lg p-1.5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={item.qr} alt={`Scan to open ${item.title}`} className="w-16 h-16" />
+            <img src={item.qr} alt={`Scan to open ${item.title}`} className="w-[72px] h-[72px]" />
           </div>
         )}
       </div>
