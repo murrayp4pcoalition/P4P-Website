@@ -57,10 +57,19 @@ function ResourceIcon({ name, className }: { name?: string; className?: string }
 type Cta = { label: string; href: string };
 
 type RichTextSection = { type: 'richText'; heading?: string; body: string };
+type FeatureItem = {
+  icon?: string;
+  title: string;
+  description: string;
+  href?: string;
+  linkLabel?: string;
+  logo?: string;
+  qr?: string;
+};
 type FeatureGridSection = {
   type: 'featureGrid';
   heading?: string;
-  items: Array<{ icon?: string; title: string; description: string; href?: string; linkLabel?: string }>;
+  items: FeatureItem[];
 };
 type StatsSection = {
   type: 'stats';
@@ -175,26 +184,44 @@ function FeatureGrid({ section }: { section: FeatureGridSection }) {
   );
 }
 
-function FeatureCard({
-  item,
-}: {
-  item: { icon?: string; title: string; description: string; href?: string; linkLabel?: string };
-}) {
+function FeatureCard({ item }: { item: FeatureItem }) {
   const inner = (
     <>
-      <div className="w-12 h-12 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/25 transition-colors">
-        <ResourceIcon name={item.icon} className="w-6 h-6 text-orange-400" />
-      </div>
+      {item.logo ? (
+        <div className="h-14 mb-4 flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={item.logo}
+            alt={`${item.title} logo`}
+            className="max-h-14 max-w-[160px] w-auto object-contain"
+          />
+        </div>
+      ) : (
+        <div className="w-12 h-12 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/25 transition-colors">
+          <ResourceIcon name={item.icon} className="w-6 h-6 text-orange-400" />
+        </div>
+      )}
       <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors">
         {item.title}
       </h3>
       <p className="mt-2 text-white/70 text-sm leading-relaxed">{item.description}</p>
-      {item.href && (
-        <span className="mt-4 inline-flex items-center gap-2 text-orange-400 font-medium text-sm group-hover:gap-3 transition-all">
-          {item.linkLabel || 'Visit'}
-          <ExternalLink className="w-4 h-4" />
-        </span>
-      )}
+
+      <div className="mt-auto pt-4 flex items-end justify-between gap-3">
+        {item.href ? (
+          <span className="inline-flex items-center gap-2 text-orange-400 font-medium text-sm group-hover:gap-3 transition-all">
+            {item.linkLabel || 'Visit'}
+            <ExternalLink className="w-4 h-4" />
+          </span>
+        ) : (
+          <span />
+        )}
+        {item.qr && (
+          <div className="shrink-0 bg-white rounded-lg p-1.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={item.qr} alt={`Scan to open ${item.title}`} className="w-16 h-16" />
+          </div>
+        )}
+      </div>
     </>
   );
 
