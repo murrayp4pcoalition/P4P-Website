@@ -3,7 +3,7 @@
 ## Project Overview
 
 **Project Name:** Murray Partners 4 Prevention (P4P) Coalition Website
-**Version:** 2.5.0
+**Version:** 2.7.0
 **Created:** February 11, 2026
 **Last Updated:** April 16, 2026 (Session 12)
 **Status:** 🚀 LIVE at murrayp4p.com - Production CMS (Staff Self-Sufficient!)
@@ -555,3 +555,15 @@ This avoids issues with standard uploads and ensures proper builds.
 ### May 5, 2026 - Session 14: Doc refresh
 - Updated `NEXT_SESSION.md`, `RESTART-PROMPT.md`, `CLAUDE.md`, `P4P-QUICK-REFERENCE.md` to reflect v2.6.0 (Resources system, Power Hub catch-all editor, new content files, corrected the stale `vercel --prod --yes` instruction).
 - No code changes.
+
+### June 23, 2026 - Session 15: Family & Parenting Resources page
+- **New page:** `/resources/family-resources` — a directory of 11 community/parenting resources sourced from the P4P “Family Resources” PDF (988, Parent Guidance, SL County Youth Services, USU Extension, The Social Institute, Parents Empowered, CHAT, Family Support Center, Project YES, Murray Children's Pantry, MCSD Family Resources). Registered in `resources-index.json` (nav + hub, order 2).
+- **Generic template upgrades** (`app/resources/[slug]/page.tsx`):
+  - `featureGrid` items now support optional `href` + `linkLabel` (outbound resource cards), `logo`, and `qr`.
+  - `featureGrid` supports optional `columns: 2 | 3` (family-resources uses 2 for wider cards).
+  - Card layout: logo top-left on a white chip (falls back to orange icon), QR bottom-right on a white chip, link text truncates so it never pushes the QR out.
+- **QR codes:** generated one SVG per program under `public/images/family-resources/qr/` (web URL, or `tel:` for 988 and the pantry). Generated locally with Python `qrcode`.
+- **Logos:** 11 program logos supplied by P4P live in `public/images/family-resources/logos/`.
+- **Bug fix:** `app/events/page.tsx` — typed the JSON-derived arrays so an emptied `pastEvents` (from a Power Hub edit) no longer breaks the production build via TS `never[]` inference. This had likely been failing recent staff deploys.
+- **Bug fix:** `/resources` hub and `/resources/[slug]` had `.aurora-bg` (position:fixed; overflow:hidden) on `<main>`, which made the pages unscrollable. Removed; aurora already renders globally in `layout.tsx`.
+- **Version: 2.7.0** - Family & Parenting Resources directory

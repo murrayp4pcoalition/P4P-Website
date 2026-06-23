@@ -30,7 +30,7 @@ Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** websit
 - Brand: Black `#1C1C1C` + Orange `#F27A21`, glassmorphic cards, animated aurora background.
 - No PAT tokens in code. `GITHUB_TOKEN` lives in Vercel env vars only.
 
-**Site structure (current — v2.6.0):**
+**Site structure (current — v2.7.0):**
 - `/` (home), `/about`, `/team`, `/members`, `/events`, `/contact`, `/get-involved`, `/legal`
 - `/resources` (hub), `/resources/parenting-suite` (bespoke), `/resources/[slug]` (generic CMS template)
 - `/power-hub` (CMS, hidden from search engines)
@@ -43,6 +43,7 @@ Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** websit
 - `lib/parenting-suite-config.ts` is now a deprecation shim that re-exports from JSON. Safe to delete after one clean deploy if no other importers appear.
 
 **Last sessions:**
+- June 23, 2026 — Built `/resources/family-resources` (directory of 11 community/parenting resources from the P4P PDF). Added per-card outbound links, program logos (top-left white chip), and scannable QR codes (bottom-right) to the generic `featureGrid` template; added `columns: 2|3` option. Fixed two bugs: unscrollable resources pages (stray `.aurora-bg` on `<main>`) and a build-breaking `never[]` in `app/events/page.tsx` from an emptied `pastEvents`. QR assets in `public/images/family-resources/qr/`, logos in `.../logos/`. v2.7.0.
 - May 5, 2026 (PM) — Wired Resources into Power Hub: extracted Parenting Suite to JSON, added `content/resources-index.json`, built `/resources` hub + `/resources/[slug]` generic template, switched Power Hub editor to catch-all route, added tailored FILE_HELP entries for `parenting-suite` and `resources-index`. Commit `c46b383`.
 - May 5, 2026 (AM) — Project relocated from `~/Desktop/Claude Projects/` to `~/dev/P4P-Website`. Standardized docs (`AGENTS.md`, `NEXT_SESSION.md`, `.env.local.example`). Pinned per-repo GitHub credential helper so push always works as `murrayp4pcoalition`.
 - April 16, 2026 — GIFT CONNECT Parenting Suite page (video, QR codes, app-store links), Resources dropdown in nav, brand polish + animations.
