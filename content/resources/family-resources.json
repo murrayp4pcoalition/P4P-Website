@@ -10,10 +10,6 @@
   },
   "sections": [
     {
-      "type": "richText",
-      "body": "Murray Partners 4 Prevention highlights the Coalition's work in the community by supporting residents, connecting families, empowering youth, and fostering lifelong growth. Below are trusted local and statewide resources to help every family thrive. Tap any card to learn more."
-    },
-    {
       "type": "featureGrid",
       "heading": "Explore the Resources",
       "items": [
