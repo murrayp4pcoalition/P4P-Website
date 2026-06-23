@@ -194,12 +194,12 @@ function FeatureCard({ item }: { item: FeatureItem }) {
   const inner = (
     <>
       {item.logo ? (
-        <div className="mb-4 inline-flex items-center bg-white rounded-xl px-3 py-2 h-14">
+        <div className="w-16 h-16 rounded-xl bg-white flex items-center justify-center p-2 mb-4 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={item.logo}
             alt={`${item.title} logo`}
-            className="max-h-10 max-w-[150px] w-auto object-contain"
+            className="max-h-full max-w-full w-auto object-contain"
           />
         </div>
       ) : (

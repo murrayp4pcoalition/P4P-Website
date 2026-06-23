@@ -19,7 +19,8 @@
           "description": "Call or text 988 to talk with a caring counselor about mental health struggles, emotional distress, alcohol or drug use concerns, or when you just need to talk. You are not alone.",
           "href": "tel:988",
           "linkLabel": "Call or text 988",
-          "qr": "/images/family-resources/qr/988.svg"
+          "qr": "/images/family-resources/qr/988.svg",
+          "logo": "/images/family-resources/logos/988.png"
         },
         {
           "icon": "GraduationCap",
@@ -36,7 +37,8 @@
           "description": "Free services for guardians — including Guiding Good Choices and Staying Connected with Your Teen — plus classes for teens such as Me Time, Stress Busters, and the Body Project. Offered in English and Spanish.",
           "href": "https://slco.to/prevention",
           "linkLabel": "slco.to/prevention",
-          "qr": "/images/family-resources/qr/youth-services.svg"
+          "qr": "/images/family-resources/qr/youth-services.svg",
+          "logo": "/images/family-resources/logos/youth-services.png"
         },
         {
           "icon": "Heart",
@@ -44,7 +46,8 @@
           "description": "Healthy Relationships Utah hosts free online courses including Couple LINKS, Home Run Parents, Parenting the Love and Logic Way, Positive Discipline, Smart Dating, and Smart Steps for Stepfamilies.",
           "href": "https://extension.usu.edu/hru",
           "linkLabel": "extension.usu.edu/hru",
-          "qr": "/images/family-resources/qr/usu-extension.svg"
+          "qr": "/images/family-resources/qr/usu-extension.svg",
+          "logo": "/images/family-resources/logos/usu-extension.png"
         },
         {
           "icon": "Smartphone",
@@ -53,7 +56,7 @@
           "href": "mailto:smarsh@murrayschools.org",
           "linkLabel": "Email for access code",
           "qr": "/images/family-resources/qr/social-institute.svg",
-          "logo": "/images/family-resources/logos/social-institute.svg"
+          "logo": "/images/family-resources/logos/social-institute.png"
         },
         {
           "icon": "Shield",
@@ -62,7 +65,7 @@
           "href": "https://www.summer.parentsempowered.org",
           "linkLabel": "parentsempowered.org",
           "qr": "/images/family-resources/qr/parents-empowered.svg",
-          "logo": "/images/family-resources/logos/parents-empowered.svg"
+          "logo": "/images/family-resources/logos/parents-empowered.png"
         },
         {
           "icon": "MessageCircle",
@@ -70,7 +73,8 @@
           "description": "An initiative from the Utah Department of Health and Human Services offering tools for meaningful family connection, including the free Family Connection for Healthy Futures toolkit. Resources offered in English and Spanish.",
           "href": "https://dhhs.utah.gov/chat/",
           "linkLabel": "dhhs.utah.gov/chat",
-          "qr": "/images/family-resources/qr/chat.svg"
+          "qr": "/images/family-resources/qr/chat.svg",
+          "logo": "/images/family-resources/logos/chat.png"
         },
         {
           "icon": "HandHeart",
@@ -78,7 +82,8 @@
           "description": "Located in nearby Taylorsville, the Family Support Center offers free and low-cost parenting classes and groups, free short-term childcare for children ages 0–11, and more.",
           "href": "https://www.familysupportcenter.org/services-1",
           "linkLabel": "familysupportcenter.org",
-          "qr": "/images/family-resources/qr/family-support-center.svg"
+          "qr": "/images/family-resources/qr/family-support-center.svg",
+          "logo": "/images/family-resources/logos/family-support-center.png"
         },
         {
           "icon": "Sparkles",
@@ -86,7 +91,8 @@
           "description": "Free, online, anonymous courses designed to instill hope and self-efficacy in teens ages 11–17 by teaching a growth mindset — improving mood, reframing negative thoughts, and more. Available in English and Spanish.",
           "href": "https://www.tryprojectyes.org/lsmh",
           "linkLabel": "tryprojectyes.org/lsmh",
-          "qr": "/images/family-resources/qr/project-yes.svg"
+          "qr": "/images/family-resources/qr/project-yes.svg",
+          "logo": "/images/family-resources/logos/project-yes.png"
         },
         {
           "icon": "MapPin",
@@ -94,7 +100,8 @@
           "description": "Receive food support or donate to this local food pantry working to eliminate childhood hunger in Murray. Located at 170 East 5770 South. Open Tuesdays 10am–Noon and the third Saturday of each month 10am–Noon, or by appointment.",
           "href": "tel:385-210-1107",
           "linkLabel": "Call 385-210-1107",
-          "qr": "/images/family-resources/qr/childrens-pantry.svg"
+          "qr": "/images/family-resources/qr/childrens-pantry.svg",
+          "logo": "/images/family-resources/logos/childrens-pantry.png"
         },
         {
           "icon": "Building2",
@@ -102,7 +109,8 @@
           "description": "A variety of parent and community resources from the Murray City School District Family and Community Resources Page. Note: you can change the page to display in any language.",
           "href": "https://www.murrayschools.org/",
           "linkLabel": "murrayschools.org",
-          "qr": "/images/family-resources/qr/mcsd-family-resources.svg"
+          "qr": "/images/family-resources/qr/mcsd-family-resources.svg",
+          "logo": "/images/family-resources/logos/mcsd-family-resources.png"
         }
       ],
       "columns": 2
