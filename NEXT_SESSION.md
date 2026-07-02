@@ -30,10 +30,24 @@ Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** websit
 - Brand: Black `#1C1C1C` + Orange `#F27A21`, glassmorphic cards, animated aurora background.
 - No PAT tokens in code. `GITHUB_TOKEN` lives in Vercel env vars only.
 
-**Site structure (current — v2.7.0):**
+- Local build note: `npm run build` needs Supabase env vars to collect page data. For a local-only smoke build use dummy values:
+  ```bash
+  NEXT_PUBLIC_SUPABASE_URL="https://dummy.supabase.co" \
+  NEXT_PUBLIC_SUPABASE_ANON_KEY="dummy" \
+  SUPABASE_SERVICE_ROLE_KEY="dummy" npm run build
+  ```
+
+**Site structure (current — v2.8.0):**
 - `/` (home), `/about`, `/team`, `/members`, `/events`, `/contact`, `/get-involved`, `/legal`
-- `/resources` (hub), `/resources/parenting-suite` (bespoke), `/resources/[slug]` (generic CMS template)
+- `/resources` (hub), `/resources/parenting-suite` (bespoke), `/resources/family-resources` (11-card directory), `/resources/[slug]` (generic CMS template)
 - `/power-hub` (CMS, hidden from search engines)
+
+**Events system (v2.8.0):**
+- Events auto-sort by date and auto-split into Upcoming/Past by comparing to today — staff just add events anywhere in Power Hub, the page handles order and archiving. `pastEvents` in `events.json` is legacy input; both arrays are merged and re-split at render.
+- The split is computed at build time — an event flips to Past on the next deploy after its date passes (any Power Hub save triggers a deploy).
+- Power Hub saves auto-recover from stale-SHA conflicts (refetch + retry once, last save wins) — `app/api/power-hub/content/route.ts`.
+
+**Total CMS coverage (v2.8.0):** every visitor-facing string is JSON-driven, including site SEO/meta (`site.json` → `seo`), footer headings, hero gradient phrase (`home.json` → `headlineHighlight`), section headings on about/events, contact form labels/placeholders/buttons, and the `/resources` hub header (`resources-index.json` → `hub`). Members-page category list + tier labels intentionally stay in code (filter machinery).
 
 **Resources system (v2.6.0, May 5 2026):**
 - `content/resources-index.json` is the master list. Drives the nav dropdown AND the `/resources` hub cards. Edit `visible`, `order`, `navLabel`, `cardTitle`, `cardDescription` in Power Hub.
@@ -43,6 +57,7 @@ Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** websit
 - `lib/parenting-suite-config.ts` is now a deprecation shim that re-exports from JSON. Safe to delete after one clean deploy if no other importers appear.
 
 **Last sessions:**
+- July 2, 2026 — Session 16: Events auto-sort + auto-archive (past events move themselves), Power Hub stale-SHA save auto-recovery, full editability sweep (~30 hardcoded strings → JSON across site/home/about/events/contact/get-involved/resources-index). Added July 5 Potluck America event. v2.8.0.
 - June 23, 2026 — Built `/resources/family-resources` (directory of 11 community/parenting resources from the P4P PDF). Added per-card outbound links, program logos (top-left white chip), and scannable QR codes (bottom-right) to the generic `featureGrid` template; added `columns: 2|3` option. Fixed two bugs: unscrollable resources pages (stray `.aurora-bg` on `<main>`) and a build-breaking `never[]` in `app/events/page.tsx` from an emptied `pastEvents`. QR assets in `public/images/family-resources/qr/`, logos in `.../logos/`. v2.7.0.
 - May 5, 2026 (PM) — Wired Resources into Power Hub: extracted Parenting Suite to JSON, added `content/resources-index.json`, built `/resources` hub + `/resources/[slug]` generic template, switched Power Hub editor to catch-all route, added tailored FILE_HELP entries for `parenting-suite` and `resources-index`. Commit `c46b383`.
 - May 5, 2026 (AM) — Project relocated from `~/Desktop/Claude Projects/` to `~/dev/P4P-Website`. Standardized docs (`AGENTS.md`, `NEXT_SESSION.md`, `.env.local.example`). Pinned per-repo GitHub credential helper so push always works as `murrayp4pcoalition`.

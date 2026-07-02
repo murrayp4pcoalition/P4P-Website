@@ -3,9 +3,9 @@
 ## Project Overview
 
 **Project Name:** Murray Partners 4 Prevention (P4P) Coalition Website
-**Version:** 2.7.0
+**Version:** 2.8.0
 **Created:** February 11, 2026
-**Last Updated:** April 16, 2026 (Session 12)
+**Last Updated:** July 2, 2026 (Session 16)
 **Status:** 🚀 LIVE at murrayp4p.com - Production CMS (Staff Self-Sufficient!)
 
 ### Quick Links
@@ -567,3 +567,21 @@ This avoids issues with standard uploads and ensures proper builds.
 - **Bug fix:** `app/events/page.tsx` — typed the JSON-derived arrays so an emptied `pastEvents` (from a Power Hub edit) no longer breaks the production build via TS `never[]` inference. This had likely been failing recent staff deploys.
 - **Bug fix:** `/resources` hub and `/resources/[slug]` had `.aurora-bg` (position:fixed; overflow:hidden) on `<main>`, which made the pages unscrollable. Removed; aurora already renders globally in `layout.tsx`.
 - **Version: 2.7.0** - Family & Parenting Resources directory
+
+### July 2, 2026 - Session 16: Smart Events + Full Text Editability + Save Conflict Fix
+- **Events auto-sort by date:** `app/events/page.tsx` now sorts events chronologically at render time. Power Hub appends new events to the bottom of the JSON — order in the file no longer matters.
+- **Events auto-archive:** upcoming and past lists are merged and re-split by comparing each event's date to today (local midnight). Past events move to "Past Events" automatically — staff never touch `pastEvents` again. Past section hides when empty. Unparseable dates stay in Upcoming so events are never silently lost. Note: the split is computed at build time, so an event flips to Past on the next deploy after its date passes (any Power Hub save triggers one).
+- **Power Hub save conflict auto-recovery:** `app/api/power-hub/content/route.ts` — when a save hits a stale-SHA 409 ("does not match") because the file changed on GitHub after the editor loaded it, the API refetches the current SHA and retries once (last save wins). Staff never see the cryptic error again.
+- **Full text editability sweep:** every remaining hardcoded visitor-facing string moved into content JSON:
+  - `site.json` → `seo` (tab title, search description, social share text), `footerHeadings`, `legalLinkLabel`
+  - `home.json` → `headlineHighlight` (orange gradient phrase in hero), `partners.sectionLabel`, `partners.visitWebsiteLabel`
+  - `about.json` → `whoWeAre.visionTitle`, `whoWeAre.primaryButton/secondaryButton`, `valuesSection`, `focusAreasSection`
+  - `events.json` → `sections.upcoming` / `sections.past` (label + title)
+  - `contact.json` → `contactInfo.emailCardTitle`, `form.labels`, `form.placeholders`, `form.submitButton`, `form.sendingText`, `form.errorMessage`
+  - `get-involved.json` → `detailsHeading`
+  - `resources-index.json` → `hub` (badge, title, description, emptyMessage, learnMoreLabel) — drives /resources header + metadata
+- Components updated to read the new fields: `layout.tsx` (site metadata), `Hero`, `Partners`, `Footer`, about/events/contact/get-involved pages, resources hub.
+- **Kept in code on purpose:** members-page category list + tier labels (filter machinery tied to Power Hub data values — editing would break filtering).
+- **Content:** added July 5 "Potluck America" event (staff's mid-session Power Hub save merged cleanly via the new auto-retry); removed a leftover empty event object.
+- **Verified live:** murrayp4p.com/events auto-sorted + June 23 auto-archived; home + resources rendering JSON-driven labels.
+- **Version: 2.8.0** - Smart Events & Total CMS Coverage

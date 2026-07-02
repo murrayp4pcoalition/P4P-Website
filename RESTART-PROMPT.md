@@ -98,7 +98,7 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 
 ---
 
-## What's Built (v2.6.0)
+## What's Built (v2.8.0)
 
 ### Pages
 - 9 public pages (Home, About, Team, Members, Events, Contact, Get Involved, Legal)
@@ -116,26 +116,30 @@ Login to Power Hub → Edit Content → Save & Deploy → GitHub API commits →
 - ✅ Mobile-optimized (320px - 1920px+)
 - ✅ Framer Motion animations
 - ✅ GIFT CONNECT Parenting Suite page with video, QR codes, and app store links
-- ✅ **NEW (v2.6.0):** Power-Hub-managed Resources system — add new resource pages from `content/resources-index.json` + a matching `content/resources/<slug>.json` without touching code
+- ✅ Power-Hub-managed Resources system — add new resource pages from `content/resources-index.json` + a matching `content/resources/<slug>.json` without touching code
+- ✅ **(v2.7.0):** Family & Parenting Resources directory at /resources/family-resources — 11 cards with logos, outbound links, and QR codes
+- ✅ **NEW (v2.8.0):** Smart Events — auto-sorted by date, past events auto-archive (staff never reorder or move events)
+- ✅ **NEW (v2.8.0):** Power Hub save conflict auto-recovery — stale-SHA saves refetch + retry automatically
+- ✅ **NEW (v2.8.0):** Total CMS coverage — every visitor-facing string is editable (SEO/meta, section headings, form labels, button text, footer headings)
 
 ### Content Files (All Editable via Power Hub)
 | File | Controls |
 |------|----------|
-| `home.json` | Hero, Partners, Stats |
-| `about.json` | Mission, Values, Focus Areas |
-| `contact.json` | Contact page content |
-| `events.json` | Upcoming & Past Events |
+| `home.json` | Hero (incl. `headlineHighlight` gradient phrase), Partners, Stats |
+| `about.json` | Mission, Values, Focus Areas, section headings, buttons |
+| `contact.json` | Contact page content, form labels/placeholders/buttons |
+| `events.json` | Events (auto-sorted; past auto-archives), section headings |
 | `team.json` | Staff, Key Leaders, Board Members |
 | `members.json` | Coalition member organizations |
-| `get-involved.json` | Volunteer, Donate, Partner info |
+| `get-involved.json` | Volunteer, Donate, Partner info, `detailsHeading` |
 | `legal.json` | Terms, Privacy, Accessibility |
-| `site.json` | Footer, Social links, CTA banner |
+| `site.json` | SEO/meta (`seo`), Footer headings + links, Social links, CTA banner |
 | `parenting-suite.json` | GIFT CONNECT page — links, video, features, stats, copy, SMS toggle |
-| `resources-index.json` | Resources dropdown + `/resources` hub — add/hide/reorder resource pages |
+| `resources-index.json` | Resources dropdown + `/resources` hub (incl. `hub` header text) — add/hide/reorder resource pages |
 | `resources/<slug>.json` | Generic resource page content (per-slug; rendered by `/resources/[slug]`) |
 
-### Current Content Status (as of May 5, 2026 — v2.6.0)
-- ✅ Events: 15 upcoming events (April - December 2026)
+### Current Content Status (as of July 2, 2026 — v2.8.0)
+- ✅ Events: monthly coalition meetings + July 4 parade + July 5 Potluck America (auto-sorted, past auto-archives on each deploy)
 - ✅ Team: 4 Staff, 34 Key Leaders, 64 Board Members
 - ✅ All content editable via Power Hub
 - ✅ **Parenting Suite page:** live at /resources/parenting-suite (visible in nav under Resources)
