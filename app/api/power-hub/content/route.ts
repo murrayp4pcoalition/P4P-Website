@@ -109,6 +109,9 @@ async function listAllContentFiles() {
 }
 
 // Helper: Update file on GitHub (creates commit)
+// If the provided SHA is stale (file changed on GitHub since the editor
+// loaded it), automatically refetch the current SHA and retry once so staff
+// never hit a dead-end "does not match" error. Last save wins.
 async function updateFileOnGitHub(
   path: string,
   content: unknown,
@@ -123,15 +126,31 @@ async function updateFileOnGitHub(
     JSON.stringify(content, null, 2)
   ).toString('base64');
 
-  const data = await githubFetch(endpoint, {
-    method: 'PUT',
-    body: JSON.stringify({
-      message,
-      content: encodedContent,
-      sha,
-      branch: config.branch,
-    }),
-  });
+  const putFile = (fileSha: string) =>
+    githubFetch(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify({
+        message,
+        content: encodedContent,
+        sha: fileSha,
+        branch: config.branch,
+      }),
+    });
+
+  let data;
+  try {
+    data = await putFile(sha);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : '';
+    const isStaleSha = msg.includes('does not match') || msg.includes('409');
+    if (!isStaleSha) throw err;
+
+    // SHA conflict: the file changed on GitHub after the editor loaded it.
+    // Refetch the current SHA and retry once with this save's content.
+    console.warn(`Stale SHA for ${path} — refetching and retrying save`);
+    const latest = await getFileFromGitHub(path);
+    data = await putFile(latest.sha);
+  }
 
   // Trigger Vercel rebuild via deploy hook
   const deployHook = process.env.VERCEL_DEPLOY_HOOK;
