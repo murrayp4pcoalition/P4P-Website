@@ -46,16 +46,29 @@ function parseDateParts(dateStr: string) {
 
 export default function EventsPage() {
   const { header, upcomingEvents: rawEvents, pastEvents: rawPastEvents, cta } = eventsContent;
-  // Filter out any empty/invalid events, most recent first for past events
-  const pastEvents = (rawPastEvents as EventItem[])
-    .filter((e) => e.title && e.date)
-    .sort((a, b) => byDateAscending(b, a));
+  // Merge both lists, drop empty/invalid events, then auto-split by date —
+  // staff never have to move events to "past" manually
+  const allEvents = ([...(rawEvents as EventItem[]), ...(rawPastEvents as EventItem[])])
+    .filter((e) => e.title && e.date);
 
-  // Filter out any empty/invalid events, then sort by date so Power Hub
-  // additions always appear in chronological order regardless of JSON order
-  const upcomingEvents = (rawEvents as EventItem[])
-    .filter((e) => e.title && e.date)
+  // An event is "past" once its date is before today (midnight local time)
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+  const cutoff = startOfToday.getTime();
+
+  const upcomingEvents = allEvents
+    .filter((e) => {
+      const t = parseTimestamp(e.date);
+      return isNaN(t) || t >= cutoff; // unparseable dates stay visible in upcoming
+    })
     .sort(byDateAscending);
+
+  const pastEvents = allEvents
+    .filter((e) => {
+      const t = parseTimestamp(e.date);
+      return !isNaN(t) && t < cutoff;
+    })
+    .sort((a, b) => byDateAscending(b, a)); // most recent first
 
   return (
     <>
@@ -134,6 +147,7 @@ export default function EventsPage() {
       </section>
 
       {/* Past Events */}
+      {pastEvents.length > 0 && (
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <FadeIn direction="up">
@@ -160,6 +174,7 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* CTA Section */}
       <section className="relative py-16 overflow-hidden">
