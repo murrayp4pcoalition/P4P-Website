@@ -23,7 +23,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function Footer() {
-  const { organization, socialLinks, footerLinks } = siteContent;
+  const { organization, socialLinks, footerLinks, footerHeadings, legalLinkLabel } = siteContent;
 
   return (
     <footer className="footer-glass relative overflow-hidden w-full">
@@ -84,7 +84,7 @@ export default function Footer() {
 
           {/* Navigation Column */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Navigation</h4>
+            <h4 className="text-white font-semibold mb-4">{footerHeadings.navigation}</h4>
             <ul className="space-y-3">
               {footerLinks.navigation.map((link) => (
                 <li key={link.label}>
@@ -101,7 +101,7 @@ export default function Footer() {
 
           {/* Get Involved Column */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Get Involved</h4>
+            <h4 className="text-white font-semibold mb-4">{footerHeadings.getInvolved}</h4>
             <ul className="space-y-3">
               {footerLinks.getInvolved.map((link) => (
                 <li key={link.label}>
@@ -118,7 +118,7 @@ export default function Footer() {
 
           {/* Resources Column */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <h4 className="text-white font-semibold mb-4">{footerHeadings.resources}</h4>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
@@ -144,7 +144,7 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
               <Link href="/legal" className="text-white/40 hover:text-white transition-colors">
-                Legal Policies
+                {legalLinkLabel}
               </Link>
             </div>
           </div>

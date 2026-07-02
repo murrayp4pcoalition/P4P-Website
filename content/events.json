@@ -5,6 +5,16 @@
     "description": "Join us at upcoming events and help build a stronger Murray community.",
     "backgroundImage": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1920&q=80"
   },
+  "sections": {
+    "upcoming": {
+      "label": "Join Us",
+      "title": "Upcoming Events"
+    },
+    "past": {
+      "label": "Our Impact",
+      "title": "Past Events"
+    }
+  },
   "upcomingEvents": [
     {
       "title": "Murray P4P Coalition Meeting",

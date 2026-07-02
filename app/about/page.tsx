@@ -18,7 +18,7 @@ const iconMap: Record<string, typeof Heart> = {
 };
 
 export default function AboutPage() {
-  const { pageHeader, whoWeAre, values, focusAreas, cta } = aboutContent;
+  const { pageHeader, whoWeAre, values, valuesSection, focusAreas, focusAreasSection, cta } = aboutContent;
 
   return (
     <>
@@ -54,23 +54,23 @@ export default function AboutPage() {
                   </p>
                 ))}
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Link href="/team">
+                  <Link href={whoWeAre.primaryButton.href}>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="btn-primary"
                     >
-                      Meet Our Team
+                      {whoWeAre.primaryButton.text}
                       <ArrowRight className="w-4 h-4" />
                     </motion.button>
                   </Link>
-                  <Link href="/contact">
+                  <Link href={whoWeAre.secondaryButton.href}>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="btn-secondary"
                     >
-                      Get Involved
+                      {whoWeAre.secondaryButton.text}
                     </motion.button>
                   </Link>
                 </div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
 
             <FadeIn direction="right" delay={0.2}>
               <div className="glass-card p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Our Vision</h3>
+                <h3 className="text-2xl font-bold text-white mb-6">{whoWeAre.visionTitle}</h3>
                 <p className="text-white/70 leading-relaxed text-lg italic">
                   &ldquo;{whoWeAre.vision}&rdquo;
                 </p>
@@ -104,10 +104,10 @@ export default function AboutPage() {
           <FadeIn direction="up">
             <div className="text-center mb-12">
               <span className="text-orange-400 font-semibold uppercase tracking-wider text-sm">
-                Our Values
+                {valuesSection.label}
               </span>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white">
-                What Guides Us
+                {valuesSection.title}
               </h2>
             </div>
           </FadeIn>
@@ -144,13 +144,13 @@ export default function AboutPage() {
           <FadeIn direction="up">
             <div className="text-center mb-12">
               <span className="text-orange-400 font-semibold uppercase tracking-wider text-sm">
-                What We Do
+                {focusAreasSection.label}
               </span>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white">
-                Focus Areas
+                {focusAreasSection.title}
               </h2>
               <p className="mt-4 text-white/60 max-w-2xl mx-auto">
-                Our coalition addresses key community needs through targeted programs and initiatives.
+                {focusAreasSection.description}
               </p>
             </div>
           </FadeIn>

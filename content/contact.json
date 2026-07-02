@@ -9,6 +9,7 @@
     "sectionTitle": "Let's Connect",
     "sectionDescription": "Whether you have questions about our programs, want to volunteer, or are interested in partnering with us, we're here to help.",
     "email": "director@murrayp4p.com",
+    "emailCardTitle": "Email Us",
     "emailResponseTime": "We typically respond within 24-48 hours."
   },
   "form": {
@@ -21,7 +22,24 @@
       { "value": "general", "label": "General Question" }
     ],
     "successTitle": "Message Sent!",
-    "successMessage": "We'll get back to you soon."
+    "successMessage": "We'll get back to you soon.",
+    "labels": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message"
+    },
+    "placeholders": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "(555) 123-4567",
+      "subject": "Select a topic",
+      "message": "How can we help you?"
+    },
+    "submitButton": "Send Message",
+    "sendingText": "Sending...",
+    "errorMessage": "Something went wrong. Please try again or email us directly."
   },
   "social": {
     "title": "Follow Us",

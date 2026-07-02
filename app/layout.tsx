@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+// Site-wide SEO text is staff-editable in Power Hub → site → seo
+import siteContent from "@/content/site.json";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -17,31 +19,33 @@ const openSans = Open_Sans({
   weight: ['400', '500', '600', '700'],
 });
 
+const { seo, organization } = siteContent;
+
 export const metadata: Metadata = {
-  title: "Murray Partners 4 Prevention | Building a Stronger, Safer Community",
-  description: "A connected and compassionate Murray where all residents are empowered to thrive, grow, and build a stronger, safer community together. Supporting Residents, Connecting Families, Empowering Youth.",
+  title: seo.title,
+  description: seo.description,
   keywords: ["Murray Partners 4 Prevention", "P4P", "Murray Utah", "Community Coalition", "Prevention", "Youth Empowerment", "Family Support"],
-  authors: [{ name: "Murray Partners 4 Prevention" }],
+  authors: [{ name: organization.name }],
   icons: {
     icon: [
-      { url: '/images/p4p-logo.png', type: 'image/png' },
+      { url: organization.logo, type: 'image/png' },
     ],
     apple: [
-      { url: '/images/p4p-logo.png', type: 'image/png' },
+      { url: organization.logo, type: 'image/png' },
     ],
   },
   openGraph: {
-    title: "Murray Partners 4 Prevention",
-    description: "Building a stronger, safer community together in Murray, Utah",
+    title: seo.socialTitle,
+    description: seo.socialDescription,
     url: "https://murrayp4p.com",
-    siteName: "Murray Partners 4 Prevention",
+    siteName: organization.name,
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Murray Partners 4 Prevention",
-    description: "Building a stronger, safer community together in Murray, Utah",
+    title: seo.socialTitle,
+    description: seo.socialDescription,
   },
   robots: {
     index: true,

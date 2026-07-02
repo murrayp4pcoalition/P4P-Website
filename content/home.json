@@ -2,6 +2,7 @@
   "hero": {
     "badge": "Murray Partners 4 Prevention",
     "headline": "A connected and compassionate Murray where all residents are empowered to thrive",
+    "headlineHighlight": "empowered to thrive",
     "subheadline": "Growing and building a stronger, safer community together.",
     "tags": [
       "Supporting Residents",
@@ -40,6 +41,8 @@
     "backgroundImage": "/images/hero/p4p-hero.jpg"
   },
   "partners": {
+    "sectionLabel": "Our Partners",
+    "visitWebsiteLabel": "Visit Website",
     "sectionTitle": "Partner Organizations",
     "sectionSubtitle": "Working together with community leaders and organizations to build a stronger, safer Murray.",
     "ctaTitle": "Interested in Partnering?",

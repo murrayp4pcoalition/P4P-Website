@@ -15,7 +15,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function GetInvolvedPage() {
-  const { header, opportunities, impactStats, cta } = getInvolvedContent;
+  const { header, detailsHeading, opportunities, impactStats, cta } = getInvolvedContent;
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function GetInvolvedPage() {
                           </Link>
                         </div>
                         <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                          <h3 className="text-lg font-semibold text-white mb-4">How You Can Help</h3>
+                          <h3 className="text-lg font-semibold text-white mb-4">{detailsHeading}</h3>
                           <ul className="space-y-3">
                             {opp.details.map((detail, idx) => (
                               <li key={idx} className="flex items-start gap-3">

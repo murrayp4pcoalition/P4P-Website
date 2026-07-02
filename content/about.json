@@ -13,7 +13,19 @@
       "Our coalition works collaboratively with schools, healthcare providers, city government, businesses, and community organizations to create programs and initiatives that empower residents of all ages."
     ],
     "vision": "A connected and compassionate Murray where all residents are empowered to thrive, grow, and build a stronger, safer community together.",
-    "visionTags": ["Supporting Residents", "Connecting Families", "Empowering Youth", "Fostering Growth"]
+    "visionTitle": "Our Vision",
+    "visionTags": ["Supporting Residents", "Connecting Families", "Empowering Youth", "Fostering Growth"],
+    "primaryButton": { "text": "Meet Our Team", "href": "/team" },
+    "secondaryButton": { "text": "Get Involved", "href": "/contact" }
+  },
+  "valuesSection": {
+    "label": "Our Values",
+    "title": "What Guides Us"
+  },
+  "focusAreasSection": {
+    "label": "What We Do",
+    "title": "Focus Areas",
+    "description": "Our coalition addresses key community needs through targeted programs and initiatives."
   },
   "values": [
     {

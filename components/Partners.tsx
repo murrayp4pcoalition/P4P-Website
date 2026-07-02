@@ -23,7 +23,7 @@ export default function Partners() {
         <FadeIn direction="up">
           <div className="text-center mb-16">
             <span className="text-orange-400 font-semibold uppercase tracking-wider text-sm">
-              Our Partners
+              {partners.sectionLabel}
             </span>
             <h2 className="mt-4 text-4xl sm:text-5xl font-bold text-white">
               {partners.sectionTitle}
@@ -75,7 +75,7 @@ export default function Partners() {
                     {partner.description}
                   </p>
                   <div className="mt-4 inline-flex items-center gap-2 text-orange-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    Visit Website
+                    {partners.visitWebsiteLabel}
                     <ExternalLink className="w-4 h-4" />
                   </div>
                 </div>

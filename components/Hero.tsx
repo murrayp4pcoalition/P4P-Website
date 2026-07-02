@@ -10,6 +10,9 @@ import homeContent from '@/content/home.json';
 
 export default function Hero() {
   const { hero } = homeContent;
+  // Staff-editable highlight phrase — if it appears in the headline, it gets
+  // the orange gradient treatment. Edit in Power Hub → home → headlineHighlight.
+  const highlight = hero.headlineHighlight || '';
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
@@ -65,13 +68,13 @@ export default function Hero() {
         {/* Main Mission Statement */}
         <FadeIn direction="up" delay={0.1}>
           <h1 className="mt-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight max-w-5xl mx-auto">
-            {hero.headline.includes('empowered to thrive') ? (
+            {highlight && hero.headline.includes(highlight) ? (
               <>
-                <span className="text-white">{hero.headline.split('empowered to thrive')[0]}</span>
+                <span className="text-white">{hero.headline.split(highlight)[0]}</span>
                 <span className="bg-gradient-to-r from-orange-400 via-orange-300 to-orange-400 bg-clip-text text-transparent">
-                  empowered to thrive
+                  {highlight}
                 </span>
-                <span className="text-white">{hero.headline.split('empowered to thrive')[1]}</span>
+                <span className="text-white">{hero.headline.split(highlight)[1]}</span>
               </>
             ) : (
               <span className="text-white">{hero.headline}</span>

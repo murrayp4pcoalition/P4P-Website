@@ -46,7 +46,7 @@ export default function ContactPage() {
         setFormState({ name: '', email: '', phone: '', subject: '', message: '' });
       }, 5000);
     } catch (err) {
-      setError('Something went wrong. Please try again or email us directly.');
+      setError(form.errorMessage);
       console.error('Form submission error:', err);
     } finally {
       setIsSubmitting(false);
@@ -87,7 +87,7 @@ export default function ContactPage() {
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-white">Email Us</h3>
+                      <h3 className="text-lg font-semibold text-white">{contactInfo.emailCardTitle}</h3>
                       <a
                         href={`mailto:${contactInfo.email}`}
                         className="mt-1 text-orange-400 hover:text-orange-300 transition-colors"
@@ -141,7 +141,7 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
-                        Your Name
+                        {form.labels.name}
                       </label>
                       <input
                         type="text"
@@ -150,13 +150,13 @@ export default function ContactPage() {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         className="input-glass"
-                        placeholder="John Doe"
+                        placeholder={form.placeholders.name}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
-                        Email Address
+                        {form.labels.email}
                       </label>
                       <input
                         type="email"
@@ -165,13 +165,13 @@ export default function ContactPage() {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         className="input-glass"
-                        placeholder="john@example.com"
+                        placeholder={form.placeholders.email}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-2">
-                        Phone Number
+                        {form.labels.phone}
                       </label>
                       <input
                         type="tel"
@@ -179,13 +179,13 @@ export default function ContactPage() {
                         value={formState.phone}
                         onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
                         className="input-glass"
-                        placeholder="(555) 123-4567"
+                        placeholder={form.placeholders.phone}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-white/80 mb-2">
-                        Subject
+                        {form.labels.subject}
                       </label>
                       <select
                         id="subject"
@@ -194,7 +194,7 @@ export default function ContactPage() {
                         onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
                         className="input-glass select-glass"
                       >
-                        <option value="">Select a topic</option>
+                        <option value="">{form.placeholders.subject}</option>
                         {form.subjects.map((subject) => (
                           <option key={subject.value} value={subject.value}>
                             {subject.label}
@@ -205,7 +205,7 @@ export default function ContactPage() {
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
-                        Message
+                        {form.labels.message}
                       </label>
                       <textarea
                         id="message"
@@ -214,7 +214,7 @@ export default function ContactPage() {
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                         className="input-glass resize-none"
-                        placeholder="How can we help you?"
+                        placeholder={form.placeholders.message}
                       />
                     </div>
 
@@ -237,12 +237,12 @@ export default function ContactPage() {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
-                          Sending...
+                          {form.sendingText}
                         </>
                       ) : (
                         <>
                           <Send className="w-5 h-5" />
-                          Send Message
+                          {form.submitButton}
                         </>
                       )}
                     </motion.button>

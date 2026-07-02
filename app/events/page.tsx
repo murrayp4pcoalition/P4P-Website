@@ -45,7 +45,7 @@ function parseDateParts(dateStr: string) {
 }
 
 export default function EventsPage() {
-  const { header, upcomingEvents: rawEvents, pastEvents: rawPastEvents, cta } = eventsContent;
+  const { header, sections, upcomingEvents: rawEvents, pastEvents: rawPastEvents, cta } = eventsContent;
   // Merge both lists, drop empty/invalid events, then auto-split by date —
   // staff never have to move events to "past" manually
   const allEvents = ([...(rawEvents as EventItem[]), ...(rawPastEvents as EventItem[])])
@@ -92,10 +92,10 @@ export default function EventsPage() {
           <FadeIn direction="up">
             <div className="text-center mb-12">
               <span className="text-orange-400 font-semibold uppercase tracking-wider text-sm">
-                Join Us
+                {sections.upcoming.label}
               </span>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white">
-                Upcoming Events
+                {sections.upcoming.title}
               </h2>
             </div>
           </FadeIn>
@@ -153,10 +153,10 @@ export default function EventsPage() {
           <FadeIn direction="up">
             <div className="text-center mb-12">
               <span className="text-orange-400 font-semibold uppercase tracking-wider text-sm">
-                Our Impact
+                {sections.past.label}
               </span>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-white">
-                Past Events
+                {sections.past.title}
               </h2>
             </div>
           </FadeIn>

@@ -1,4 +1,10 @@
 {
+  "seo": {
+    "title": "Murray Partners 4 Prevention | Building a Stronger, Safer Community",
+    "description": "A connected and compassionate Murray where all residents are empowered to thrive, grow, and build a stronger, safer community together. Supporting Residents, Connecting Families, Empowering Youth.",
+    "socialTitle": "Murray Partners 4 Prevention",
+    "socialDescription": "Building a stronger, safer community together in Murray, Utah"
+  },
   "organization": {
     "name": "Murray Partners 4 Prevention",
     "tagline": "A connected and compassionate Murray where all residents are empowered to thrive, grow, and build a stronger, safer community together.",
@@ -39,6 +45,12 @@
       "href": "/about"
     }
   },
+  "footerHeadings": {
+    "navigation": "Navigation",
+    "getInvolved": "Get Involved",
+    "resources": "Resources"
+  },
+  "legalLinkLabel": "Legal Policies",
   "footerLinks": {
     "navigation": [
       { "label": "Home", "href": "/" },

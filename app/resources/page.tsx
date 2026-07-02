@@ -16,10 +16,12 @@ type ResourceEntry = {
   order: number;
 };
 
+// Hub header text is staff-editable in Power Hub → resources-index → hub
+const hub = resourcesIndex.hub;
+
 export const metadata = {
-  title: 'Resources — Murray Partners 4 Prevention',
-  description:
-    'Resources, tools, and programs for Murray families — curated by Murray Partners 4 Prevention.',
+  title: `${hub.title} — Murray Partners 4 Prevention`,
+  description: hub.description,
 };
 
 export default function ResourcesHubPage() {
@@ -30,9 +32,9 @@ export default function ResourcesHubPage() {
   return (
     <div className="min-h-screen">
       <PageHeader
-        badge="Resources"
-        title="Resources for Murray Families"
-        description="Tools, programs, and partner offerings curated by Murray Partners 4 Prevention to help every family thrive."
+        badge={hub.badge}
+        title={hub.title}
+        description={hub.description}
         breadcrumbs={[{ label: 'Resources' }]}
       />
 
@@ -42,7 +44,7 @@ export default function ResourcesHubPage() {
             <FadeIn direction="up">
               <div className="text-center text-white/70 py-12">
                 <BookOpen className="w-12 h-12 mx-auto text-orange-400/60 mb-4" />
-                <p className="text-lg">More resources are on the way. Check back soon.</p>
+                <p className="text-lg">{hub.emptyMessage}</p>
               </div>
             </FadeIn>
           ) : (
@@ -71,7 +73,7 @@ export default function ResourcesHubPage() {
                     )}
 
                     <div className="mt-6 inline-flex items-center gap-2 text-orange-400 font-medium text-sm group-hover:gap-3 transition-all">
-                      Learn more
+                      {hub.learnMoreLabel}
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </Link>
