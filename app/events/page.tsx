@@ -19,6 +19,21 @@ type EventItem = {
   type?: string;
 };
 
+// Helper to get a sortable timestamp from a date string (NaN if unparseable)
+function parseTimestamp(dateStr?: string) {
+  return Date.parse(dateStr || '');
+}
+
+// Sort events chronologically; unparseable dates go last
+function byDateAscending(a: EventItem, b: EventItem) {
+  const ta = parseTimestamp(a.date);
+  const tb = parseTimestamp(b.date);
+  if (isNaN(ta) && isNaN(tb)) return 0;
+  if (isNaN(ta)) return 1;
+  if (isNaN(tb)) return -1;
+  return ta - tb;
+}
+
 // Helper to safely parse date for display
 function parseDateParts(dateStr: string) {
   if (!dateStr || !dateStr.includes(' ')) return { day: '', month: '' };
@@ -31,10 +46,16 @@ function parseDateParts(dateStr: string) {
 
 export default function EventsPage() {
   const { header, upcomingEvents: rawEvents, pastEvents: rawPastEvents, cta } = eventsContent;
-  const pastEvents = rawPastEvents as EventItem[];
+  // Filter out any empty/invalid events, most recent first for past events
+  const pastEvents = (rawPastEvents as EventItem[])
+    .filter((e) => e.title && e.date)
+    .sort((a, b) => byDateAscending(b, a));
 
-  // Filter out any empty/invalid events
-  const upcomingEvents = (rawEvents as EventItem[]).filter((e) => e.title && e.date);
+  // Filter out any empty/invalid events, then sort by date so Power Hub
+  // additions always appear in chronological order regardless of JSON order
+  const upcomingEvents = (rawEvents as EventItem[])
+    .filter((e) => e.title && e.date)
+    .sort(byDateAscending);
 
   return (
     <>
@@ -68,7 +89,7 @@ export default function EventsPage() {
 
           <StaggerChildren staggerDelay={0.1} className="space-y-6">
             {upcomingEvents.map((event) => (
-              <StaggerItem key={event.title}>
+              <StaggerItem key={`${event.title}-${event.date}`}>
                 <motion.div
                   whileHover={{ y: -4 }}
                   className="glass-card p-6 md:p-8"
@@ -128,7 +149,7 @@ export default function EventsPage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {pastEvents.map((event, index) => (
-              <FadeIn key={event.title} direction="up" delay={index * 0.1}>
+              <FadeIn key={`${event.title}-${event.date}`} direction="up" delay={index * 0.1}>
                 <div className="glass-card p-6 h-full">
                   <span className="text-orange-400 font-medium text-sm">{event.date}</span>
                   <h3 className="mt-2 text-lg font-semibold text-white">{event.title}</h3>

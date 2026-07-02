@@ -23,6 +23,14 @@
       "type": "Event"
     },
     {
+      "title": "Potluck America",
+      "date": "July 5, 2026",
+      "time": "5:00-7:00 PM",
+      "location": "Murray City Park - Pavilion #5",
+      "description": "Come Celebrate America's 250 Anniversary",
+      "type": "Event"
+    },
+    {
       "title": "Murray P4P Coalition Meeting",
       "date": "August 25, 2026",
       "time": "4:00 PM - 5:00 PM",
@@ -61,22 +69,6 @@
       "location": "Murray City School District Office (5102 S. Commerce Dr.)",
       "description": "Join us for our monthly coalition meeting. All community members are welcome to attend and learn about current initiatives.",
       "type": "Event"
-    },
-    {
-      "title": "Potluck America",
-      "date": "July 5, 2026",
-      "time": "5:00-7:00 PM",
-      "location": "Murray City Park - Pavilion #5",
-      "description": "Come Celebrate America's 250 Anniversary",
-      "type": "Event"
-    },
-    {
-      "title": "",
-      "date": "",
-      "time": "",
-      "location": "",
-      "description": "",
-      "type": ""
     }
   ],
   "pastEvents": [],
