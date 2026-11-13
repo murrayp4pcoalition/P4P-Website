@@ -6,6 +6,8 @@ Copy everything below the line into a new Claude Code conversation:
 
 Let's resume work on the **Murray Partners 4 Prevention (P4P) Coalition** website.
 
+> **Handover (13 Nov 2026):** Brett texted every login + a security checklist to **Sam Beal**, P4P's new web person (beal.r.sam@gmail.com, 801-657-8413). Sam now runs the site. **Open:** once Sam confirms he has changed the passwords, remove the old passwords from `P4P-QUICK-REFERENCE.md`, `CLAUDE.md` and this file (only on Brett's OK).
+
 **Working directory:** `/Users/brettlechtenberg/dev/P4P-Website`
 **GitHub:** https://github.com/murrayp4pcoalition/P4P-Website (private)
 **Vercel:** https://vercel.com/murrayp4pcoalitions-projects/p4-p-website
