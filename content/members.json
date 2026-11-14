@@ -62,17 +62,6 @@
       "tier": "founding"
     },
     {
-      "id": 6,
-      "name": "Murray Chamber of Commerce",
-      "category": "Business",
-      "description": "Empowering local businesses, fostering community connections, and driving economic growth in Murray.",
-      "address": "141 E 5600 S Suite 300, Murray, UT 84107",
-      "phone": "(801) 263-2632",
-      "website": "themurraychamber.com",
-      "image": "/images/partners/murray-chamber.png",
-      "tier": "partner"
-    },
-    {
       "id": 7,
       "name": "Exchange Club",
       "category": "Nonprofit",
