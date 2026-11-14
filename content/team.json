@@ -32,14 +32,6 @@
         "bio": "Managing coalition administration, communications, and day-to-day operations.",
         "email": "director@murrayp4p.com",
         "image": null
-      },
-      {
-        "name": "Murray Chamber Foundation",
-        "title": "Treasurer",
-        "subtitle": "Finance",
-        "bio": "Overseeing coalition finances and ensuring responsible stewardship of community resources.",
-        "email": "director@murrayp4p.com",
-        "image": null
       }
     ]
   },
@@ -80,16 +72,6 @@
       {
         "name": "Craig Burnett",
         "role": "Murray Chief of Police",
-        "image": null
-      },
-      {
-        "name": "Kathy White",
-        "role": "Chamber of Commerce President",
-        "image": null
-      },
-      {
-        "name": "Brett Lechtenberg",
-        "role": "Chamber Foundation",
         "image": null
       },
       {
@@ -210,6 +192,11 @@
       {
         "name": "Clark Bullen",
         "role": "Murray City Council",
+        "image": null
+      },
+      {
+        "name": "Sam Beal",
+        "role": "MYCC President",
         "image": null
       }
     ]
